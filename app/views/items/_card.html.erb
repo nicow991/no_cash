@@ -23,7 +23,7 @@
               </div>
             <div class="card-body">
               <h5 class="card-title"><%= item.name %></h5>
-              <h3><%= item.category %></h3>
+              <h3><%= item.category.name %></h3>
               <p class="card-text" style="height: 80px;"><%= item.description %>.</p>
                 <% if item.user == current_user %>
                   <%= link_to 'Check your item', item_path(item), class: "btn btn-success" %>
