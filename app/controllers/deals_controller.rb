@@ -2,7 +2,7 @@ class DealsController < ApplicationController
   before_action :set_deal, only: %i[show cancel]
 
   def index
-    @deals = current_user.deals
+    @deals = Deal.where(user_id: current_user.id)
   end
 
   def show

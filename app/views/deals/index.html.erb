@@ -1,2 +1,9 @@
-<h1>Deals#index</h1>
-<p>Find me in app/views/deals/index.html.erb</p>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>My Deals</h1>
+    <% if @my_deals.present? %>
+    <%= render 'deals' %>
+    <% end %>
+  </div>
+  <%= link_to 'Home', root_path %>
+</div>
