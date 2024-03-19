@@ -9,12 +9,12 @@ class DealsController < ApplicationController
   end
 
   def create
-    @deal = Deal.new(deal_params)
+    @deal = Deal.new
     @deal.user = current_user
     @deal.offer = Offer.find(params[:offer_id])
     @deal.status = "pending"
     if @deal.save
-      redirect_to deals_path
+      redirect_to deal_path(@deal)
     else
       render 'deals/index'
     end
@@ -23,15 +23,10 @@ class DealsController < ApplicationController
   def cancel
     @deal.status = "cancelled"
     @deal.save
-    redirect_to deals_path
+    redirect_to deal_path(@deal)
   end
-
 
   private
-
-  def deal_params
-    params.require(:deal).permit(:status)
-  end
 
   def set_deal
     @deal = Deal.find(params[:id])
