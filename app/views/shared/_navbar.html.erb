@@ -1,38 +1,57 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
+<div class="navbar shadow navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="d-flex justify-content-between align-items-center w-100 px-3">
+    <div>
+      <%= link_to "/", class: "navbar-brand d-flex align-items-center" do %>
+        <%= image_tag "Loop.png", class: "me-3" %>
+        <h3 class="mt-3 d-none d-md-block">LOOP</h3>
+      <% end %>
     </div>
+
+
+<div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+    <%= form_with url: root_path, method: :get, class: "d-flex form-inline" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control mr-sm-2 rounded",
+            style: "width: 300px;",
+            placeholder: "Find items..."
+        %>
+        <div>
+        <button type="submit" class="btn border-0" title="Search">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+    <ul class="navbar-nav">
+      <li class="nav-item d-none d-md-block">
+         <% if user_signed_in? %>
+         <p class= "mt-3 mx-2"><%= current_user.nickname %> </p>
+         <% end %>
+      </li>
+
+
+
+      <li class="nav-item dropdown position-relative">
+        <%= image_tag "Loop.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <div class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="navbarDropdown">
+
+          <% if user_signed_in? %>
+            <%= link_to "chats", chatroom_path(Chatroom.first.id), class: "dropdown-item" %>
+            <%= link_to "New item", new_item_path, class: "dropdown-item" %>
+            <%= link_to "My offers", "#", class: "dropdown-item" %>
+            <%= link_to "My deals", "#", class: "dropdown-item" %>
+            <%= link_to "My items", "#", class: "dropdown-item" %>
+            <%= link_to "Log out", "/users/sign_out", class: "dropdown-item", data: {turbo_method: :delete} %>
+          <% else %>
+            <%= link_to "Log in", "/users/sign_in", class: "dropdown-item" %>
+            <%= link_to "Sign up", "/users/sign_up", class: "dropdown-item" %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>

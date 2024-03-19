@@ -10,7 +10,7 @@
             <%= f.input :description %>
             <%= f.association :category %>
             <%= f.input :condition, as: :select, collection: ["excellent", "good", "fair", "acceptable"] %>
-            <%# <%= f.input :photos, as: :file, input_html: { multiple: true }, label: @item.photos.empty? ? 'Photos' : "Current: #{@item.photos.map{ |p| p.filename.to_s }.join(', ')}"  %>
+            <%= f.input :photos, as: :file, input_html: { multiple: true }, label: @item.photos.empty? ? 'Photos' : "Current: #{@item.photos.map{ |p| p.filename.to_s }.join(', ')}"  %>
             <%= f.button :submit %>
             <br>
             <div>
