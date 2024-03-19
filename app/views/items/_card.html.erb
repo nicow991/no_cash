@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
+    <% items.each do |item| %>
+      <div class="col", style= "margin-top: 50px; margin-bottom: 50px">
+        <div class="item">
+          <div class="card rounded-4 shadow" style="width: 100%;">
+              <div id="carousel<%= item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 200px; overflow: hidden;">
+                <div class="carousel-inner rounded-top-4">
+                  <% item.photos.each_with_index do |photo, index| %>
+                    <div class="carousel-item <%= 'active' if index == 0 %>">
+                      <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "height: 200px; width: 100%;" %>
+                    </div>
+                  <% end %>
+                </div>
+                <a class="carousel-control-prev" href="#carousel<%= item.id %>" role="button" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel<%= item.id %>" role="button" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </a>
+              </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= item.name %></h5>
+              <h3><%= item.category.name %></h3>
+              <p class="card-text" style="height: 80px;"><%= item.description %>.</p>
+                <% if item.user == current_user %>
+                  <%= link_to 'Check your item', item_path(item), class: "btn btn-success" %>
+                <% else %>
+                  <%= link_to "Select this item", item_path(item), class: "btn btn-success" %>
+
+
+                <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
