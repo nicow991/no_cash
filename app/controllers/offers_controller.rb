@@ -7,7 +7,12 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.new(offer_params)
-    @offer.save
+    if @offer.save
+      chatroom = Chatroom.create
+      Participant.create(user: current_user, chatroom: chatroom)
+      Participant.create(user: @offer.requested_item.user, chatroom: chatroom)
+      redirect_to chatroom_path(chatroom)
+    end
   end
 
   def edit

@@ -1,35 +1,14 @@
+require 'faker'
+require 'cloudinary'
+require 'open-uri'
+
 # Categories
-Category.create(name: 'Electronics')
-Category.create(name: 'Clothing')
-Category.create(name: 'Books')
-Category.create(name: 'Furniture')
-Category.create(name: 'Sports Equipment')
-Category.create(name: 'Home Appliances')
-Category.create(name: 'Toys')
-Category.create(name: 'Beauty Products')
-# Users
-User.create(email: 'user1@example.com', password: 'password', address: '123 Main St')
-User.create(email: 'user2@example.com', password: 'password', address: '456 Elm St')
+CATEGORIES = ['Electronics', 'Clothing', 'Books', 'Furniture', 'Sports Equipment', 'Home Appliances', 'Toys', 'Beauty Products']
+CONDITIONS = ["new", "like new", "good", "fair", "poor"]
 
-# Items
-Item.create(user_id: 1, category_id: 1, name: 'Laptop', description: 'Brand new laptop', condition: 'New')
-Item.create(user_id: 1, category_id: 2, name: 'Camiseta', description: 'Camiseta azul', condition: 'Used')
-Item.create(user_id: 2, category_id: 3, name: 'Harry Potter', description: 'Book by J.K. Rowling', condition: 'Like new')
-Item.create(user_id: 1, category_id: 1, name: 'Raqueta de tenis', description: 'Nueva', condition: 'New')
-Item.create(user_id: 1, category_id: 2, name: 'Skies', description: 'Bien flama, ideal para fuera de pista', condition: 'Used')
-Item.create(user_id: 2, category_id: 3, name: 'El senor de los anillos', description: 'Book by Tolkien, incredible', condition: 'Like new')
-
-# Chatrooms
-Chatroom.create
-Chatroom.create
-
-# Messages
-Message.create(chatroom_id: 1, user_id: 1)
-Message.create(chatroom_id: 1, user_id: 2)
-
-# Offers
-Offer.create(offered_item_id: 1, requested_item_id: 3)
-Offer.create(offered_item_id: 2, requested_item_id: 3)
+CATEGORIES.each do |name|
+  Category.create(name: name)
+end
 
 # Deals
 Offer.all.each do |offer|
@@ -40,6 +19,42 @@ end
 Participant.create(user_id: 1, chatroom_id: 1)
 Participant.create(user_id: 2, chatroom_id: 1)
 
-# Reviews
-Review.create(user_reviewed_id: 2, deal_id: 1, user_reviewer_id: 1, content: 'Great transaction')
-Review.create(user_reviewed_id: 1, deal_id: 2, user_reviewer_id: 2, content: 'Smooth exchange')
+
+
+
+20.times do |time|
+  user = User.create(email: "#{time}@mail.com", password: 'password', address: '123 Main St')
+  rand(0..15).times do
+    Item.create(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample)
+  end
+end
+
+2.times do
+  image_url = Faker::LoremFlickr.image(size: "200x200", search_terms: ['book'])
+  io = URI.open(image_url)
+
+  boat.photos.attach(io:, filename: "boat_#{Time.now.to_i}.jpg", content_type: 'image/jpg')
+end
+
+10.times do
+  User.first(10).each do |user|
+    2.times do |time|
+      Offer.create(offered_item_id: user.items.pluck(:id).sample, requested_item: Item.where.not(user: user).sample)
+    end
+    offer.each do |offer|
+      if [1,2].sample == 1
+        deal = Deal.create(offer_id: offer.id, status: 'accepted')
+        rand = [1, 2, 3].sample
+        if rand == 1
+          Review.create(user_reviewed: user, deal: deal, user_reviewer: offer.requested_item.user, content: 'Smooth exchange')
+        elsif rand == 1
+          Review.create(user_reviewed: offer.requested_item.user, deal: deal, user_reviewer: user, content: 'Great transaction')
+        else
+          Review.create(user_reviewed: offer.requested_item.user, deal: deal, user_reviewer: user, content: 'Great transaction')
+          Review.create(user_reviewed: user, deal: deal, user_reviewer: offer.requested_item.user, content: 'Smooth exchange')
+        end
+      end
+
+    end
+  end
+end
