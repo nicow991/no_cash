@@ -12,6 +12,7 @@ class DealsController < ApplicationController
     @deal = Deal.new(deal_params)
     @deal.user = current_user
     @deal.offer = Offer.find(params[:offer_id])
+    @deal.status = "pending"
     if @deal.save
       redirect_to deals_path
     else
