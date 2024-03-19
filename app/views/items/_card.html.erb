@@ -6,11 +6,16 @@
           <div class="card rounded-4 shadow" style="width: 100%;">
               <div id="carousel<%= item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 200px; overflow: hidden;">
                 <div class="carousel-inner rounded-top-4">
-                  <% item.photos.each_with_index do |photo, index| %>
-                    <div class="carousel-item <%= 'active' if index == 0 %>">
-                      <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "height: 200px; width: 100%;" %>
-                    </div>
+                  <% if item.photos.attached? %>
+
+                    <% item.photos.each_with_index do |photo, index| %>
+                      <div class="carousel-item <%= 'active' if index == 0 %>">
+
+                        <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "height: 200px; width: 100%;" %>
+                      </div>
+                    <% end %>
                   <% end %>
+
                 </div>
                 <a class="carousel-control-prev" href="#carousel<%= item.id %>" role="button" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
