@@ -15,18 +15,12 @@ CATEGORIES.each do |name|
   Category.create!(name: name)
 end
 
-# Deals
-Offer.all.each do |offer|
-  Deal.create!(offer_id: offer.id, status: 'accepted')
-end
-
-
-20.times do |time|
+15.times do |time|
   user = User.create!(email: "#{time}@mail.com", password: 'password', address: '123 Main St')
-  rand(0..15).times do
+  rand(0..10).times do
     item = Item.create!(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample)
 
-    2.times do
+    1.times do
       image_url = Faker::LoremFlickr.image(size: "200x200", search_terms: ['book'])
       io = URI.open(image_url)
 
@@ -38,7 +32,7 @@ end
 10.times do
   User.first(10).each do |user|
     2.times do |time|
-      Offer.create!(offered_item_id: user.items.pluck(:id).sample, requested_item: Item.where.not(user: user).sample)
+      Offer.create!(user: user, offered_item_id: user.items.pluck(:id).sample, requested_item_id: Item.where.not(user: user).sample).id
     end
     offer.each do |offer|
       if [1,2].sample == 1

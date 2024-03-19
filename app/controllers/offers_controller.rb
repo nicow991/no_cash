@@ -16,16 +16,13 @@ class OffersController < ApplicationController
   end
 
   def edit
-    @offer = Offer.find(params[:id])
   end
 
   def update
-    @offer = Offer.find(params[:id])
     @offer.update(offer_params)
   end
 
   def destroy
-    @offer = Offer.find(params[:id])
     @offer.destroy
     redirect_to root_path, status: :see_other
   end
