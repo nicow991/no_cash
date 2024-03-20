@@ -17,10 +17,18 @@ $success:    $green;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
-
+$light:      $light-gray;
+$book:       $purple;
+$pink: $pink;
 // Buttons & inputs' radius
 $border-radius:    2px;
 $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
 // Override other variables below!
+
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+
+$theme-colors: map-merge($theme-colors, ( "book": $book ));
+$theme-colors: map-merge($theme-colors, ( "pink": $pink ));

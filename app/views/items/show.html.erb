@@ -1,2 +1,38 @@
- <h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="row">
+  <div class="item-show col-lg-6 col-12">
+    <div id="carousel<%= @item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 300px; width: 100%; overflow: hidden;">
+      <div class="carousel-inner rounded-top-4">
+        <% if @item.photos.attached? %>
+          <% @item.photos.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "height: 300px; width: 100%;" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <a class="carousel-control-prev" href="#carousel<%= @item.id %>" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel<%= @item.id %>" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+    <div class="card-body my-3">
+      <div class="d-flex justify-content-around">
+        <div>
+          <h5 class="card-title"><%= @item.name %></h5>
+          <h6><i class="fa-solid fa-location-dot"> </i><%= @item.user.address %></h6>
+        </div>
+        <div class='bg-pink p-1'><h3><%= @item.condition %></h3></div>
+      </div>
+      <p class="card-text mx-5"><%= @item.description %>.</p>
+      <br>
+      <div>
+      <p class="mx-5">Cambio por: </p>
+      </div>
+      <%= link_to 'Hacer oferta', new_offer_path, class: 'btn btn-book w-100' %>
+    </div>
+  </div>
+</div>
