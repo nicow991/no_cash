@@ -3,21 +3,8 @@ class ItemsController < ApplicationController
 
   before_action :set_item, only: %i[show edit update destroy]
   def index
-    @items = Item.all
-    # if params[:query].present?
-    #   @items = Item.available.search_by_address(params[:query])
-    # else
-    #   @items = Item.where(available: true)
-    # end
+    @items = Item.all #=> aca vamos a poner un geolocator para q aparezcan los mas cercanos primero, cool right?
 
-    # @markers = @items.geocoded.map do |item|
-    #   {
-    #     lat: item.latitude,
-    #     lng: item.longitude,
-    #     info_window_html: render_to_string(partial: "info_window", locals: {item: item})
-    #     # marker_html: render_to_string(partial: "marker")
-    #   }
-    # end
   end
 
   def show
