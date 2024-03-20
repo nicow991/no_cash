@@ -1,7 +1,3 @@
 <% @my_deals.each do |deal| %>
-  <%= deal.status %>
-  <%= deal.offer.requested_item %>
-  <%= deal.offer.requested_item.user %>
-  <%= deal.offer.offered_item %>
-  <%= deal.offer.offered_item.user %>
+<%=render 'deal', deal: deal%>
 <% end %>
