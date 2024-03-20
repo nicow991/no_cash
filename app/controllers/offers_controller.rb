@@ -13,7 +13,7 @@ class OffersController < ApplicationController
       # Participant.create(user: current_user, chatroom: chatroom)
       # Participant.create(user: @offer.requested_item.id.user, chatroom: chatroom)
       # redirect_to chatroom_path(chatroom)
-      redirect_to root_path
+      redirect_to items_path
     else
       # Handle the case where offer creation fails
       # You might want to render the form again with errors
@@ -30,7 +30,7 @@ class OffersController < ApplicationController
 
   def destroy
     @offer.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to items_path, status: :see_other
   end
 
   private

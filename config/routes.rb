@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root to: "items#index"
-  resources :items, except: :index
+  root to: "pages#home"
+  resources :items
   resources :chatrooms, only: [:index, :show] do
     resources :messages, only: :create
 end
