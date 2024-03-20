@@ -2,7 +2,7 @@ class DealsController < ApplicationController
   before_action :set_deal, only: %i[show cancel]
 
   def index
-    @deals = Deal.where(user_id: current_user.id)
+    @deals = Deal.where(offer_id: current_user.id)
   end
 
   def show
@@ -12,7 +12,6 @@ class DealsController < ApplicationController
     @deal = Deal.new
     @deal.user = current_user
     @deal.offer = Offer.find(params[:offer_id])
-    @deal.status = "pending"
     if @deal.save
       redirect_to deal_path(@deal)
     else
