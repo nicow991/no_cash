@@ -3,9 +3,11 @@ class ItemsController < ApplicationController
 
   before_action :set_item, only: %i[show edit update destroy]
   def index
-    @items = Item.all #=> aca vamos a poner un geolocator para q aparezcan los mas cercanos primero, cool right?
+     #=> aca vamos a poner un geolocator para q aparezcan los mas cercanos primero, cool right?
     if params[:query].present?
-      @items = @items.where("name ILIKE ?", "%#{params[:query]}%")
+      @items = Item.search_by_name_and_description(params[:query])
+    else
+      @items = Item.all
     end
   end
 
