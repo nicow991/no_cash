@@ -1,0 +1,20 @@
+
+
+
+<div class="row justify-content-center">
+  <div class="col-sm-8 my-3">
+    <%= form_with url: root_path, method: :get, class: "d-flex form-inline" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control mr-sm-2 rounded",
+            style: "width: 300px;",
+            placeholder: "Search"
+        %>
+        <div>
+        <button type="submit" class="btn border-0" title="Search">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    <% end %>
+  </div>
+</div>
