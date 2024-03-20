@@ -63,3 +63,11 @@ puts "creating offer"
     end
   end
 end
+
+
+10.times do
+  chatroom = Chatroom.create
+  user = User.all.sample
+  Participant.create(user: user, chatroom: chatroom)
+  Message.create(user: user, chatroom: chatroom, content: Faker::Quote.famous_last_words)
+end
