@@ -3,4 +3,5 @@ class Item < ApplicationRecord
   belongs_to :category
   validates :name, :description, presence: true
   has_many_attached :photos
+  has_many :preferences
 end
