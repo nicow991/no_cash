@@ -1,7 +1,20 @@
-<% @my_deals.each do |deal| %>
-  <%= deal.status %>
-  <%= deal.offer.requested_item %>
-  <%= deal.offer.requested_item.user %>
-  <%= deal.offer.offered_item %>
-  <%= deal.offer.offered_item.user %>
+<h4>Tus ofertas que esperan respuesta:</h4>
+<% @my_offers.each do |offer| %>
+  <div class='border'>
+    <p><strong>Ofreces: </strong></p>
+    <%= Item.find(offer.offered_item_id).name %>
+    <p><strong>Solicitas: </strong></p>
+    <%= Item.find(offer.requested_item_id).name %>
+  </div>
+<% end %>
+
+<h4>Ofertas recibidas</h4>
+<p>No dejes a las personas esperando, acepta, contraoferta, o rechaza</p>
+<% @received_offers.each do |offer| %>
+  <div class='border'>
+    <p><strong><%= User.find(offer.user_id).email %></strong> esta interesado en: </p>
+    <%= Item.find(offer.requested_item_id).name %>
+    <p><strong>Te ofrece: </strong></p>
+    <%= Item.find(offer.offered_item_id).name %>
+  </div>
 <% end %>
