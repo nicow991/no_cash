@@ -3,7 +3,6 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
-    @item = Item.find(params[:item_id])
   end
 
   def create

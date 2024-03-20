@@ -1,0 +1,20 @@
+<div class="container mt-2">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card rounded-3 shadowmt-3">
+        <div class="card-body">
+          <%= simple_form_for(@offer) do |f| %>
+            <%= f.input :offered_item_id, collection: current_user.items, label_method: :offered_item_id, value_method: :id, prompt: "Select an item" %>
+            <%= f.button :submit, class: 'btn btn-book' %>
+            <br>
+            <div>
+            </div>
+             <div>
+              <%= link_to 'Back to Home', root_path, class: 'btn btn-secondary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
