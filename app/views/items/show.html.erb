@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="item-show col-lg-6 col-12">
+  <div class="item-show col-lg-6 col-12 p-0 ">
     <div id="carousel<%= @item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 300px; width: 100%; overflow: hidden;">
       <div class="carousel-inner rounded-top-4">
         <% if @item.photos.attached? %>
@@ -20,19 +20,22 @@
       </a>
     </div>
     <div class="card-body my-3">
-      <div class="d-flex justify-content-around">
+      <div class="d-flex justify-content-between mx-5">
         <div>
           <h5 class="card-title"><%= @item.name %></h5>
           <h6><i class="fa-solid fa-location-dot"> </i><%= @item.user.address %></h6>
         </div>
-        <div class='bg-pink p-1'><h3><%= @item.condition %></h3></div>
+        <div class='bg-pink p-2'><h5><%= @item.condition %></h5></div>
       </div>
       <p class="card-text mx-5"><%= @item.description %>.</p>
       <br>
-      <div>
       <p class="mx-5">Cambio por: </p>
+      <div class="d-flex mx-5">
+        <% @item.preferences.each do |preference| %>
+        <div class='bg-pink p-3 m-3'><%= preference.category.name %></div>
+        <% end %>
       </div>
-      <%= link_to 'Hacer oferta', new_offer_path, class: 'btn btn-book w-100' %>
+      <%= link_to 'Hacer oferta', new_offer_path, class: 'btn btn-book w-75 mx-5' %>
     </div>
   </div>
 </div>

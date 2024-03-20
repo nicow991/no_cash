@@ -33,9 +33,12 @@ require 'open-uri'
 #     end
 #   end
 # end
+puts 'outside loop'
+Item.all.each do |item|
+  puts 'creating preferences for item'
+  Preference.create!(item_id: item.id, category_id: Category.all.sample.id)
+  Preference.create!(item_id: item.id, category_id: Category.all.sample.id)
 
-Item.all do |item|
-  Preference.create!(user_id: item.user.id, category_id: item.category.id)
 end
 
 # User.first(10).each do |user|
