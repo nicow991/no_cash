@@ -2,6 +2,11 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 
+
+# faker
+gem 'faker'
+
+gem "byebug"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
@@ -50,8 +55,8 @@ gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
-gem "dotenv-rails"
 gem "cloudinary"
+gem "pg_search"
 
 
 
