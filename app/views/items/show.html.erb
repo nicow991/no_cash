@@ -39,25 +39,20 @@
         <div class='bg-pink p-3 m-3'><%= preference.category.name %></div>
         <% end %>
       </div>
-     <div class="text-center"> <!-- Added text-center class to center the button -->
+      <div class="text-center"> <!-- Added text-center class to center the button -->
+      <% if @item.user == current_user %>
+        <button class='btn btn-success text-white' data-action='click->toggle#showoffer'>Edita tu producto</button>
+      <% else %>
         <button class='btn btn-book' data-action='click->toggle#showoffer'>Me interesa!</button>
+      <% end %>
       </div>
     </div>
   </div>
-
   <div class="row justify-content-center d-none m-3" data-toggle-target='form'>
-    <div class="col-md-6">
-      <!-- Bootstrap styled form -->
-      <%= simple_form_for(@offer) do |f| %>
-        <%= f.hidden_field :requested_item_id, value: @item.id %>
-        <div class="form-group">
-          <%= f.label :offered_item_id, "Ofrece un producto" %>
-          <%= f.select :offered_item_id, options_for_select(current_user.items.pluck(:name, :id)), { prompt: "..." }, class: 'form-control' %>
-        </div>
-        <div class="text-center"> <!-- Center the submit button -->
-          <%= f.button :submit, "Enviar Oferta", class: 'btn btn-book my-2' %>
-        </div>
-      <% end %>
-    </div>
+    <% if @item.user == current_user %>
+    <%= render 'form' %>
+    <% else %>
+    <%= render 'offer' %>
+    <% end %>
   </div>
 </div>
