@@ -20,6 +20,7 @@ $warning:    $orange;
 $light:      $light-gray;
 $book:       $purple;
 $pink: $pink;
+$greypink: $greypink;
 // Buttons & inputs' radius
 $border-radius:    2px;
 $border-radius-lg: 2px;
@@ -32,3 +33,4 @@ $border-radius-sm: 2px;
 
 $theme-colors: map-merge($theme-colors, ( "book": $book ));
 $theme-colors: map-merge($theme-colors, ( "pink": $pink ));
+$theme-colors: map-merge($theme-colors, ( "greypink": $greypink ));
