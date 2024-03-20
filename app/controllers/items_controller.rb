@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params[:photos] == [""] ? item_params.except(:photos) : item_params)
-      redirect_to myitems_path, status: :see_other
+      redirect_to item_path(@item), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end

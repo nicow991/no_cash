@@ -1,0 +1,14 @@
+    <div class="col-md-6">
+      <!-- Bootstrap styled form -->
+      <%= simple_form_for(@offer) do |f| %>
+        <%= f.hidden_field :requested_item_id, value: @item.id %>
+        <div class="form-group">
+          <%= f.label :offered_item_id, "Ofrece un producto" %>
+          <%= f.select :offered_item_id, options_for_select(current_user.items.pluck(:name, :id)), { prompt: "..." }, class: 'form-control' %>
+        </div>
+        <div class="text-center"> <!-- Center the submit button -->
+          <%= f.button :submit, "Enviar Oferta", class: 'btn btn-book my-2' %>
+        </div>
+      <% end %>
+    </div>
+
