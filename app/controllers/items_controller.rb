@@ -3,13 +3,19 @@ class ItemsController < ApplicationController
 
   before_action :set_item, only: %i[show edit update destroy]
   def index
-     #=> aca vamos a poner un geolocator para q aparezcan los mas cercanos primero, cool right?
-    if params[:query].present?
+    @items = Item.all
+    if params[:query].present? && params[:location].present?
       @items = Item.search_by_name_and_description(params[:query])
-    else
-      @items = Item.all
+      @items = @items.near(params[:location], 20)
+    elsif params[:query].present?
+      @items = Item.search_by_name_and_description(params[:query])
+    elsif params[:location].present?
+      @items = Item.near(params[:location], 20)
     end
+    
   end
+
+  # Flat.near([40.71, 100.23], 20) # flats within 20 km of a point
 
   def show
     @deal = Deal.new

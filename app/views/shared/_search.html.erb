@@ -8,7 +8,13 @@
             params[:query],
             class: "form-control mr-sm-2 rounded",
             style: "width: 300px;",
-            placeholder: "Search"
+            placeholder: "Buscar"
+        %>
+        <%= text_field_tag :location,
+            params[:location],
+            class: "form-control mr-sm-2 rounded",
+            style: "width: 300px;",
+            placeholder: "Ubicación"
         %>
         <div>
         <button type="submit" class="btn border-0" title="Search">

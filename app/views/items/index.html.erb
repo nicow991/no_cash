@@ -1,1 +1,5 @@
-<%= render "card", items: @items %>
+<% if @items.empty? %>
+  <p>No hay resultados</p>
+<% else %>
+  <%= render "card", items: @items %>
+<% end %>
