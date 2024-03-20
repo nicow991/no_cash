@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_20_183721) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_20_141624) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -106,6 +106,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_20_183721) do
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
+  create_table "preferences", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_preferences_on_category_id"
+    t.index ["item_id"], name: "index_preferences_on_item_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_reviewed_id", null: false
     t.bigint "deal_id", null: false
@@ -145,6 +154,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_20_183721) do
   add_foreign_key "offers", "users"
   add_foreign_key "participants", "chatrooms"
   add_foreign_key "participants", "users"
+  add_foreign_key "preferences", "categories"
+  add_foreign_key "preferences", "items"
   add_foreign_key "reviews", "deals"
   add_foreign_key "reviews", "users", column: "user_reviewed_id"
   add_foreign_key "reviews", "users", column: "user_reviewer_id"

@@ -7,11 +7,17 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.new(offer_params)
+    @offer.user = current_user
     if @offer.save
-      chatroom = Chatroom.create
-      Participant.create(user: current_user, chatroom: chatroom)
-      Participant.create(user: @offer.requested_item.user, chatroom: chatroom)
-      redirect_to chatroom_path(chatroom)
+      # chatroom = Chatroom.create
+      # Participant.create(user: current_user, chatroom: chatroom)
+      # Participant.create(user: @offer.requested_item.id.user, chatroom: chatroom)
+      # redirect_to chatroom_path(chatroom)
+      redirect_to root_path
+    else
+      # Handle the case where offer creation fails
+      # You might want to render the form again with errors
+      render :new
     end
   end
 
