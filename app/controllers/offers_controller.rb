@@ -3,18 +3,21 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
     @offer = Offer.new(offer_params)
-    @offer.requested_item = Item.find(params[:item_id])
     @offer.user = current_user
     if @offer.save
-      chatroom = Chatroom.create
-      Participant.create(user: current_user, chatroom: chatroom)
-      Participant.create(user: @offer.requested_item.user, chatroom: chatroom)
-      redirect_to chatroom_path(chatroom)
+      # chatroom = Chatroom.create
+      # Participant.create(user: current_user, chatroom: chatroom)
+      # Participant.create(user: @offer.requested_item.id.user, chatroom: chatroom)
+      # redirect_to chatroom_path(chatroom)
+      redirect_to root_path
+    else
+      # Handle the case where offer creation fails
+      # You might want to render the form again with errors
+      render :new
     end
   end
 
@@ -33,7 +36,7 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:offered_item_id)
+    params.require(:offer).permit(:offered_item_id, :requested_item_id)
   end
 
   def set_offer
