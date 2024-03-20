@@ -31,7 +31,7 @@
               <h3><%= item.category.name %></h3>
               <p class="card-text" style="height: 80px;"><%= item.description %>.</p>
                 <% if item.user == current_user %>
-                  <%= link_to 'Check your item', item_path(item), class: "btn btn-success" %>
+                  <%= link_to 'Check your item', item_path(item), class: "btn btn-success text-white" %>
                 <% else %>
                   <%= link_to "Select this item", item_path(item), class: "btn btn-book" %>
 

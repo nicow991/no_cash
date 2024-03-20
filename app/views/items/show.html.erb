@@ -43,3 +43,25 @@
     </div>
   </div>
 </div>
+<div>
+<div class="container mt-2">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card rounded-3 shadowmt-3">
+        <div class="card-body">
+          <%= simple_form_for(@offer) do |f| %>
+            <%= f.hidden_field :requested_item_id, value: @item.id %>
+            <%= f.label :offered_item_id, "Select an item" %>
+            <%= f.select :offered_item_id, options_for_select(current_user.items.pluck(:name, :id)), { prompt: "Select an item" }, class: 'form-control' %>
+            <%= f.button :submit, class: 'btn btn-book' %>
+            <br>
+            <div>
+              <%= link_to 'Back to Home', root_path, class: 'btn btn-secondary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

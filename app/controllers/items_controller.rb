@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
 
   def show
     @deal = Deal.new
+    @offer = Offer.new
   end
 
   def create
