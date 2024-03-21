@@ -16,12 +16,12 @@
   <div class='d-flex justify-content-around border'>
     <%# permite encontrar al usuario al que planteas un trueque %>
     <div>
-      <p><strong>Ofreces a: </strong> <%= Item.find(offer.requested_item_id).user.email %></p>
-      <%= Item.find(offer.offered_item_id).name %>
+      <p><strong>Ofreces a: </strong> <%= offer.item.user.email %></p>
+      <%= offer.item.name %>
     </div>
     <div>
       <p><strong>Solicitas: </strong></p>
-      <%= Item.find(offer.requested_item_id).name %>
+      <%= offer.item.name %>
     </div>
   </div>
 <% end %>
@@ -31,12 +31,12 @@
 <% @received_offers.each do |offer| %>
   <div class='d-flex justify-content-around border'>
     <div>
-      <p><strong><%= User.find(offer.user_id).email %></strong> esta interesado en: </p>
-      <%= Item.find(offer.requested_item_id).name %>
+      <p><strong><%= offer.item.user.email %></strong> esta interesado en: </p>
+      <%= offer.item.name %>
     </div>
     <div>
       <p><strong>Te ofrece: </strong></p>
-      <%= Item.find(offer.offered_item_id).name %>
+      <%= offer.item.name %>
     </div>
     <%= link_to 'acepta', deals_path, class: 'btn btn-book' %>
     <%# <%= link_to 'contraoferta', offer_path,(offer) class: 'btn btn-info' %>

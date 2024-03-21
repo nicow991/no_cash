@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_20_221834) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_21_161632) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,12 +55,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_20_221834) do
 
   create_table "deals", force: :cascade do |t|
     t.bigint "offer_id", null: false
-    t.string "status", default: "accepted"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.index ["offer_id"], name: "index_deals_on_offer_id"
-    t.index ["user_id"], name: "index_deals_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -78,6 +76,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_20_221834) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "items_offers", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "offer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_items_offers_on_item_id"
+    t.index ["offer_id"], name: "index_items_offers_on_offer_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.bigint "chatroom_id", null: false
     t.bigint "user_id", null: false
@@ -89,14 +96,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_20_221834) do
   end
 
   create_table "offers", force: :cascade do |t|
-    t.bigint "offered_item_id", null: false
-    t.bigint "requested_item_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["offered_item_id"], name: "index_offers_on_offered_item_id"
-    t.index ["requested_item_id"], name: "index_offers_on_requested_item_id"
-    t.index ["user_id"], name: "index_offers_on_user_id"
+    t.index ["item_id"], name: "index_offers_on_item_id"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -147,14 +150,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_20_221834) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "deals", "offers"
-  add_foreign_key "deals", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
+  add_foreign_key "items_offers", "items"
+  add_foreign_key "items_offers", "offers"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "offers", "items", column: "offered_item_id"
-  add_foreign_key "offers", "items", column: "requested_item_id"
-  add_foreign_key "offers", "users"
+  add_foreign_key "offers", "items"
   add_foreign_key "participants", "chatrooms"
   add_foreign_key "participants", "users"
   add_foreign_key "preferences", "categories"
