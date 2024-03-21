@@ -36,7 +36,7 @@ end
 puts 'outside loop'
 User.all.each do |user|
   puts 'creating preferences for item'
-  
+
   Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
   Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
 
@@ -45,7 +45,7 @@ end
 User.first(10).each do |user|
     puts "creating offer"
     item = user.items.sample
-    offer = Offer.new(item_id: item.id)
+    offer = Offer.new(item:)
     offer.save!
     Item.all.sample.offers << item.offer
   user.my_offers.each do |offer|

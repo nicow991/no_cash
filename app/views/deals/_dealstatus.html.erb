@@ -1,11 +1,10 @@
 <div class='d-flex justify-content-around border'>
   <div>
-    <p><%= User.find(deal.user_id).email %> <strong> ofrece: </strong></p>
-    <%= Item.find(Offer.find(deal.offer_id).offered_item_id).name%>
+    <p><%= deal.offer.item.user.email %> <strong> ofrece: </strong></p>
+    <%= deal.offer.item.name%>
   </div>
   <div>
-    <%requested_item = Item.find(Offer.find(deal.offer_id).requested_item_id) %>
-    <p><%= User.find(requested_item.user_id).email%><strong> ofrece: </strong></p>
-    <%= requested_item.name%>
+    <p><%# deal.offer.item.offers.where(item_id: deal.offer.item.id).user.email%><strong> ofrece: </strong></p>
+    <%# deal.offer.item.offers.where(item_id: deal.offer.item.id)%>
   </div>
 </div>
