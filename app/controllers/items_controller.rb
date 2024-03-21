@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params[:photos] == [""] ? item_params.except(:photos) : item_params)
       redirect_to item_path(@item), status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render show.html.erb, status: :unprocessable_entity
     end
   end
 
