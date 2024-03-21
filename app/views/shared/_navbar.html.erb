@@ -28,9 +28,9 @@
 
           <% if user_signed_in? %>
             <%= link_to "chats", chatroom_path(Chatroom.first.id), class: "dropdown-item" %>
-            <%= link_to "New item", new_item_path, class: "dropdown-item" %>
-            <%= link_to "My deals", deals_path, class: "dropdown-item" %>
-            <%= link_to "My items", "#", class: "dropdown-item" %>
+            <%= link_to "Nuevo producto", new_item_path, class: "dropdown-item" %>
+            <%= link_to "Mis trueques", deals_path, class: "dropdown-item" %>
+            <%= link_to "Mis productos", myitems_path, class: "dropdown-item" %>
             <%= link_to "Log out", "/users/sign_out", class: "dropdown-item", data: {turbo_method: :delete} %>
           <% else %>
             <%= link_to "Log in", "/users/sign_in", class: "dropdown-item" %>
