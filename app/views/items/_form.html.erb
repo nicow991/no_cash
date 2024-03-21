@@ -1,19 +1,19 @@
 <div class="container mt-2">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card rounded-3 shadowmt-3">
-        <div class="card-body">
+      <div class="card rounded-3 shadow mt-3">
+        <div class="card-body bg-background">
           <%= simple_form_for(@item) do |f| %>
-            <%= f.input :name %>
-            <%= f.input :description %>
-            <%= f.input :address %>
-            <%= f.association :category %>
-            <%= f.input :condition, as: :select, collection: ["excellent", "good", "fair", "acceptable"] %>
-            <%= f.input :photos, as: :file, input_html: { multiple: true }, label: @item.photos.empty? ? 'Photos' : "Current: #{@item.photos.map{ |p| p.filename.to_s }.join(', ')}"  %>
-            <%= f.button :submit %>
+            <%= f.input :name, label: 'Nombre', class: 'form-control' %>
+            <%= f.input :description, label: 'Descripción', class: 'form-control' %>
+            <%= f.input :address, label: 'Dirección', class: 'form-control' %>
+            <%= f.association :category, label: 'Categoría', class: 'form-select' %>
+            <%= f.input :condition, as: :select, collection: ["excelente", "bueno", "regular", "aceptable"], label: 'Condición', class: 'form-select' %>
+            <%= f.input :photos, as: :file, input_html: { multiple: true, class: 'form-control' }, label: 'Fotos' %>
+            <%= f.button :submit, @item.persisted? ? 'Actualizar' : 'Crear', class: 'btn btn-book my-2' %>
             <br>
             <div>
-              <%= link_to 'Back to home', items_path, class: 'btn btn-secondary' %>
+              <%= link_to 'Volver al inicio', items_path, class: 'btn btn-primary my-2' %>
             </div>
           <% end %>
         </div>

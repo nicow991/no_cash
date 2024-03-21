@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
   belongs_to :user
   belongs_to :category
+  has_and_belongs_to_many :offers
+  has_one :offer
   validates :name, :description, :address, presence: true
   has_many_attached :photos
   has_many :preferences

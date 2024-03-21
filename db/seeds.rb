@@ -16,12 +16,12 @@ CATEGORIES.each do |name|
   Category.create!(name: name)
 end
 
-5.times do |time|
+2.times do |time|
   puts "creating user"
   user = User.create!(email: "#{time}@mail.com", password: 'password', address: '123 Main St')
   5.times do
     puts "creating item"
-    item = Item.create!(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample, address: Faker::Address.full_address)
+    item = Item.create!(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample, address: 'aeroparque, buenos aires')
 
     2.times do
       puts "creating item photoo"
@@ -34,25 +34,24 @@ end
   end
 end
 puts 'outside loop'
-Item.all.each do |item|
+User.all.each do |user|
   puts 'creating preferences for item'
-  Preference.create!(item_id: item.id, category_id: Category.all.sample.id)
-  Preference.create!(item_id: item.id, category_id: Category.all.sample.id)
+  
+  Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
+  Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
 
 end
 
 User.first(10).each do |user|
-puts "creating offer"
-
-  1.times do |time|
-    puts "creating offer for user"
-    Offer.create!(user: user, offered_item_id: user.items.pluck(:id).sample, requested_item_id: Item.select{ |item| item.user != user }.sample.id)
-
-  end
-  user.offers.each do |offer|
+    puts "creating offer"
+    item = user.items.sample
+    offer = Offer.new(item_id: item.id)
+    offer.save!
+    Item.all.sample.offers << item.offer
+  user.my_offers.each do |offer|
     if [1,2].sample == 1
       puts "creating deal for offer"
-      Deal.create!(offer_id: offer.id, status: 'accepted')
+      offer.deal = Deal.new status: 'accepted'
       # rand = [1, 2, 3, 4].sample
       #   puts "creating review deal for offer"
       # #   deal.update(status: 'completed')

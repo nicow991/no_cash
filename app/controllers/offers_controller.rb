@@ -7,7 +7,6 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.new(offer_params)
-    @offer.user = current_user
     if @offer.save
       # chatroom = Chatroom.create
       # Participant.create(user: current_user, chatroom: chatroom)
@@ -36,7 +35,7 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:offered_item_id, :requested_item_id)
+    params.require(:offer).permit(:item_id)
   end
 
   def set_offer
