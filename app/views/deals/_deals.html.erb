@@ -1,15 +1,16 @@
 <% @deals.each do |deal| %>
-  <div>
-    <%= Offer.find(deal.offer_id )%>
-    <%=User.find(deal.user_id)%>
-  </div>
+  <% if deal.status == 'accepted' %>
+    <h4><strong>Tus trueques pendientes</strong></h4>
+    <%= render 'dealstatus', deal: deal %>
+  <% elsif deal.status == 'completed' %>
+    <h4><strong>Tus trueques completados</strong></h4>
+    <%= render 'dealstatus', deal: deal %>
+  <% else %>
+    <h4><strong>Tus trueques cancelados</strong></h4>
+    <%= render 'dealstatus', deal: deal %>
+  <% end %>
 <% end %>
-
-<p>1</p>
-<%= @received_deals %>
-<p>2</p>
-<%= @offered_deals %>
-
+<br>
 <h4><strong>Tus ofertas que esperan respuesta:</strong></h4>
 <% @my_offers.each do |offer| %>
   <div class='border'>
