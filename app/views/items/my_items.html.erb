@@ -1,7 +1,23 @@
-<h1>My Items</h1>
-
-<% @items.each do |item| %>
-<div class='border'>
-  <p><%= item.name %></p>
+<div class="container my-3">
+  <h1>Mis Productos</h1>
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-lg-4 mb-4">
+        <div class="card">
+          <%= link_to item_path(item), class:'text-decoration-none' do %>
+          <div class="card-body">
+            <div class='d-flex justify-content-around border'>
+              <%= cl_image_tag item.photos.first.key, class: "img-fluid", style: "height: 100%; width: 100px;" %>
+              <div class='mx-3'>
+                <p><strong>Producto: </strong><%= item.name %></p>
+                <p><strong>Categoria: </strong><%= item.category.name %></p>
+                <p><strong>Descripcion: </strong><%= item.description %></p>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
