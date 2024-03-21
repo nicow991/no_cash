@@ -21,7 +21,7 @@ end
   user = User.create!(email: "#{time}@mail.com", password: 'password', address: '123 Main St')
   5.times do
     puts "creating item"
-    item = Item.create!(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample, address: Faker::Address.full_address)
+    item = Item.create!(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample)
 
     2.times do
       puts "creating item photoo"
