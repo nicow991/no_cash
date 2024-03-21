@@ -1,5 +1,70 @@
 // Specific CSS for your home-page
-.banner-img {
-  max-width: 100%;
+
+.home {
+  margin: 0 auto; 
+  width: 100%;
+}
+
+.banner {
+  background-size: contain;
+  background-position: center;
+  width: 100%;
   height: auto;
+  background-image: url('banner.png');
+  height: 70vh;
+}
+
+.banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner-title {
+  position: absolute;
+  margin-top: 25px;
+  color: white;
+  font-size: calc(1.5rem + 1.5vw);
+  z-index: 1;
+}
+
+.body {
+  text-align: center;
+}
+
+.home + .footer {
+  display: none;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #210062;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #F9E2AF;
+}
+
+.background-container {
+  background-color: #210062;
+  color: white;
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+h1, h2 {
+  font-weight: bold;
+}
+
+.body-container {
+  text-align: center;
 }
