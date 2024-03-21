@@ -2,42 +2,42 @@ require 'faker'
 require 'cloudinary'
 require 'open-uri'
 
-Deal.destroy_all
-Offer.destroy_all
-Item.destroy_all
-User.destroy_all
-Category.destroy_all
+# Deal.destroy_all
+# Offer.destroy_all
+# Item.destroy_all
+# User.destroy_all
+# Category.destroy_all
 
-# Categories
-CATEGORIES = ['Electronics', 'Clothing', 'Books', 'Furniture', 'Sports Equipment', 'Home Appliances', 'Toys', 'Beauty Products']
-CONDITIONS = ["new", "like new", "good", "fair", "poor"]
+# # Categories
+# CATEGORIES = ['Electronics', 'Clothing', 'Books', 'Furniture', 'Sports Equipment', 'Home Appliances', 'Toys', 'Beauty Products']
+# CONDITIONS = ["new", "like new", "good", "fair", "poor"]
 
-CATEGORIES.each do |name|
-  Category.create!(name: name)
-end
+# CATEGORIES.each do |name|
+#   Category.create!(name: name)
+# end
 
-5.times do |time|
-  puts "creating user"
-  user = User.create!(email: "#{time}@mail.com", password: 'password', address: '123 Main St')
-  5.times do
-    puts "creating item"
-    item = Item.create!(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample)
+# 5.times do |time|
+#   puts "creating user"
+#   user = User.create!(email: "#{time}@mail.com", password: 'password', address: '123 Main St')
+#   5.times do
+#     puts "creating item"
+#     item = Item.create!(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample, address: 'aeroparque, buenos aires')
 
-    2.times do
-      puts "creating item photoo"
+#     2.times do
+#       puts "creating item photoo"
 
-      image_url = Faker::LoremFlickr.image(size: "200x200", search_terms: ['book'])
-      io = URI.open(image_url)
+#       image_url = Faker::LoremFlickr.image(size: "200x200", search_terms: ['book'])
+#       io = URI.open(image_url)
 
-      item.photos.attach(io:, filename: "item_#{Time.now.to_i}.jpg", content_type: 'image/jpg')
-    end
-  end
-end
+#       item.photos.attach(io:, filename: "item_#{Time.now.to_i}.jpg", content_type: 'image/jpg')
+#     end
+#   end
+# end
 puts 'outside loop'
-Item.all.each do |item|
+User.all.each do |user|
   puts 'creating preferences for item'
-  Preference.create!(item_id: item.id, category_id: Category.all.sample.id)
-  Preference.create!(item_id: item.id, category_id: Category.all.sample.id)
+  Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
+  Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
 
 end
 
