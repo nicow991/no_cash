@@ -5,15 +5,15 @@
       <div class="col-lg-4 mb-4">
         <div class="card">
           <%= link_to item_path(item), class: 'text-decoration-none', style: 'color: inherit;' do %>
-            <div class="card-body">
-              <div class="d-flex justify-content-around border">
+            <div class="card-body bg-background">
+              <div class="d-flex justify-content-around border bg-pink">
                 <div style="height: 100%; width: 100px;">
                   <%= cl_image_tag item.photos.first.key, class: "img-fluid h-100 w-100", style: "object-fit: cover;" %>
                 </div>
                 <div class="mx-3">
                   <p><strong>Producto: </strong><%= item.name %></p>
-                  <p><strong>Categoria: </strong><%= item.category.name %></p>
-                  <p><strong>Descripcion: </strong><%= item.description %></p>
+                  <p><strong>Categoría: </strong><%= item.category.name %></p>
+                  <p><strong>Descripción: </strong><%= item.description %></p>
                 </div>
               </div>
             </div>
