@@ -1,15 +1,28 @@
-<h4>Tus ofertas que esperan respuesta:</h4>
+<% @deals.each do |deal| %>
+  <div>
+    <%= Offer.find(deal.offer_id )%>
+    <%=User.find(deal.user_id)%>
+  </div>
+<% end %>
+
+<p>1</p>
+<%= @received_deals %>
+<p>2</p>
+<%= @offered_deals %>
+
+<h4><strong>Tus ofertas que esperan respuesta:</strong></h4>
 <% @my_offers.each do |offer| %>
   <div class='border'>
-    <p><strong>Ofreces: </strong></p>
+    <%# permite encontrar al usuario al que planteas un trueque %>
+    <p><strong>Ofreces a: </strong> <%= Item.find(offer.requested_item_id).user.email %></p>
     <%= Item.find(offer.offered_item_id).name %>
     <p><strong>Solicitas: </strong></p>
     <%= Item.find(offer.requested_item_id).name %>
   </div>
 <% end %>
-
-<h4>Ofertas recibidas</h4>
-<p>No dejes a las personas esperando, acepta, contraoferta, o rechaza</p>
+<br>
+<h4><strong>Ofertas recibidas</strong></h4>
+<h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
 <% @received_offers.each do |offer| %>
   <div class='border'>
     <p><strong><%= User.find(offer.user_id).email %></strong> esta interesado en: </p>

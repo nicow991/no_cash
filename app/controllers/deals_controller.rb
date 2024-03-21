@@ -3,10 +3,11 @@ class DealsController < ApplicationController
 
   def index
     # Deals the current_user started and where accepted
-    @deals = Deal.where(user_id: current_user.id)
-
+    @offered_deals = Deal.where(user_id: current_user.id)
     # Find received deals where the current_user accepted the offer
     @received_deals = Deal.joins(:offer).where(offers: { requested_item_id: current_user.items.pluck(:id) })
+
+    @deals = @offered_deals + @received_deals
 
     # Offers the current_user did
     @my_offers = Offer.where(user_id: current_user.id)
