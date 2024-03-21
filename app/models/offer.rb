@@ -1,6 +1,6 @@
 class Offer < ApplicationRecord
   has_one :deal
-  belongs_to :user
-  has_one :offered_item, through: :user
-  has_one :requested_item, through: :user
+  belongs_to :item
+  belongs_to :user # this is not working for some reason. just use offer.item.user
+  has_and_belongs_to_many :items
 end
