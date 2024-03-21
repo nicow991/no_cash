@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   resources :items
-  resources :chatrooms, only: [:index, :show] do
+  get 'myitems', to: 'items#my_items', as: :myitems
+    resources :chatrooms, only: [:index, :show] do
     resources :messages, only: :create
 end
   resources :offers, only: [:new, :create, :edit, :update, :destroy]
