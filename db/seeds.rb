@@ -21,7 +21,7 @@ end
   user = User.create!(email: "#{time}@mail.com", password: 'password', address: '123 Main St')
   5.times do
     puts "creating item"
-    item = Item.create!(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample, address: Faker::Address.full_address)
+    item = Item.create!(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample, address: 'aeroparque, buenos aires')
 
     2.times do
       puts "creating item photoo"
@@ -34,10 +34,12 @@ end
   end
 end
 puts 'outside loop'
-Item.all.each do |item|
+User.all.each do |user|
   puts 'creating preferences for item'
-  Preference.create!(item_id: item.id, category_id: Category.all.sample.id)
-  Preference.create!(item_id: item.id, category_id: Category.all.sample.id)
+  
+  Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
+  Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
+
 end
 
 User.first(10).each do |user|
