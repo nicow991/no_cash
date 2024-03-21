@@ -12,7 +12,11 @@ class ItemsController < ApplicationController
     elsif params[:location].present?
       @items = Item.near(params[:location], 20)
     end
-    
+
+  end
+
+  def my_items
+    @items = current_user.items
   end
 
   # Flat.near([40.71, 100.23], 20) # flats within 20 km of a point
