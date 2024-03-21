@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :my_offers, through: :items, dependent: :destroy, source: "offer"
   has_many :received_offers, through: :items, dependent: :destroy, source: "offers"
-  has_many :deals, through: :offers
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end

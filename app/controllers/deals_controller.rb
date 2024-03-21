@@ -2,12 +2,12 @@ class DealsController < ApplicationController
   before_action :set_deal, only: %i[show cancel]
 
   def index
-    @my_offers = current_user.offers
+    @my_offers = current_user.my_offers
     @received_offers = current_user.received_offers
     @offers = @my_offers + @received_offers
 
-    @offered_deals = @my_offers.map(&:deal)
-    @received_deals = @received_offers.map(&:deal)
+    @offered_deals = @my_offers.map(&:deal).compact
+    @received_deals = @received_offers.map(&:deal).compact
     @deals = @offered_deals + @received_deals
   end
 
@@ -16,7 +16,6 @@ class DealsController < ApplicationController
 
   def create
     @deal = Deal.new
-    @deal.user = current_user
     @deal.offer = Offer.find(params[:offer_id])
     if @deal.save
       redirect_to deal_path(@deal)
