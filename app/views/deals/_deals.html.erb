@@ -13,22 +13,33 @@
 <br>
 <h4><strong>Tus ofertas que esperan respuesta:</strong></h4>
 <% @my_offers.each do |offer| %>
-  <div class='border'>
+  <div class='d-flex justify-content-around border'>
     <%# permite encontrar al usuario al que planteas un trueque %>
-    <p><strong>Ofreces a: </strong> <%= Item.find(offer.requested_item_id).user.email %></p>
-    <%= Item.find(offer.offered_item_id).name %>
-    <p><strong>Solicitas: </strong></p>
-    <%= Item.find(offer.requested_item_id).name %>
+    <div>
+      <p><strong>Ofreces a: </strong> <%= Item.find(offer.requested_item_id).user.email %></p>
+      <%= Item.find(offer.offered_item_id).name %>
+    </div>
+    <div>
+      <p><strong>Solicitas: </strong></p>
+      <%= Item.find(offer.requested_item_id).name %>
+    </div>
   </div>
 <% end %>
 <br>
 <h4><strong>Ofertas recibidas</strong></h4>
 <h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
 <% @received_offers.each do |offer| %>
-  <div class='border'>
-    <p><strong><%= User.find(offer.user_id).email %></strong> esta interesado en: </p>
-    <%= Item.find(offer.requested_item_id).name %>
-    <p><strong>Te ofrece: </strong></p>
-    <%= Item.find(offer.offered_item_id).name %>
-  </div>
+  <div class='d-flex justify-content-around border'>
+    <div>
+      <p><strong><%= User.find(offer.user_id).email %></strong> esta interesado en: </p>
+      <%= Item.find(offer.requested_item_id).name %>
+    </div>
+    <div>
+      <p><strong>Te ofrece: </strong></p>
+      <%= Item.find(offer.offered_item_id).name %>
+    </div>
+    <%= link_to 'acepta', deals_path, class: 'btn btn-book' %>
+    <%# <%= link_to 'contraoferta', offer_path,(offer) class: 'btn btn-info' %>
+    <button class='btn btn-danger'>rechaza</button>
+</div>
 <% end %>
