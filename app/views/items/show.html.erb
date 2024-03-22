@@ -34,7 +34,11 @@
       <p class="card-text mx-5">Descripción: <%= @item.description %>.</p>
       <br>
       <p class="mx-5">Cambio por: </p>
-      
+      <div class='d-flex justify-content-around mx-5'>
+      <% @item.user.preferences.each do |preference| %>
+      <div class='bg-pink'><%= preference.category.name %></div>
+      <% end %>
+      </div>
       <div class="text-center"> <!-- Added text-center class to center the button -->
       <% if @item.user == current_user %>
         <button class='btn btn-success text-white' data-action='click->toggle#showoffer'>Edita tu producto</button>
