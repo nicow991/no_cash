@@ -8,20 +8,20 @@
       <%= render "messages/message", message: message %>
     <% end %>
   </div>
+
   <%= simple_form_for [@chatroom, @message],
-    html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
+    html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "row g-3 align-items-center" } do |f|
   %>
-    <%= f.input :content,
-    label: false,
-    placeholder: "Message ",
-    wrapper_html: {class: "flex-grow-1"}
-  %>
-  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-
-
-
-<% end %>
-
-
+    <div class="col m-0 p-0">
+      <%= f.input :content,
+        label: false,
+        placeholder: "Message",
+        class: "form-control"
+      %>
+    </div>
+    <div class="col-auto m-0 p-0">
+      <%= f.submit "Send", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 
 </div>

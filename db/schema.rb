@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_22_130432) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_20_171443) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,7 +71,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_130432) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
-    t.string "address"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -87,12 +86,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_130432) do
   end
 
   create_table "offers", force: :cascade do |t|
+    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "requested_item_id"
-    t.bigint "offered_item_id"
-    t.index ["offered_item_id"], name: "index_offers_on_offered_item_id"
-    t.index ["requested_item_id"], name: "index_offers_on_requested_item_id"
+    t.index ["item_id"], name: "index_offers_on_item_id"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -109,10 +106,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_130432) do
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.index ["category_id"], name: "index_preferences_on_category_id"
     t.index ["item_id"], name: "index_preferences_on_item_id"
-    t.index ["user_id"], name: "index_preferences_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -149,13 +144,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_22_130432) do
   add_foreign_key "items", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "offers", "items", column: "offered_item_id"
-  add_foreign_key "offers", "items", column: "requested_item_id"
+  add_foreign_key "offers", "items"
   add_foreign_key "participants", "chatrooms"
   add_foreign_key "participants", "users"
   add_foreign_key "preferences", "categories"
   add_foreign_key "preferences", "items"
-  add_foreign_key "preferences", "users"
   add_foreign_key "reviews", "deals"
   add_foreign_key "reviews", "users", column: "user_reviewed_id"
   add_foreign_key "reviews", "users", column: "user_reviewer_id"
