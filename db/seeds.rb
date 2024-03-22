@@ -2,6 +2,9 @@ require 'faker'
 require 'cloudinary'
 require 'open-uri'
 
+Message.destroy_all
+Participant.destroy_all
+Chatroom.destroy_all
 Deal.destroy_all
 Offer.destroy_all
 Item.destroy_all
@@ -74,6 +77,11 @@ end
 10.times do
   chatroom = Chatroom.create
   user = User.all.sample
+  other_user = User.where.not(id: user.id).sample
+
   Participant.create(user: user, chatroom: chatroom)
+  Participant.create(user: other_user, chatroom: chatroom)
   Message.create(user: user, chatroom: chatroom, content: Faker::Quote.famous_last_words)
+  Message.create(user: other_user, chatroom: chatroom, content: Faker::Quote.famous_last_words)
+
 end

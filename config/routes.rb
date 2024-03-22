@@ -15,7 +15,7 @@ end
     resources :reviews, only: [:create]
 
   end
-  resources :chatrooms, only: [:show, :create] do
+  resources :chatrooms, only: [:index, :show, :create] do
     resources :messages, only: :create
   end
 
