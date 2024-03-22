@@ -1,32 +1,29 @@
 class OffersController < ApplicationController
-  before_action :set_offer, only: %i[ edit update destroy]
+  before_action :set_offer, only: %i[edit update destroy]
 
-  def new
-    @offer = Offer.new
-  end
+  # there is no new action because we are creating offers from the items show page
+  # def new
+  #   @offer = Offer.new
+  # end
 
   def create
-    @offer = Offer.new(offer_params)
+    raise
+    @offer = Offer.create(requested_item_id: params[:id], offered_item_id: params[:offer][:offered_item_id])
 
     if @offer.save
-      # chatroom = Chatroom.create
-      # Participant.create(user: current_user, chatroom: chatroom)
-      # Participant.create(user: @offer.requested_item.id.user, chatroom: chatroom)
-      # redirect_to chatroom_path(chatroom)
       redirect_to deals_path
     else
-      # Handle the case where offer creation fails
-      # You might want to render the form again with errors
-      render :new
+      render 'items/show', status: :unprocessable_entity
     end
   end
 
-  def edit
-  end
+  # TODO: Implement edit and update actions i.e counteroffer
+  # def edit
+  # end
 
-  def update
-    @offer.update(offer_params)
-  end
+  # def update
+  #   @offer.update(offer_params)
+  # end
 
   def destroy
     @offer.destroy
@@ -36,10 +33,12 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:item_id)
+    raise
+    params.require(:offer).permit(:offered_item_id, :requested_item_id)
   end
 
   def set_offer
+    raise
     @offer = Offer.find(params[:id])
   end
 

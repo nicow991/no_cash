@@ -12,16 +12,16 @@
 <% end %>
 <br>
 <h4><strong>Tus ofertas que esperan respuesta:</strong></h4>
-<% @my_offers.each do |offer| %>
+<% @offered_offers.each do |offer| %>
   <div class='d-flex justify-content-around border'>
     <%# permite encontrar al usuario al que planteas un trueque %>
     <div>
-      <p><strong>Ofreces a: </strong> <%= offer.item.user.email %></p>
-      <%= offer.item.name %>
+      <p><strong>Ofreces a: </strong> <%= offer.user_requested.nickname %></p>
+      <%= offer.offered_item.name %>
     </div>
     <div>
       <p><strong>Solicitas: </strong></p>
-      <%= offer.item.name %>
+      <%= offer.requested_item.name %>
     </div>
   </div>
 <% end %>
@@ -31,12 +31,12 @@
 <% @received_offers.each do |offer| %>
   <div class='d-flex justify-content-around border'>
     <div>
-      <p><strong><%= offer.item.user.email %></strong> esta interesado en: </p>
-      <%= offer.item.name %>
+      <p><strong><%= offer.user_offerer %></strong> esta interesado en: </p>
+      <%= offer.requested_item.name %>
     </div>
     <div>
       <p><strong>Te ofrece: </strong></p>
-      <%= offer.item.name %>
+      <%= offer.offered_item.name %>
     </div>
     <div class="col-md-6">
       <%= simple_form_for(@deal) do |f| %>

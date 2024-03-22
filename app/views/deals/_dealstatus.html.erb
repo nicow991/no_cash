@@ -1,7 +1,7 @@
 <div class='d-flex justify-content-around border'>
   <div>
-    <p><%= deal.offer.item.user.email %> <strong> ofrece: </strong></p>
-    <%= deal.offer.item.name%>
+    <p><%= deal.user_offerer.name %> <strong> ofrece: </strong></p>
+    <%= deal.requested_item%>
   </div>
   <div>
     <p><%# deal.offer.item.offers.where(item_id: deal.offer.item.id).user.email%><strong> ofrece: </strong></p>

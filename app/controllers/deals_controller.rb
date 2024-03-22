@@ -2,12 +2,11 @@ class DealsController < ApplicationController
   before_action :set_deal, only: %i[show cancel]
 
   def index
-    @my_offers = current_user.my_offers
+    @offered_offers = current_user.offered_offers
     @received_offers = current_user.received_offers
-    @offers = @my_offers + @received_offers
 
-    @offered_deals = @my_offers.map(&:deal).compact
-    @received_deals = @received_offers.map(&:deal).compact
+    @offered_deals = current_user.offered_deals
+    @received_deals = current_user.received_deals
     @deals = @offered_deals + @received_deals
     @deal = Deal.new
   end
