@@ -1,5 +1,8 @@
-  <%= deal.status %>
-  <%= deal.offer.requested_item %>
-  <%= deal.offer.requested_item.user %>
-  <%= deal.offer.offered_item %>
-  <%= deal.offer.offered_item.user %>
+<div class="col-md-6">
+  <%= simple_form_for(@deal) do |f| %>
+  <%= f.hidden_field :offer_id, value: offer.id %>
+  <div class="text-center">
+    <%= f.button :submit, "Aceptar Oferta", class: 'btn btn-book my-2' %>
+  </div>
+  <% end %>
+</div>

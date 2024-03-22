@@ -9,16 +9,17 @@ class DealsController < ApplicationController
     @offered_deals = @my_offers.map(&:deal).compact
     @received_deals = @received_offers.map(&:deal).compact
     @deals = @offered_deals + @received_deals
+    @deal = Deal.new
   end
 
   def show
   end
 
   def create
-    @deal = Deal.new
-    @deal.offer = Offer.find(params[:offer_id])
+    @deal = Deal.new(deal_params)
+    @deal.status = "accepted"
     if @deal.save
-      redirect_to deal_path(@deal)
+      redirect_to deals_path, notice: "Trueque aceptado"
     else
       render 'deals/index'
     end
@@ -31,6 +32,10 @@ class DealsController < ApplicationController
   end
 
   private
+
+  def deal_params
+  params.require(:deal).permit(:offer_id)
+  end
 
   def set_deal
     @deal = Deal.find(params[:id])
