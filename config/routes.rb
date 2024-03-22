@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: "pages#home"
+  get 'profile', to: 'users#show', as: :profile
   resources :items
   get 'myitems', to: 'items#my_items', as: :myitems
     resources :chatrooms, only: [:index, :show] do
