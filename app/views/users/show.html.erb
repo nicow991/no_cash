@@ -1,1 +1,6 @@
-<h1>Welcome <%= @user.nickname %></h1>
+<div class="container m-3">
+  <h1>Welcome <%= @user.email %></h1>
+
+  <%= link_to 'Editar Perfil', edit_user_registration_path, class: 'btn btn-book' %>
+  <%= link_to "Log out", "/users/sign_out", class: "dropdown-item", data: {turbo_method: :delete}, class: 'btn btn-info' %>
+</div>
