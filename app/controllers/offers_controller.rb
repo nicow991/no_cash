@@ -7,6 +7,7 @@ class OffersController < ApplicationController
   # end
 
   def create
+    raise
     @offer = Offer.create(requested_item_id: params[:id], offered_item_id: params[:offer][:offered_item_id])
 
     if @offer.save
@@ -32,10 +33,12 @@ class OffersController < ApplicationController
   private
 
   def offer_params
+    raise
     params.require(:offer).permit(:offered_item_id, :requested_item_id)
   end
 
   def set_offer
+    raise
     @offer = Offer.find(params[:id])
   end
 
