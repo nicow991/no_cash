@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   before_action :set_item, only: %i[show edit update destroy]
   def index
-    @items = Item.all
+    @items = Item.where.not(user: current_user)
     if params[:query].present? && params[:location].present?
       @items = Item.search_by_name_and_description(params[:query])
       @items = @items.near(params[:location], 20)

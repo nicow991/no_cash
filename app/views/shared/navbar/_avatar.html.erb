@@ -1,0 +1,14 @@
+        <%= image_tag "Loop.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <div class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="navbarDropdown">
+
+          <% if user_signed_in? %>
+            <%= link_to "Inbox", chatrooms_path, class: "dropdown-item desktop-only" %>
+            <%= link_to "Nuevo producto", new_item_path, class: "dropdown-item desktop-only" %>
+            <%= link_to "Mis trueques", deals_path, class: "dropdown-item desktop-only" %>
+            <%= link_to "Mis productos", myitems_path, class: "dropdown-item desktop-only" %>
+            <%= link_to "Log out", "/users/sign_out", class: "dropdown-item", data: {turbo_method: :delete} %>
+          <% else %>
+            <%= link_to "Log in", "/users/sign_in", class: "dropdown-item" %>
+            <%= link_to "Sign up", "/users/sign_up", class: "dropdown-item" %>
+          <% end %>
+        </div>

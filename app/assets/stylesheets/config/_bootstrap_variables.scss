@@ -36,3 +36,5 @@ $theme-colors: map-merge($theme-colors, ( "book": $book ));
 $theme-colors: map-merge($theme-colors, ( "pink": $pink ));
 $theme-colors: map-merge($theme-colors, ( "greypink": $greypink ));
 $theme-colors: map-merge($theme-colors, ( "background": $background ));
+$theme-colors: map-merge($theme-colors, ( "yellow-primary": $yellow-primary ));
+$theme-colors: map-merge($theme-colors, ( "purple-primary": $purple-primary ));
