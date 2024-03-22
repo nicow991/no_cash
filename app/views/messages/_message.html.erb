@@ -1,7 +1,20 @@
-<div id="message-<%= message.id %>">
+<div id="message-<%= message.id %>"
+<% if message.user == current_user %>
+  class="message bg-pink text-white text-end p-2 m-2"
+<% else %>
+  class="message bg-light p-2 m-2"
+<% end %>
+>
   <small>
-    <strong><%= message.user.nickname %></strong>
-    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+    <%if message.user == current_user %>
+      <strong class='text-dark'>You</strong>
+      <i class='text-dark'><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+      <p class='text-dark'><%= message.content %></p>
+    <%else%>
+      <strong><%= message.user.email %></strong>
+      <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+      <p><%= message.content %></p>
+    <%end%>
   </small>
-  <p><%= message.content %></p>
+
 </div>
