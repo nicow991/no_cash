@@ -1,23 +1,19 @@
 <div class="row justify-content-center">
-  <div class="col-sm-8 my-3">
-    <%= form_with url: items_path, method: :get, class: "d-flex form-inline" do %>
+    <%= form_with url: items_path, method: :get, class: "d-flex form-inline px-0" do %>
       <%= text_field_tag :query,
             params[:query],
-            class: "form-control mr-sm-2 rounded",
-            style: "width: 300px;",
+            class: "form-control rounded",
             placeholder: "Buscar"
         %>
         <%= text_field_tag :location,
             params[:location],
-            class: "form-control mr-sm-2 rounded",
-            style: "width: 300px;",
+            class: "form-control rounded desktop-only",
             placeholder: "Ubicación"
         %>
         <div>
-        <button type="submit" class="btn border-0" title="Search">
+        <button type="submit" class="btn border-0 m-0 flex-shrink-1" title="Search">
           <i class="fas fa-search"></i>
         </button>
       </div>
     <% end %>
   </div>
-</div>
