@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
+  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-3">
     <% items.each do |item| %>
       <div class="col", style= "margin-top: 50px; margin-bottom: 50px">
         <div class="item">
@@ -11,7 +11,7 @@
                     <% item.photos.each_with_index do |photo, index| %>
                       <div class="carousel-item <%= 'active' if index == 0 %>">
 
-                        <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "height: 200px; width: 100%;" %>
+                        <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "object-fit: cover; height: 180px" %>
                       </div>
                     <% end %>
                   <% end %>
@@ -26,10 +26,10 @@
                   <span class="visually-hidden">Next</span>
                 </a>
               </div>
-            <div class="card-body">
-              <h5 class="card-title"><%= item.name %></h5>
-              <h3><%= item.category.name %></h3>
-              <p class="card-text" style="height: 80px;"><%= item.description %>.</p>
+            <div class="card-body" style="overflow: hidden; position: relative;">
+              <h5 class="card-title" style=" max-height: 80px; min-height: 50px;"><%= item.name %></h5>
+              <h3 style=" max-height: 80px; min-height: 50px;"><%= item.category.name %></h3>
+              <p class="card-text" style=" max-height: 80px; min-height: 50px;"><%= item.description %>.</p>
                 <% if item.user == current_user %>
                   <%= link_to 'Check your item', item_path(item), class: "btn btn-success text-white" %>
                 <% else %>
