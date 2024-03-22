@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
+
 <div class="row justify-content-center" data-controller="toggle">
   <div class="item-show col-sm-6 col-12 p-0">
     <div id="carousel<%= @item.id %>" class="carousel slide position-relative" data-bs-ride="carousel" style="height: 300px; width: 100%; overflow: hidden;">
@@ -34,15 +36,27 @@
       <p class="card-text mx-5">Descripción: <%= @item.description %>.</p>
       <br>
       <p class="mx-5">Cambio por: </p>
-      
-      <div class="text-center"> <!-- Added text-center class to center the button -->
-      <% if @item.user == current_user %>
-        <button class='btn btn-success text-white' data-action='click->toggle#showoffer'>Edita tu producto</button>
-      <% else %>
-        <button class='btn btn-book' data-action='click->toggle#showoffer'>Me interesa!</button>
-      <% end %>
-      </div>
+    <div class="row justify-content-center">
+    <div class="col-10 col-md-6 px-0">
+    <div class="d-flex flex-column">
+      <span class="text-end">
+        <%= link_to chatroom_path(1) do %>
+          <i class="far fa-comment-dots fs-2" style="color: #210062;"></i>
+        <% end %>
+      </span>
+
+        <!-- Added text-center class to center the button -->
+        <% if @item.user == current_user %>
+          <button class='btn btn-success text-white' data-action='click->toggle#showoffer'>Edita tu producto</button>
+        <% else %>
+          <button class='btn btn-book' data-action='click->toggle#showoffer'>Me interesa!</button>
+        <% end %>
     </div>
+    </div>
+    </div>
+
+
+      </div>
   </div>
   <div class="row justify-content-center d-none m-3" data-toggle-target='form'>
     <% if @item.user == current_user %>
