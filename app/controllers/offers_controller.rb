@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :set_offer, only: %i[  edit update destroy]
+  before_action :set_offer, only: %i[ edit update destroy]
 
   def new
     @offer = Offer.new
@@ -7,6 +7,7 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.new(offer_params)
+
     if @offer.save
       # chatroom = Chatroom.create
       # Participant.create(user: current_user, chatroom: chatroom)
