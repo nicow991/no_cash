@@ -7,22 +7,24 @@ class OffersController < ApplicationController
   # end
 
   def create
-    @offer = Offer.create(requested_item_id: params[:id], offered_item_id: params[:offer][:offered_item_id])
+    @offer = Offer.create offer_params
 
     if @offer.save
       redirect_to deals_path
     else
+      @item = Item.find(params[:id])
+      @deal = Deal.new
+      @offer = Offer.new
       render 'items/show', status: :unprocessable_entity
     end
   end
 
-  # TODO: Implement edit and update actions i.e counteroffer
-  # def edit
-  # end
+  def edit
+  end
 
-  # def update
-  #   @offer.update(offer_params)
-  # end
+  def update
+    @offer.update(offer_params)
+  end
 
   def destroy
     @offer.destroy
