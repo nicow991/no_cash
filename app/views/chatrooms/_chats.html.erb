@@ -1,0 +1,15 @@
+<div class='container m-3'>
+    <% @chatrooms.each do |chatroom| %>
+      <%= link_to chatroom_path(chatroom), class: 'text-decoration-none', style: 'color: inherit;' do %>
+        <div class='border p-3 my-2 bg-light rounded'>
+          <p class='text-end text-muted'><%= chatroom.messages.last.created_at.strftime('%Y-%m-%d %H:%M:%S') %></p>
+          <% participants_except_current_user = chatroom.participants.reject { |participant| participant.user == current_user } %>
+          <% other_user_id = participants_except_current_user.map(&:user_id).first %>
+          <% other_user = User.find(other_user_id) %>
+          <p class="mb-1"><strong><%= other_user.email %></strong> </p>
+          <hr class="my-2">
+          <p class="mb-0"><%= chatroom.messages.last.content %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>

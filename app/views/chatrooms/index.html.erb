@@ -1,27 +1,5 @@
-<div class="container m-3"></div>
-<h1><strong>Mis Chats</strong></h1>
+<div class="container m-3">
+  <h1><strong>Mensajes</strong></h1>
 
-<div>
-  <% @chatrooms.each do |chatroom| %>
-    <div>
-      <%= chatroom %>
-      <br>
-      <% chatroom.participants. each do |participant| %>
-        <%= participant.user_id %>
-      <% end %>
-      <br>
-      <%= chatroom.messages.last.content %>
-    </div>
-<% end %>
+  <%= render 'chats', chatroom: @chatroom %>
 </div>
-
-
-
-
-
-
-
-<%# <%= render 'chats', chatroom: @chatroom %>
-<%# <% chatroom.messages.each do |message| %>
-<%# <%= message.content %>
-<%# <% end %>
