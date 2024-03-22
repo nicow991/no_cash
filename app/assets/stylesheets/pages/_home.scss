@@ -1,25 +1,31 @@
 // Specific CSS for your home-page
 
 .home {
-  margin: 0 auto; 
   width: 100%;
+  display: grid;
+  grid-gap: 20px; /*esto anade un poco de espacio entre el baner y el siguiente titulo*/
 }
 
 .banner {
-  background-size: contain;
+  display: flex;
+  background-size: cover;
   background-position: center;
   width: 100%;
-  height: auto;
+  height: 80vh;
   background-image: url('banner.png');
-  height: 70vh;
+  padding: 20px; 
+}
+
+.logo {
+  width: 160px;
+  align-self: flex-start;
 }
 
 .banner h1 {
-  margin: 0;
   color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   font-size: 32px;
   font-weight: bold;
+  margin-top: 100px;  
 }
 
 .banner-title {
@@ -27,11 +33,20 @@
   margin-top: 25px;
   color: white;
   font-size: calc(1.5rem + 1.5vw);
-  z-index: 1;
+}
+
+.btn {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .body {
   text-align: center;
+  margin-top: 25px;
+}
+
+p {
+  font-size: 18px;
 }
 
 .home + .footer {
@@ -40,12 +55,13 @@
 
 .btn {
   display: inline-block;
-  padding: 10px 20px;
   background-color: #210062;
   color: white;
   text-decoration: none;
   border-radius: 5px;
   text-align: center;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .btn:hover {
