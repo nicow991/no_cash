@@ -1,4 +1,39 @@
-<div class="footer mt-4">
+<div class="footer  mobile-footer p-0 mt-4 bg-purple-primary">
+  <div class="footer-links w-100 h-100 d-flex align-items-center justify-content-around">
+        <%= link_to deals_path, class: 'footer-link' do %>
+        <div class="text-yellow-primary">
+          <i class="w-100 text-center fa-solid fa-rotate"></i>
+          <p class="m-0 fs-6 text-center">Mis trueques</p>
+        </div>
+        <% end %>
+        <%= link_to "#", class: 'footer-link' do %>
+          <div class="text-yellow-primary">
+            <i class="w-100 text-center fa-solid fa-message"></i>
+            <p class="m-0 fs-6 text-center">Chats</p>
+          </div class="text-yellow-primary">
+        <% end %>
+        <%= link_to new_item_path, class: 'footer-link' do %>
+          <div class="text-yellow-primary">
+            <i class="w-100 text-center fa-solid fa-circle-plus"></i>
+          </div>
+        <% end %>
+        <%= link_to items_path, class: 'footer-link' do %>
+          <div class="text-yellow-primary">
+            <i class="w-100 text-center fa-solid fa-globe"></i>
+            <p class="m-0 fs-6 text-center">Explora</p>
+          </div>
+        <% end %>
+        <%= link_to myitems_path, class: 'footer-link' do %>
+          <div class="text-yellow-primary">
+            <i class="w-100 text-center fa-solid fa-rectangle-list"></i>
+            <p class="m-0 fs-6 text-center">Mis ofertas</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+
+<div class="footer desktop-footer mt-4">
   <div class="footer-copyright">
    <p><em>© 2024 Loop</em></p>
    <a href="#">Terms of Use -</a>
