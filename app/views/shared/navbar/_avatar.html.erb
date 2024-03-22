@@ -2,7 +2,7 @@
         <div class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="navbarDropdown">
 
           <% if user_signed_in? %>
-            <%= link_to "chats", chatroom_path(Chatroom.first.id), class: "dropdown-item desktop-only" %>
+            <%= link_to "chats", chatrooms_path, class: "dropdown-item desktop-only" %>
             <%= link_to "Nuevo producto", new_item_path, class: "dropdown-item desktop-only" %>
             <%= link_to "Mis trueques", deals_path, class: "dropdown-item desktop-only" %>
             <%= link_to "Mis productos", myitems_path, class: "dropdown-item desktop-only" %>
