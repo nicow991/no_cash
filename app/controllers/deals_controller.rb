@@ -18,6 +18,7 @@ class DealsController < ApplicationController
     @deal = Deal.new(deal_params)
     @deal.status = "accepted"
     if @deal.save
+      Offer.find(@deal.offer_id).update(status: "accepted")
       redirect_to deals_path, notice: "Trueque aceptado"
     else
       render 'deals/index'
