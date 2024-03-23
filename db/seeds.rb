@@ -12,21 +12,52 @@ User.destroy_all
 Category.destroy_all
 
 # Categories
-CATEGORIES = ['Electronics', 'Clothing', 'Books', 'Furniture', 'Sports Equipment', 'Home Appliances', 'Toys', 'Beauty Products']
-CONDITIONS = ["new", "like new", "good", "fair", "poor"]
+CATEGORIES = [
+  "Electrónica",
+  "Hogar y Jardín",
+  "Moda y Accesorios",
+  "Deportes y Fitness",
+  "Juguetes y Bebés",
+  "Salud y Belleza",
+  "Electrodomésticos",
+  "Herramientas y Construcción",
+  "Muebles y Decoración",
+  "Automotriz",
+  "Libros, Revistas y Comics",
+  "Arte y Antigüedades",
+  "Instrumentos Musicales",
+  "Videojuegos y Consolas",
+  "Computación",
+  "Alimentos y Bebidas",
+  "Telefonía y Accesorios",
+  "Cámaras y Accesorios",
+  "Relojes y Joyas",
+  "Equipamiento para Industrias y Oficinas",
+  "Equipaje y Bolsos",
+  "Animales y Mascotas",
+  "Coleccionables",
+  "Bicicletas y Ciclismo",
+  "Instrumentos Ópticos y Fotografía",
+  "Arte, Papelería y Mercería",
+  "Entradas para Eventos",
+  "Sellos",
+  "Souvenirs, Cotillón y Fiestas",
+  "Otras categorías"
+]
+CONDITIONS = ["Nuevo", "como nuevo", "bueno", "mal", "roto"]
 
 CATEGORIES.each do |name|
   Category.create!(name: name)
 end
 
-2.times do |time|
+5.times do |time|
   puts "creating user"
   user = User.create!(email: "#{time}@mail.com", password: 'password', address: '123 Main St')
-  5.times do
+  4.times do
     puts "creating item"
     item = Item.create!(user: user, category: Category.all.sample, name: Faker::Book.title, description: Faker::Book.genre, condition: CONDITIONS.sample, address: 'aeroparque, buenos aires')
 
-    2.times do
+    1.times do
       puts "creating item photoo"
 
       image_url = Faker::LoremFlickr.image(size: "200x200", search_terms: ['book'])
@@ -42,19 +73,25 @@ User.all.each do |user|
 
   Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
   Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
+  Preference.create!(user_id: user.id, category_id: Category.all.sample.id)
 
+  puts "Creating offer for user #{user.id}"
+  # Get IDs of items owned by other users
+  other_users_items_ids = Item.where.not(user_id: user.id).pluck(:id)
+
+  # Select a random item ID from the items owned by other users
+  requested_item_id = other_users_items_ids.sample
+
+  # Select a random item ID from the user's own items
+  offered_item_id = user.items.pluck(:id).sample
+
+  # Create the offer
+  Offer.create(requested_item_id: requested_item_id, offered_item_id: offered_item_id)
 end
-
-User.first(10).each do |user|
-    puts "creating offer"
-    item = user.items.sample
-    offer = Offer.new(item:)
-    offer.save!
-    Item.all.sample.offers << item.offer
-  user.my_offers.each do |offer|
-    if [1,2].sample == 1
-      puts "creating deal for offer"
-      offer.deal = Deal.new status: 'accepted'
+Offer.all.each do |offer|
+  if [1,2].sample == 1
+    puts "creating deal for offer"
+    Deal.create!(status: 'accepted', offer_id: offer.id)
       # rand = [1, 2, 3, 4].sample
       #   puts "creating review deal for offer"
       # #   deal.update(status: 'completed')
@@ -69,19 +106,17 @@ User.first(10).each do |user|
       # user.id, content: 'Great transaction')
       #   Review.create!(user_reviewed_id: user.id, deal: deal, user_reviewer_id:
       # Item.find(offer.requested_item_id).user.id, content: 'Smooth exchange')
-    end
   end
 end
+
 
 
 10.times do
   chatroom = Chatroom.create
   user = User.all.sample
   other_user = User.where.not(id: user.id).sample
-
   Participant.create(user: user, chatroom: chatroom)
   Participant.create(user: other_user, chatroom: chatroom)
   Message.create(user: user, chatroom: chatroom, content: Faker::Quote.famous_last_words)
   Message.create(user: other_user, chatroom: chatroom, content: Faker::Quote.famous_last_words)
-
 end
