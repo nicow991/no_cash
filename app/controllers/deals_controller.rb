@@ -9,6 +9,7 @@ class DealsController < ApplicationController
     @received_deals = current_user.received_deals
     @deals = @offered_deals + @received_deals
     @deal = Deal.new
+    @review = Review.new
   end
 
   def show
