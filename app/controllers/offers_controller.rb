@@ -19,6 +19,18 @@ class OffersController < ApplicationController
     end
   end
 
+  def cancel
+    @offer = Offer.find(params[:id])
+    @offer.update(status: 'cancelled')
+    redirect_to deals_path, notice: 'Oferta cancelada'
+  end
+  
+  def reject
+    @offer = Offer.find(params[:id])
+    @offer.update(status: 'rejected')
+    redirect_to deals_path, notice: 'Oferta rechazada'
+  end
+
   def edit
   end
 
