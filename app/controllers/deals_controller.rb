@@ -2,8 +2,8 @@ class DealsController < ApplicationController
   before_action :set_deal, only: %i[show cancel]
 
   def index
-    @offered_offers = current_user.offered_offers
-    @received_offers = current_user.received_offers
+    @offered_offers = current_user.offered_offers.where(status: 'pending')
+    @received_offers = current_user.received_offers.where(status: 'pending')
 
     @offered_deals = current_user.offered_deals
     @received_deals = current_user.received_deals
