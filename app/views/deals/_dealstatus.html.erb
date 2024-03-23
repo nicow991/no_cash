@@ -1,10 +1,11 @@
 <div class='d-flex justify-content-around border'>
-  <div>
-    <p><%= deal.user_offerer.email %> <strong> ofrece: </strong></p>
-    <%= deal.requested_item.name%>
-  </div>
-  <div>
+   <div>
     <p><%= deal.user_offerer.email %><strong> ofrece: </strong></p>
     <%= deal.offered_item.name%>
   </div>
+  <div>
+    <p><%= deal.user_requested.email %> <strong> ofrece: </strong></p>
+    <%= deal.requested_item.name%>
+  </div>
+
 </div>

@@ -1,13 +1,26 @@
+<% aceptados = 0 %>
+<% completados = 0 %>
+<% cancelados = 0 %>
+
 <% @deals.each do |deal| %>
   <% if deal.status == 'accepted' %>
-    <h4><strong>Tus trueques pendientes</strong></h4>
+    <% if aceptados == 0 %>
+      <h4><strong>Tus trueques pendientes</strong></h4>
+    <% end %>
     <%= render 'dealstatus', deal: deal %>
+    <% aceptados += 1 %>
   <% elsif deal.status == 'completed' %>
-    <h4><strong>Tus trueques completados</strong></h4>
+    <% if completados == 0 %>
+      <h4><strong>Tus trueques completados</strong></h4>
+    <% end %>
     <%= render 'dealstatus', deal: deal %>
+    <% completados += 1 %>
   <% else %>
-    <h4><strong>Tus trueques cancelados</strong></h4>
+    <% if cancelados == 0 %>
+      <h4><strong>Tus trueques cancelados</strong></h4>
+    <% end %>
     <%= render 'dealstatus', deal: deal %>
+    <% cancelados += 1 %>
   <% end %>
 <% end %>
 <br>
