@@ -8,14 +8,7 @@
       <h4 class='text-center my-2'><strong>Pendientes</strong></h4>
     <% end %>
     <div class='d-flex justify-content-around border'>
-      <div>
-        <p><%= deal.user_offerer.email %><strong> ofrece: </strong></p>
-        <%= deal.offered_item.name%>
-      </div>
-      <div>
-        <p><%= deal.user_requested.email %> <strong> ofrece: </strong></p>
-        <%= deal.requested_item.name%>
-      </div>
+      <%= render 'dealstatus', deal: deal %>
       <%# agregar link para crear un chatroom %>
       <div class='in-block'>
         <%= link_to 'Coordinar Entrega', class: 'btn btn-info' %>
