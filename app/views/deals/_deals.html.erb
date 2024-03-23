@@ -5,7 +5,7 @@
 <% @deals.each do |deal| %>
   <% if deal.status == 'accepted' %>
     <% if aceptados == 0 %>
-      <h4><strong>Tus trueques pendientes</strong></h4>
+      <h4 class='text-center my-2'><strong>Pendientes</strong></h4>
     <% end %>
     <div class='d-flex justify-content-around border'>
       <div>
@@ -19,26 +19,28 @@
       <%# agregar link para crear un chatroom %>
       <div class='in-block'>
         <%= link_to 'Coordinar Entrega', class: 'btn btn-info' %>
-        <%= link_to 'Trueque completado', class: 'btn btn-success' %>
+        <%= render 'complete', deal: deal %>
+        <%= render 'cancel', deal: deal %>
       </div>
     </div>
     <% aceptados += 1 %>
   <% elsif deal.status == 'completed' %>
     <% if completados == 0 %>
-      <h4><strong>Tus trueques completados</strong></h4>
+      <h4 class='text-center my-2'><strong>Finalizados</strong></h4>
     <% end %>
     <%= render 'dealstatus', deal: deal %>
     <% completados += 1 %>
   <% else %>
     <% if cancelados == 0 %>
-      <h4><strong>Tus trueques cancelados</strong></h4>
+      <h4 class='text-center my-2'><strong>Cancelados</strong></h4>
     <% end %>
     <%= render 'dealstatus', deal: deal %>
     <% cancelados += 1 %>
   <% end %>
 <% end %>
 <br>
-<h4><strong>Tus ofertas que esperan respuesta:</strong></h4>
+<h1>Ofertas:</h1>
+<h4 class='text-center my-2'><strong>Enviadas:</strong></h4>
 <% @offered_offers.each do |offer| %>
   <div class='d-flex justify-content-around border'>
     <%# permite encontrar al usuario al que planteas un trueque %>
@@ -62,7 +64,7 @@
   </div>
 <% end %>
 <br>
-<h4><strong>Ofertas recibidas</strong></h4>
+<h4 class='text-center my-2'><strong>Recibidas</strong></h4>
 <h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
 <% @received_offers.each do |offer| %>
   <div class='d-flex justify-content-around border'>

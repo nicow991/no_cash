@@ -17,6 +17,7 @@ end
   resources :deals, only: [:index, :show, :create] do
     member do
       patch :cancel
+      patch :complete
     end
     resources :reviews, only: [:create]
 

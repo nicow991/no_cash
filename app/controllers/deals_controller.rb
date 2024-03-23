@@ -1,5 +1,5 @@
 class DealsController < ApplicationController
-  before_action :set_deal, only: %i[show cancel]
+  before_action :set_deal, only: %i[show cancel complete]
 
   def index
     @offered_offers = current_user.offered_offers.where(status: 'pending')
@@ -28,8 +28,15 @@ class DealsController < ApplicationController
   def cancel
     @deal.status = "cancelled"
     @deal.save
-    redirect_to deal_path(@deal)
+    redirect_to deals_path
   end
+
+  def complete
+    @deal.status = "completed"
+    @deal.save
+    redirect_to deals_path
+  end
+
 
   private
 
