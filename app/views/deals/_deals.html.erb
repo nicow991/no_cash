@@ -7,7 +7,21 @@
     <% if aceptados == 0 %>
       <h4><strong>Tus trueques pendientes</strong></h4>
     <% end %>
-    <%= render 'dealstatus', deal: deal %>
+    <div class='d-flex justify-content-around border'>
+      <div>
+        <p><%= deal.user_offerer.email %><strong> ofrece: </strong></p>
+        <%= deal.offered_item.name%>
+      </div>
+      <div>
+        <p><%= deal.user_requested.email %> <strong> ofrece: </strong></p>
+        <%= deal.requested_item.name%>
+      </div>
+      <%# agregar link para crear un chatroom %>
+      <div class='in-block'>
+        <%= link_to 'Coordinar Entrega', class: 'btn btn-info' %>
+        <%= link_to 'Trueque completado', class: 'btn btn-success' %>
+      </div>
+    </div>
     <% aceptados += 1 %>
   <% elsif deal.status == 'completed' %>
     <% if completados == 0 %>
