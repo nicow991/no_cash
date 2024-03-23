@@ -44,7 +44,7 @@ CATEGORIES = [
   "Souvenirs, Cotillón y Fiestas",
   "Otras categorías"
 ]
-CONDITIONS = ["Nuevo", "como nuevo", "bueno", "mal", "roto"]
+CONDITIONS = ["Excelente", "Bueno", "Regular", "Aceptable", "Dañado"]
 
 CATEGORIES.each do |name|
   Category.create!(name: name)
