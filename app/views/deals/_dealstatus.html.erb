@@ -1,4 +1,5 @@
 <%= link_to deal_path(deal), class: 'text-decoration-none', style: 'color: inherit;' do%>
+  <p class='text-end p-2'><%= deal.created_at.strftime("%Y-%m-%d") %></p>
   <div class='d-flex justify-content-around border bg-background my-2 p-2'>
     <div>
       <p><%= deal.user_offerer.email %><strong> ofrece: </strong></p>

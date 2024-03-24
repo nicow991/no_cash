@@ -19,6 +19,7 @@ class DealsController < ApplicationController
     @reviewed_user = @deal.user_offerer == current_user ? @deal.user_requested : @deal.user_offerer
     @reviews = Review.where(user_reviewed: @reviewed_user)
     @rating = @reviews.average(:rating).round(2) if @reviews.any?
+    @review = Review.new
   end
 
   def create

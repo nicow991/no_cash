@@ -1,12 +1,14 @@
 <div class='text-center' data-controller="toggle-user-reviews">
-  <div class='text-center' data-action='click->toggle-user-reviews#showreviews'><button>Resenas de <%= reviewed_user.email %></button></div>
-  <div class="col-12 col-md-5 bg-pink border d-none justify-content-center" data-toggle-user-reviews-target='reviews'>
-    <% reviews.each do |review| %>
-      <div class='card bg-pink text-center'>
-        <p><%= review.user_reviewer.email %></p>
-        <p>Rating: <%= review.rating %></p>
-        <p>Comentario: <%= review.content %></p>
-      </div>
-    <% end %>
+  <div class='text-center' data-action='click->toggle-user-reviews#showreviews'><button class='btn btn-info'>Reseñas de <%= reviewed_user.email %></button></div>
+  <div class="col-12 col-md-5 bg-pink border m-3 d-none" data-toggle-user-reviews-target='reviews'>
+    <div class="text-center"> <!-- Apply text-center class here -->
+      <% reviews.each do |review| %>
+        <div class='card bg-pink'>
+          <p><%= review.user_reviewer.email %></p>
+          <p>Rating: <%= review.rating %></p>
+          <p>Comentario: <%= review.content %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
