@@ -1,34 +1,7 @@
-<% aceptados = 0 %>
-<% completados = 0 %>
-<% cancelados = 0 %>
+<%= render 'accepted_deals', accepted_deals: @accepted_deals %>
+<%= render 'completed_deals', completed_deals: @completed_deals %>
+<%= render 'cancelled_deals', canceled_deals: @canceled_deals %>
 
-
-
-<% @deals.each do |deal| %>
-  <% if deal.status == 'accepted' %>
-    <% if aceptados == 0 %>
-      <h4 class='text-center my-2'><strong>Pendientes</strong></h4>
-    <% end %>
-    <div class='d-flex justify-content-around border bg-background'>
-      <%= render 'accepted_deals', deal: deal %>
-      <%# agregar link para crear un chatroom %>
-    </div>
-    <% aceptados += 1 %>
-  <% elsif deal.status == 'completed' %>
-    <% if completados == 0 %>
-      <h4 class='text-center my-2'><strong>Finalizados</strong></h4>
-    <% end %>
-    <%= render 'completed_deals', deal: deal %>
-    <% completados += 1 %>
-  <% elsif deal.status == 'cancelled' %>
-    <% if cancelados == 0 %>
-      <h4 class='text-center my-2'><strong>Cancelados</strong></h4>
-    <% end %>
-    <%= render 'cancelled_deals', deal: deal %>
-    <% cancelados += 1 %>
-  <% end %>
-<% end %>
-<br>
 <h1>Ofertas:</h1>
 <h4 class='text-center my-2'><strong>Enviadas:</strong></h4>
 <% @offered_offers.each do |offer| %>

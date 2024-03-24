@@ -1,2 +1,9 @@
-<%= render 'dealstatus', deal: deal %>
-<%= render 'review', deal: deal, review: @review %>
+<h4 class='text-center my-2'><strong>Finalizados</strong></h4>
+<div class='border bg-background my-2' >
+  <% @completed_deals.each do |deal| %>
+    <%= render 'dealstatus', deal: deal %>
+    <div class='in-block'>
+      <%= render 'review', deal: deal, review: @review %>
+    </div>
+  <% end %>
+</div>

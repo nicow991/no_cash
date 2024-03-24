@@ -30,7 +30,7 @@ class DealsController < ApplicationController
   end
 
   def cancel
-    @deal.status = "cancelled"
+    @deal.status = "canceled"
     @deal.save
     redirect_to deals_path
   end
