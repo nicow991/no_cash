@@ -2,33 +2,29 @@
 <% completados = 0 %>
 <% cancelados = 0 %>
 
+
+
 <% @deals.each do |deal| %>
   <% if deal.status == 'accepted' %>
     <% if aceptados == 0 %>
       <h4 class='text-center my-2'><strong>Pendientes</strong></h4>
     <% end %>
     <div class='d-flex justify-content-around border'>
-      <%= render 'dealstatus', deal: deal %>
+      <%= render 'accepted_deals', deal: deal %>
       <%# agregar link para crear un chatroom %>
-      <div class='in-block'>
-        <%= link_to 'Coordinar Entrega', class: 'btn btn-info' %>
-        <%= render 'complete', deal: deal %>
-        <%= render 'cancel', deal: deal %>
-      </div>
     </div>
     <% aceptados += 1 %>
   <% elsif deal.status == 'completed' %>
     <% if completados == 0 %>
       <h4 class='text-center my-2'><strong>Finalizados</strong></h4>
     <% end %>
-    <%= render 'dealstatus', deal: deal %>
-    <%= render 'review', deal: deal, review: @review %>
+    <%= render 'completed_deals', deal: deal %>
     <% completados += 1 %>
-  <% else %>
+  <% elsif deal.status == 'cancelled' %>
     <% if cancelados == 0 %>
       <h4 class='text-center my-2'><strong>Cancelados</strong></h4>
     <% end %>
-    <%= render 'dealstatus', deal: deal %>
+    <%= render 'cancelled_deals', deal: deal %>
     <% cancelados += 1 %>
   <% end %>
 <% end %>
@@ -36,58 +32,11 @@
 <h1>Ofertas:</h1>
 <h4 class='text-center my-2'><strong>Enviadas:</strong></h4>
 <% @offered_offers.each do |offer| %>
-  <div class='d-flex justify-content-around border'>
-    <%# permite encontrar al usuario al que planteas un trueque %>
-    <div>
-      <p><strong>Ofreces a: </strong> <%= offer.user_requested.email %></p>
-      <%= offer.offered_item.name %>
-    </div>
-    <div>
-      <p><strong>Solicitas: </strong></p>
-      <%= offer.requested_item.name %>
-    </div>
-    <div>
-      <div class="col-md-6">
-          <%= simple_form_for(offer, url: reject_offer_path(offer), method: :patch) do |f| %>
-          <div class="text-center">
-          <%= f.button :submit, "Cancelar Oferta", class: 'btn btn-outline-danger my-2' %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
+  <%= render 'sent_offers', offer: offer %>
 <% end %>
 <br>
 <h4 class='text-center my-2'><strong>Recibidas</strong></h4>
 <h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
 <% @received_offers.each do |offer| %>
-  <div class='d-flex justify-content-around border'>
-    <div>
-      <p><strong><%= offer.user_offerer.email %></strong> esta interesado en: </p>
-      <%= offer.requested_item.name %>
-    </div>
-    <div>
-      <p><strong>Te ofrece: </strong></p>
-      <%= offer.offered_item.name %>
-    </div>
-    <div>
-      <div class="col-md-6">
-        <%= simple_form_for(@deal) do |f| %>
-        <%= f.hidden_field :offer_id, value: offer.id %>
-        <div class="text-center">
-          <%= f.button :submit, "Aceptar Oferta", class: 'btn btn-book my-2' %>
-        </div>
-        <% end %>
-      </div>
-      <%# agregar link para crear un chatroom %>
-      <div><%= link_to 'Contraofertar via chat', class: 'btn btn-success' %></div>
-      <div class="col-md-6">
-      <%= simple_form_for(offer, url: reject_offer_path(offer), method: :patch) do |f| %>
-        <div class="text-center">
-          <%= f.button :submit, "Rechazar Oferta", class: 'btn btn-outline-danger my-2' %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+  <%= render 'received_offers', offer: offer %>
 <% end %>

@@ -1,0 +1,29 @@
+<div class='d-flex justify-content-around border'>
+    <div>
+      <p><strong><%= offer.user_offerer.email %></strong> esta interesado en: </p>
+      <%= offer.requested_item.name %>
+    </div>
+    <div>
+      <p><strong>Te ofrece: </strong></p>
+      <%= offer.offered_item.name %>
+    </div>
+    <div>
+      <div class="col-md-6">
+        <%= simple_form_for(@deal) do |f| %>
+        <%= f.hidden_field :offer_id, value: offer.id %>
+        <div class="text-center">
+          <%= f.button :submit, "Aceptar Oferta", class: 'btn btn-book my-2' %>
+        </div>
+        <% end %>
+      </div>
+      <%# agregar link para crear un chatroom %>
+      <div><%= link_to 'Contraofertar via chat', class: 'btn btn-success' %></div>
+      <div class="col-md-6">
+      <%= simple_form_for(offer, url: reject_offer_path(offer), method: :patch) do |f| %>
+        <div class="text-center">
+          <%= f.button :submit, "Rechazar Oferta", class: 'btn btn-outline-danger my-2' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

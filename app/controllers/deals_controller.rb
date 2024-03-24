@@ -10,6 +10,9 @@ class DealsController < ApplicationController
     @deals = @offered_deals + @received_deals
     @deal = Deal.new
     @review = Review.new
+    @accepted_deals = filter_deals('accepted')
+    @completed_deals = filter_deals('completed')
+    @canceled_deals = filter_deals('canceled')
   end
 
   def show
@@ -48,4 +51,9 @@ class DealsController < ApplicationController
   def set_deal
     @deal = Deal.find(params[:id])
   end
+
+  def filter_deals(status)
+    @deals.select { |deal| deal.status == status }
+  end
+
 end
