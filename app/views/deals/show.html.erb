@@ -1,2 +1,18 @@
-<h1>Deals#show</h1>
-<p>Find me in app/views/deals/show.html.erb</p>
+<div class="row justify-content-center">
+  <div class="col-12 col-md-7 d-flex bg-background">
+    <% if @deal.offered_item.photos.attached? %>
+      <%= cl_image_tag @deal.offered_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0", style: "height: 250px; width: 100%;" %>
+    <% end %>
+    <% if @deal.requested_item.photos.attached? %>
+      <%= cl_image_tag @deal.requested_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0", style: "height: 250px; width: 100%;" %>
+    <% end %>
+  </div>
+  <div class="col-12 col-md-7 bg-background">
+    <p class="text-end"><%= @deal.user_offerer.address %></p>
+    <div class="bg-pink">
+      <p><%= @deal.user_offerer.email %> ofrece <%= @deal.offered_item.name %></p>
+      <p>a cambio de <%= @deal.requested_item.name %> perteneciente a <%= @deal.user_requested.email %></p>
+    </div>
+  </div>
+  <%= render 'show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
+</div>

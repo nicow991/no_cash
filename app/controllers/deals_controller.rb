@@ -16,6 +16,9 @@ class DealsController < ApplicationController
   end
 
   def show
+    @reviewed_user = @deal.user_offerer == current_user ? @deal.user_requested : @deal.user_offerer
+    @reviews = Review.where(user_reviewed: @reviewed_user)
+
   end
 
   def create

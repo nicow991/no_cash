@@ -1,0 +1,11 @@
+  <br>
+  <div class='text-center'><button>Resenas de <%= reviewed_user.email %></button></div>
+   <div class="col-12 col-md-7 bg-pink border d-none">
+      <% reviews.each do |review| %>
+        <div>
+          <p><%= review.user_reviewer.email %></p>
+          <p>Rating: <%= review.rating %></p>
+          <p>Comentario: <%= review.content %></p>
+        </div>
+      <% end %>
+  </div>
