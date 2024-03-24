@@ -5,10 +5,16 @@
       <div>
         <p><strong><%= offer.user_offerer.email %></strong> esta interesado en: </p>
         <%= offer.requested_item.name %>
+        <% if offer.requested_item.photos.attached? %>
+          <%= cl_image_tag offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
+        <% end %>
       </div>
       <div>
         <p><strong>Te ofrece: </strong></p>
         <%= offer.offered_item.name %>
+        <% if offer.offered_item.photos.attached? %>
+          <%= cl_image_tag offer.offered_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
+        <% end %>
       </div>
       <div>
         <div class="col-md-6">
