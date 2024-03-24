@@ -1,6 +1,10 @@
 <div class="container mt-4">
   <div class="align-items-center mb-4">
     <h1>Trueques</h1>
-    <%= render 'deals/deals', deals: @deals %>
+    <%= render 'accepted_deals', accepted_deals: @accepted_deals %>
+    <%= render 'completed_deals', completed_deals: @completed_deals %>
+    <%= render 'cancelled_deals', canceled_deals: @canceled_deals %>
+    <%= render 'sent_offers', offered_offers: @offered_offers %>
+    <%= render 'received_offers', received_offers: @received_offers %>
   </div>
 </div>

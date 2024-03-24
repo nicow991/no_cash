@@ -1,4 +1,7 @@
-<div class='d-flex justify-content-around border bg-background my-3'>
+<h1>Ofertas:</h1>
+<h4 class='text-center my-2'><strong>Enviadas:</strong></h4>
+<% @offered_offers.each do |offer| %>
+  <div class='d-flex justify-content-around border bg-background my-3'>
     <%# permite encontrar al usuario al que planteas un trueque %>
     <div>
       <p><strong>Ofreces a: </strong> <%= offer.user_requested.email %></p>
@@ -18,3 +21,4 @@
       </div>
     </div>
   </div>
+<% end %>
