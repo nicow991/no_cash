@@ -9,7 +9,7 @@
     <% if aceptados == 0 %>
       <h4 class='text-center my-2'><strong>Pendientes</strong></h4>
     <% end %>
-    <div class='d-flex justify-content-around border'>
+    <div class='d-flex justify-content-around border bg-background'>
       <%= render 'accepted_deals', deal: deal %>
       <%# agregar link para crear un chatroom %>
     </div>

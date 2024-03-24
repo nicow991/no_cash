@@ -1,12 +1,16 @@
-<div data-controller="toggle-review">
-  <button id="show-review-form" class='btn btn-primary' data-action='click->toggle-review#showreview'>Deja una reseña</button>
-  <div class="col-md-6 review-form-container d-none" data-toggle-review-target='review'>
-    <%= simple_form_for(@review, url: deal_reviews_path(deal), method: :post) do |f| %>
-      <%= f.input :content, as: :text, label: false, placeholder: 'Contenido de la reseña' %>
-      <%= f.input :rating, as: :select, collection: 1..5, label: false, prompt: 'Calificación' %>
-      <div class="text-center">
-        <%= f.button :submit, "Enviar reseña", class: 'btn btn-outline-danger my-2' %>
+<div class="container text-center">
+  <div data-controller="toggle-review">
+    <button id="show-review-form" class="btn btn-primary" data-action="click->toggle-review#showreview">Deja una reseña</button>
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-6 review-form-container d-none" data-toggle-review-target="review">
+        <%= simple_form_for(@review, url: deal_reviews_path(deal), method: :post) do |f| %>
+          <%= f.input :content, as: :text, label: false, placeholder: 'Contenido de la reseña', class: 'form-control' %>
+          <%= f.input :rating, as: :select, collection: 1..5, label: false, prompt: 'Calificación', class: 'form-control' %>
+          <div class="text-center">
+            <%= f.button :submit, "Enviar reseña", class: 'btn btn-outline-danger my-2' %>
+          </div>
+        <% end %>
       </div>
-      <% end %>
+    </div>
   </div>
 </div>
