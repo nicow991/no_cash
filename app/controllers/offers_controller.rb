@@ -5,6 +5,7 @@ class OffersController < ApplicationController
     @reviewed_user = @offer.user_offerer == current_user ? @offer.user_requested : @offer.user_offerer
     @reviews = Review.where(user_reviewed: @reviewed_user)
     @rating = @reviews.average(:rating).round(2) if @reviews.any?
+    @deal = Deal.new
   end
 
 

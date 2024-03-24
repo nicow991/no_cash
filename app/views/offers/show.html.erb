@@ -14,11 +14,12 @@
       <p><%= @offer.user_offerer.email %> ofrece <%= @offer.offered_item.name %></p>
       <p>a cambio de <%= @offer.requested_item.name %> perteneciente a <%= @offer.user_requested.email %></p>
     </div>
-  </div>
-  <% if @offer.user_offerer == current_user %>
-    <%= render 'deals/cancel_offer', offer: offer %>
+    <% if @offer.user_offerer == current_user %>
+    <%= render 'deals/cancel_offer', offer: @offer %>
   <% else %>
-    
+    <%= render 'deals/accept_offer', deal: @deal, offer: @offer %>
   <% end %>
+  </div>
+
   <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
 </div>

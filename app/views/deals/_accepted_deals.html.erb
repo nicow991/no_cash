@@ -3,11 +3,16 @@
   <% @accepted_deals.each do |deal| %>
     <p class='text-end'><%= deal.created_at.strftime("%Y-%m-%d") %></p>
     <%= render 'dealstatus', deal: deal %>
-    <div class='d-flex'>
-      <%# agregar link para crear un chatroom %>
-      <%= link_to 'Coordinar Entrega', class: 'btn btn-info' %>
-      <%= render 'complete', deal: deal %>
-      <%= render 'cancel', deal: deal %>
+    <div class='d-flex justify-content-around'>
+      <div class="d-flex">
+        <%= link_to 'Coordinar Entrega', chatroom_path(deal), class: 'btn btn-info m-0 p-0' %>
+      </div>
+      <div class="d-flex">
+        <%= render 'complete', deal: deal %>
+      </div>
+      <div class="d-flex">
+        <%= render 'cancel', deal: deal %>
+      </div>
     </div>
   <% end %>
 </div>
