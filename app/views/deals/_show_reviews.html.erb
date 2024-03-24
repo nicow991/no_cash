@@ -2,7 +2,7 @@
   <div class='text-center' data-action='click->toggle-user-reviews#showreviews'><button>Resenas de <%= reviewed_user.email %></button></div>
   <div class="col-12 col-md-5 bg-pink border d-none justify-content-center" data-toggle-user-reviews-target='reviews'>
     <% reviews.each do |review| %>
-      <div class='card bg-pink text-center'> <!-- Added text-center class to center align content -->
+      <div class='card bg-pink text-center'>
         <p><%= review.user_reviewer.email %></p>
         <p>Rating: <%= review.rating %></p>
         <p>Comentario: <%= review.content %></p>
