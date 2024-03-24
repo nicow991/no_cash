@@ -2,7 +2,7 @@
   <p class='text-end p-2'><%= deal.created_at.strftime("%Y-%m-%d") %></p>
   <div class='d-flex justify-content-around border bg-background my-2 p-2'>
     <div>
-      <p><%= deal.user_offerer.email %><strong> ofrece: </strong></p>
+      <p><%= deal.user_offerer.email %> <strong> ofrece: </strong></p>
       <%= deal.offered_item.name%>
       <% if deal.offered_item.photos.attached? %>
         <%= cl_image_tag deal.offered_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>

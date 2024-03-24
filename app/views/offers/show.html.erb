@@ -9,7 +9,7 @@
   </div>
   <div class="col-12 col-md-7 bg-background">
     <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @offer.user_offerer.address %></p>
-    <p class="text-end">Rating de <%= @reviewed_user.email %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %></p>
+    <p class="text-end">Rating de <%= @reviewed_user.email %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></p>
     <div class="bg-pink">
       <p><%= @offer.user_offerer.email %> ofrece <%= @offer.offered_item.name %></p>
       <p>a cambio de <%= @offer.requested_item.name %> perteneciente a <%= @offer.user_requested.email %></p>
@@ -19,6 +19,6 @@
       <% else %>
         <%= render 'deals/accept_offer', deal: @deal, offer: @offer %>
       <% end %>
+      <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
   </div>
-  <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
 </div>
