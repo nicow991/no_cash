@@ -1,0 +1,9 @@
+<div class='bg-background'>
+      <div class="col-md-6 ">
+          <%= simple_form_for(offer, url: reject_offer_path(offer), method: :patch) do |f| %>
+          <div class="text-center">
+          <%= f.button :submit, "Cancelar Oferta", class: 'btn btn-outline-danger mb-2' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
