@@ -1,8 +1,9 @@
 <h4 class='text-center my-2'><strong>Recibidas</strong></h4>
 <h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
 <% @received_offers.each do |offer| %>
-<%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
-  <div class='d-flex justify-content-around border bg-background mt-3'>
+  <p class='text-end bg-background m-0 p-0'><%= offer.created_at.strftime("%Y-%m-%d") %></p>
+  <%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
+  <div class='d-flex justify-content-around border bg-background p-2'>
       <div>
         <p><strong><%= offer.user_offerer.email %></strong> esta interesado en: </p>
         <%= offer.requested_item.name %>
@@ -27,7 +28,7 @@
       </div>
   </div>
   <% end %>
-  <div class='d-flex justify-content-around border bg-background'>
+  <div class='d-flex justify-content-around border bg-background mb-2'>
         <div class="col-md-6">
           <%= simple_form_for(@deal) do |f| %>
           <%= f.hidden_field :offer_id, value: offer.id %>

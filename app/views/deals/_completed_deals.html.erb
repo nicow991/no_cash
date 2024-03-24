@@ -1,9 +1,8 @@
 <h4 class='text-center my-2'><strong>Finalizados</strong></h4>
 <div class='border bg-background my-2' >
   <% @completed_deals.each do |deal| %>
+    <p class='text-end'><%= deal.created_at.strftime("%Y-%m-%d") %></p>
     <%= render 'dealstatus', deal: deal %>
-    <div class='in-block'>
-      <%= render 'review', deal: deal, review: @review %>
-    </div>
+    <%= render 'review', deal: deal, review: @review %>
   <% end %>
 </div>

@@ -1,6 +1,7 @@
 <h4 class='text-center my-2'><strong>Pendientes</strong></h4>
 <div class='border bg-background my-2'>
   <% @accepted_deals.each do |deal| %>
+    <p class='text-end'><%= deal.created_at.strftime("%Y-%m-%d") %></p>
     <%= render 'dealstatus', deal: deal %>
     <div class='d-flex'>
       <%# agregar link para crear un chatroom %>
@@ -10,6 +11,3 @@
     </div>
   <% end %>
 </div>
-
-
-
