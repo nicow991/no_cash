@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :messages
-  has_many :chatrooms
+  has_many :participants
+  has_many :chatrooms, through: :participants
   has_many :preferences, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :offered_offers, through: :items, dependent: :destroy, source: :offered_offers
