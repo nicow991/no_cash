@@ -1,7 +1,8 @@
 <h1>Ofertas:</h1>
 <h4 class='text-center my-2'><strong>Enviadas:</strong></h4>
 <% @offered_offers.each do |offer| %>
-  <div class='d-flex justify-content-around border bg-background my-3'>
+<%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
+  <div class='d-flex justify-content-around border bg-background mt-3'>
     <%# permite encontrar al usuario al que planteas un trueque %>
     <div>
       <p><strong>Ofreces a: </strong> <%= offer.user_requested.email %></p>
@@ -11,14 +12,24 @@
       <% end %>
     </div>
     <div>
+      <div>
+        <i id='arrow' class="fa-solid fa-arrow-right m-0 p-2"></i>
+      </div>
+      <div>
+        <i id='arrow' class="fa-solid fa-arrow-left"></i>
+      </div>
+    </div>
+    <div>
       <p><strong>Solicitas: </strong></p>
       <%= offer.requested_item.name %>
       <% if offer.requested_item.photos.attached? %>
         <%= cl_image_tag offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
       <% end %>
     </div>
-    <div>
-      <div class="col-md-6">
+  </div>
+  <% end %>
+<div class='bg-background'>
+      <div class="col-md-6 ">
           <%= simple_form_for(offer, url: reject_offer_path(offer), method: :patch) do |f| %>
           <div class="text-center">
           <%= f.button :submit, "Cancelar Oferta", class: 'btn btn-outline-danger my-2' %>
@@ -26,5 +37,4 @@
         <% end %>
       </div>
     </div>
-  </div>
 <% end %>

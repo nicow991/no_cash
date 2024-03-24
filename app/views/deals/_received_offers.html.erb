@@ -1,7 +1,8 @@
 <h4 class='text-center my-2'><strong>Recibidas</strong></h4>
 <h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
 <% @received_offers.each do |offer| %>
-  <div class='d-flex justify-content-around border bg-background my-3'>
+<%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
+  <div class='d-flex justify-content-around border bg-background mt-3'>
       <div>
         <p><strong><%= offer.user_offerer.email %></strong> esta interesado en: </p>
         <%= offer.requested_item.name %>
@@ -10,13 +11,23 @@
         <% end %>
       </div>
       <div>
+        <div>
+          <i id='arrow' class="fa-solid fa-arrow-right m-0 p-2"></i>
+        </div>
+        <div>
+          <i id='arrow' class="fa-solid fa-arrow-left"></i>
+        </div>
+      </div>
+      <div>
         <p><strong>Te ofrece: </strong></p>
         <%= offer.offered_item.name %>
         <% if offer.offered_item.photos.attached? %>
           <%= cl_image_tag offer.offered_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
         <% end %>
       </div>
-      <div>
+  </div>
+  <% end %>
+  <div class='d-flex justify-content-around border bg-background'>
         <div class="col-md-6">
           <%= simple_form_for(@deal) do |f| %>
           <%= f.hidden_field :offer_id, value: offer.id %>
@@ -35,5 +46,4 @@
         <% end %>
       </div>
     </div>
-  </div>
 <% end %>
