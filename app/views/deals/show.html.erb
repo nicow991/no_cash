@@ -9,7 +9,7 @@
   </div>
   <div class="col-12 col-md-7 bg-background">
     <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @deal.user_offerer.address %></p>
-    <p class="text-end">Rating de <%= @reviewed_user.email %>: <%= @rating %></p>
+    <p class="text-end">Rating de <%= @reviewed_user.email %>: <%= @rating.nil? ? '0' : @rating %></p>
     <div class="bg-pink">
       <p><%= @deal.user_offerer.email %> ofrece <%= @deal.offered_item.name %></p>
       <p>a cambio de <%= @deal.requested_item.name %> perteneciente a <%= @deal.user_requested.email %></p>
