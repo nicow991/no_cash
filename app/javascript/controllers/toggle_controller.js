@@ -7,6 +7,6 @@ export default class extends Controller {
 
   showoffer() {
     this.formTarget.classList.toggle('d-none')
-    this.formTarget.scrollIntoView({behaivor: "smooth"});
+    this.formTarget.scrollIntoView({behavior: "smooth"});
   }
 }
