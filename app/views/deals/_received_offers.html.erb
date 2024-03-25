@@ -1,32 +1,34 @@
-<h4 class='text-center my-2'><strong>Recibidas (<%= @received_offers.count %>) <i class="fa-solid fa-circle-chevron-down"></i></strong></h4>
+<h4 class='text-center my-2'><strong>Recibidas (<%= @received_offers.count %>) <i class="fa-solid fa-circle-chevron-down" data-action='click->display-deals#showdeals'></i></strong></h4>
 <h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
-<% @received_offers.each do |offer| %>
-  <%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
-  <p class='text-end bg-background m-0 p-2'><%= offer.created_at.strftime("%Y-%m-%d") %></p>
-  <div class='d-flex justify-content-around border bg-background p-2'>
-      <div>
-        <p><strong><%= offer.user_offerer.email %></strong> esta interesado en: </p>
-        <%= offer.requested_item.name %>
-        <% if offer.requested_item.photos.attached? %>
-          <%= cl_image_tag offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
-        <% end %>
-      </div>
-      <div>
+<div data-display-deals-target='deal'>
+  <% @received_offers.each do |offer| %>
+    <%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
+    <p class='text-end bg-background m-0 p-2'><%= offer.created_at.strftime("%Y-%m-%d") %></p>
+    <div class='d-flex justify-content-around border bg-background p-2'>
         <div>
-          <i id='arrow' class="fa-solid fa-arrow-right-long m-0 p-2"></i>
+          <p><strong><%= offer.user_offerer.email %></strong> esta interesado en: </p>
+          <%= offer.requested_item.name %>
+          <% if offer.requested_item.photos.attached? %>
+            <%= cl_image_tag offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
+          <% end %>
         </div>
         <div>
-          <i id='arrow' class="fa-solid fa-arrow-left-long"></i>
+          <div>
+            <i id='arrow' class="fa-solid fa-arrow-right-long m-0 p-2"></i>
+          </div>
+          <div>
+            <i id='arrow' class="fa-solid fa-arrow-left-long"></i>
+          </div>
         </div>
-      </div>
-      <div>
-        <p><strong>Te ofrece: </strong></p>
-        <%= offer.offered_item.name %>
-        <% if offer.offered_item.photos.attached? %>
-          <%= cl_image_tag offer.offered_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
-        <% end %>
-      </div>
-  </div>
+        <div>
+          <p><strong>Te ofrece: </strong></p>
+          <%= offer.offered_item.name %>
+          <% if offer.offered_item.photos.attached? %>
+            <%= cl_image_tag offer.offered_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
+          <% end %>
+        </div>
+    </div>
+    <% end %>
+  <%= render 'accept_offer', deal: @deal, offer: offer %>
   <% end %>
-<%= render 'accept_offer', deal: @deal, offer: offer %>
-<% end %>
+</div>
