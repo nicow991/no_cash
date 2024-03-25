@@ -33,9 +33,9 @@
                 <% if item.user == current_user %>
                   <%= link_to 'Revisa tu oferta', item_path(item), class: "btn btn-success text-white my-4 px-4 font-size-14" %>
                 <% else %>
-                  <%= link_to "Selecciona esta oferta", item_path(item), class: "btn btn-book my-4 px-4 font-size-14" %>
-
-
+                  <div class="text-center">
+                    <%= link_to "Selecciona esta oferta", item_path(item), class: "btn btn-book my-4 px-4 font-size-14" %>
+                 </div>
                 <% end %>
 
             </div>
