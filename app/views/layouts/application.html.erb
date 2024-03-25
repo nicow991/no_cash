@@ -11,10 +11,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-secondary">
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
+    <div class="bg-secondary h-100">
       <%= yield %>
+    </div>
     <%= render 'shared/footer' %>
   </body>
 </html>

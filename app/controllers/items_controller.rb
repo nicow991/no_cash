@@ -15,7 +15,10 @@ class ItemsController < ApplicationController
       @items = Item.search_by_name_and_description(params[:query])
     elsif params[:location].present?
       @items = Item.near(params[:location], 20)
+    elsif params[:category].present?
+      @items = Item.by_category(params[:category])
     end
+
 
   end
 
