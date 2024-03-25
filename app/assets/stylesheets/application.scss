@@ -17,6 +17,9 @@
   .desktop-only{
     display: none !important;
   }
+  body {
+    margin-bottom: $footer-height;
+  }
 }
 @media (min-width: 768px) {
   .mobile-only {
@@ -31,7 +34,7 @@
 }
 
 body {
-  margin-bottom: 100px;
+  min-height: calc(100vh - $footer-height - $nav-height);
 }
 
 .height-screen{

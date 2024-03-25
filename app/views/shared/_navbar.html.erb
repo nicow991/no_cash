@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light">
+<div class="navbar navbar-expand-sm navbar-light sticky-top">
   <div class="w-100 d-flex justify-content-between">
       <%= link_to "/", class: "navbar-brand d-flex align-items-center" do %>
         <%= image_tag "Loop.png", class: "me-3" %>
@@ -25,7 +25,7 @@
 </div>
 
 <% unless current_page?(items_path) || current_page?(root_path) %>
-  <%= link_to :back, class: 'h2 text-purple-primary' do %>
+  <%= link_to :back, class: 'h2 text-primary' do %>
     <i class="fa-solid fa-arrow-left ps-3 pt-3"></i>
   <%end%>
 <%end%>
