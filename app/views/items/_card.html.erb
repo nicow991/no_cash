@@ -27,8 +27,10 @@
                 </a>
               </div>
             <div class="card-body" style="overflow: hidden; position: relative;">
-              <h3 class="card-title font-size-24" style=" max-height: 120px; min-height: 100px;"><%= item.name %></h3>
-              <h5 class="font-size-18" style=" max-height: 50px; min-height: 40px;"><%= item.category.name %></h5>
+              <h3 class="card-title font-size-24" style="max-height: 120px; min-height: 80px; padding: 6px; overflow: hidden; text-overflow: ellipsis; white-space: initial;">
+                <%= item.name.length > 35 ? item.name.slice(0, 35) + "..." : item.name %>
+              </h3>
+              <!--<h5 class="font-size-18" style=" max-height: 50px; min-height: 40px;"><%= item.category.name %></h5>-->
               <p class="card-text font-size-14 mb-0" style=" max-height: 30px; min-height: 15px;"><%= item.address %>.</p>
                 <% if item.user == current_user %>
                   <%= link_to 'Revisa tu oferta', item_path(item), class: "btn btn-success text-white my-4 px-4 font-size-14" %>
