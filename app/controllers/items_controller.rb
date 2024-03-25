@@ -1,7 +1,11 @@
 class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
+  # Pundit: allow-list approach
+  #after_action :verify_authorized, except: :index, unless: :skip_pundit?
+  #after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
   before_action :set_item, only: %i[show edit update destroy]
+
   def index
     @items = Item.where.not(user: current_user)
     if params[:query].present? && params[:location].present?
@@ -60,6 +64,8 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to myitems_path, status: :see_other, notice: 'Item was successfully destroyed.'
   end
+
+
 
   private
 

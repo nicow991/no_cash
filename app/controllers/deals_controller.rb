@@ -20,6 +20,7 @@ class DealsController < ApplicationController
     @reviews = Review.where(user_reviewed: @reviewed_user)
     @rating = @reviews.average(:rating).round(2) if @reviews.any?
     @review = Review.new
+    authorize @deal
   end
 
   def create
