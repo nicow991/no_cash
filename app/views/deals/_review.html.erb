@@ -1,5 +1,10 @@
 <div class="container text-center p-0" data-controller="toggle-review">
+  <%# <% prev_review = Review.find_by(deal_id: deal.id, user_reviewer_id: current_user.id) %>
+  <%# <% if prev_review.deal == deal && prev_review.user_reviewer_id == current_user.id %>
     <button id="show-review-form" class="btn btn-primary m-0 p-0" data-action="click->toggle-review#showreview">Deja una reseña</button>
+  <%# <% else %>
+    <%# <p class='text-primary'><strong>Gracias por dejar tu reseña</strong></p> %>
+  <%# <% end %>
     <div class="row justify-content-center mt-4">
       <div class="col-md-6 review-form-container d-none" data-toggle-review-target="review">
         <%= simple_form_for(@review, url: deal_reviews_path(deal), method: :post) do |f| %>
