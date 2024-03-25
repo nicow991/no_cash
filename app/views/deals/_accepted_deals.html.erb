@@ -1,4 +1,4 @@
-<h4 class='text-center my-2'><strong>Pendientes</strong></h4>
+<h4 class='text-center my-2'><strong>Pendientes (<%= @accepted_deals.count %>) <i class="fa-solid fa-circle-chevron-down"></i></strong></h4>
 <div class='border bg-background my-2'>
   <% @accepted_deals.each do |deal| %>
     <%= render 'dealstatus', deal: deal %>
