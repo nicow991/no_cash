@@ -1,0 +1,15 @@
+class DealPolicy < ApplicationPolicy
+  def show?
+    user.present? && (user.offered_deals.include?(record) || user.received_deals.include?(record))
+  end
+
+  class Scope < Scope
+    def resolve
+      user.admin? ? scope.all : scope.where(user: user)
+      #scope.all # If users can see all restaurants
+      # scope.where(user: user) # If users can only see their restaurants
+      # scope.where("name LIKE 't%'") # If users can only see restaurants starting with `t`
+      # ...
+    end
+  end
+end

@@ -22,6 +22,7 @@ class DealsController < ApplicationController
     @rating = @reviews.average(:rating).round(2) if @reviews.any?
     @review = Review.new
     @chatroom = Chatroom.new
+    authorize @deal
   end
 
   def create

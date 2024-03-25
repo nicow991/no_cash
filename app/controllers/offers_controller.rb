@@ -7,6 +7,7 @@ class OffersController < ApplicationController
     @rating = @reviews.average(:rating).round(2) if @reviews.any?
     @deal = Deal.new
     @chatroom = Chatroom.new
+    authorize @offer
   end
 
 

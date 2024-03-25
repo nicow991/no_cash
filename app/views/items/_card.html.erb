@@ -4,7 +4,7 @@
       <div class="col", style= "margin-top: 50px; margin-bottom: 50px">
         <div class="item">
           <div class="card rounded-4 shadow" style="width: 100%;">
-              <div id="carousel<%= item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 200px; overflow: hidden;">
+              <div id="carousel<%= item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 180px; overflow: hidden;">
                 <div class="carousel-inner rounded-top-4">
                   <% if item.photos.attached? %>
 
@@ -27,15 +27,15 @@
                 </a>
               </div>
             <div class="card-body" style="overflow: hidden; position: relative;">
-              <h5 class="card-title" style=" max-height: 80px; min-height: 50px;"><%= item.name %></h5>
-              <h3 style=" max-height: 80px; min-height: 50px;"><%= item.category.name %></h3>
-              <p class="card-text" style=" max-height: 80px; min-height: 50px;"><%= item.description %>.</p>
+              <h3 class="card-title font-size-24" style=" max-height: 120px; min-height: 100px;"><%= item.name %></h3>
+              <h5 class="font-size-18" style=" max-height: 50px; min-height: 40px;"><%= item.category.name %></h5>
+              <p class="card-text font-size-14 mb-0" style=" max-height: 30px; min-height: 15px;"><%= item.address %>.</p>
                 <% if item.user == current_user %>
-                  <%= link_to 'Check your item', item_path(item), class: "btn btn-success text-white" %>
+                  <%= link_to 'Revisa tu oferta', item_path(item), class: "btn btn-success text-white my-4 px-4 font-size-14" %>
                 <% else %>
-                  <%= link_to "Select this item", item_path(item), class: "btn btn-book" %>
-
-
+                  <div class="text-center">
+                    <%= link_to "Selecciona esta oferta", item_path(item), class: "btn btn-book my-4 px-4 font-size-14" %>
+                 </div>
                 <% end %>
 
             </div>

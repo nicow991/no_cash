@@ -1,68 +1,72 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
-
-<div class="row justify-content-center" data-controller="toggle">
-  <div class="item-show col-sm-6 col-12 p-0">
+<div class="row justify-content-center m-0 p-0" data-controller="toggle">
+  <div class="item-show m-0 col-sm-6 col-12 p-0 shadow">
     <div id="carousel<%= @item.id %>" class="carousel slide position-relative" data-bs-ride="carousel" style="height: 300px; width: 100%; overflow: hidden;">
-  <div class="carousel-inner rounded-top-4">
-    <% if @item.photos.attached? %>
-      <% @item.photos.each_with_index do |photo, index| %>
-        <div class="carousel-item <%= 'active' if index == 0 %> position-relative">
-          <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "height: 300px; width: 100%;" %>
-          <div class="p-1 mb-2 bg-greypink position-absolute bottom-0 start-50 translate-middle-x">
-            <%= @item.category.name %>
+      <div class="carousel-inner">
+        <% if @item.photos.attached? %>
+          <% @item.photos.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %> position-relative">
+              <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "height: 300px; width: 100%;" %>
+              <div class="p-1 mb-2 rounded-4 bg-secondary-dark position-absolute bottom-0 start-50 translate-middle-x">
+                <%= @item.category.name %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <!-- Carousel controls -->
+      <a class="carousel-control-prev" href="#carousel<%= @item.id %>" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel<%= @item.id %>" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+    <div class="card-body my-3 px-3">
+      <div class="d-flex justify-content-between">
+        <div>
+          <h5 class="card-title display-4"><%= @item.name %></h5>
+          <h6 class="ps-2"><i class="fa-solid fa-location-dot pe-2"></i><%= @item.user.address %></h6>
+        </div>
+        <div class='bg-primary-light p-2 rounded-4 flex-grow-0 h-25'><%= @item.condition %></div>
+      </div>
+      <p class="card-text"> <%= @item.description %>.</p>
+      <br>
+      <p class="">Cambio por: </p>
+        <div class="w-100 preferences d-flex flex-wrap justify-content-start gap-3">
+          <% @item.user.preferences.each do |preference|%>
+            <div class="preference rounded-5 px-2 py-1 bg-secondary-dark">
+              <%= preference.category.name %>
+            </div>
+          <% end %>
+        </div>
+      <div class="row justify-content-center m-0">
+        <div class="col-6 col-md-6 px-0 mt-3">
+          <div class="d-flex flex-column">
+            <span class="text-end">
+              <%= form_with model: @chatroom, method: :post do |f| %>
+                <%= f.hidden_field :user_id, value: @item.user.id%>
+                <%= f.button :submit, class: 'border-0 bg-transparent' do %>
+                  <i class="far fa-comment-dots display-3 text-primary-light"></i>
+                <% end %>
+              <% end %>
+            </span>
+            <% if @item.user == current_user %>
+              <button class='btn mt-1 mb-1 btn-secondary-dark text-white rounded-3 fs-2' data-action='click->toggle#showoffer'>Edita tu producto</button>
+            <% else %>
+              <button class='btn mt-1 mb-1 btn-primary rounded-3 fs-2' data-action='click->toggle#showoffer'>Me interesa!</button>
+            <% end %>
           </div>
         </div>
-      <% end %>
-    <% end %>
-  </div>
-  <!-- Carousel controls -->
-  <a class="carousel-control-prev" href="#carousel<%= @item.id %>" role="button" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carousel<%= @item.id %>" role="button" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </a>
-</div>
-    <div class="card-body my-3">
-      <div class="d-flex justify-content-between mx-5">
-        <div>
-          <h5 class="card-title"><%= @item.name %></h5>
-          <h6><i class="fa-solid fa-location-dot"> </i><%= @item.user.address %></h6>
-        </div>
-        <div class='bg-pink p-2'><h5><%= @item.condition %></h5></div>
       </div>
-      <p class="card-text mx-5">Descripción: <%= @item.description %>.</p>
-      <br>
-      <p class="mx-5">Cambio por: </p>
-      <div class='d-flex justify-content-around '>
-        <% @item.user.preferences.each do |preference| %>
-            <p class='bg-pink'><%= Category.find(preference.category_id).name %></p>
-        <% end %>
-      </div>
-    <div class="row justify-content-center">
-    <div class="col-10 col-md-6 px-0">
-    <div class="d-flex flex-column">
-      <%= render 'chatroom', chatroom: @chatroom, item: @item %>
-        <!-- Added text-center class to center the button -->
-        <% if @item.user == current_user %>
-          <button class='btn btn-success text-white' data-action='click->toggle#showoffer'>Edita tu producto</button>
-        <% else %>
-          <button class='btn btn-book' data-action='click->toggle#showoffer'>Me interesa!</button>
-        <% end %>
     </div>
-    </div>
-    </div>
-
-
-      </div>
   </div>
   <div class="row justify-content-center d-none m-3" data-toggle-target='form'>
     <% if @item.user == current_user %>
-    <%= render 'form' %>
+      <%= render 'form' %>
     <% else %>
-    <%= render 'offers/form' %>
+      <%= render 'offers/form' %>
     <% end %>
   </div>
 </div>
