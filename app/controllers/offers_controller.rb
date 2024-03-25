@@ -6,6 +6,7 @@ class OffersController < ApplicationController
     @reviews = Review.where(user_reviewed: @reviewed_user)
     @rating = @reviews.average(:rating).round(2) if @reviews.any?
     @deal = Deal.new
+    authorize @offer
   end
 
 
