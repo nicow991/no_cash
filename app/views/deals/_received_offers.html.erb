@@ -1,6 +1,6 @@
-<h4 class='text-center my-2'><strong>Recibidas (<%= @received_offers.count %>) <i class="fa-solid fa-circle-chevron-down" data-action='click->display-deals#showdeals'></i></strong></h4>
-<h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
-<div data-display-deals-target='deal'>
+<h4 class='text-center my-2'><strong>Recibidas (<%= @received_offers.count %>) <i class="fa-solid fa-circle-chevron-up" data-action='click->display-deals#received' data-display-deals-target='chevronreceived'></i></strong></h4>
+<div class='d-none' data-display-deals-target='receivedoffer'>
+  <h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
   <% @received_offers.each do |offer| %>
     <%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
     <p class='text-end bg-background m-0 p-2'><%= offer.created_at.strftime("%Y-%m-%d") %></p>
