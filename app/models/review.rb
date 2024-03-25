@@ -6,5 +6,5 @@ class Review < ApplicationRecord
   validates :rating, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
   validates :deal, uniqueness: { scope: :user_reviewer_id, message: "You have already reviewed this deal" }
   validates :deal, uniqueness: { scope: :user_reviewer_id, message: "You have already reviewed this deal" }
-  validates :content, length: { minimum: 10, maximum: 1000 }
+  validates :content, length: { minimum: 1, maximum: 500 }
 end

@@ -1,10 +1,18 @@
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% end %>
+<% end %>
 <div class="container mt-4">
   <div class="align-items-center mb-4" data-controller="display-deals">
     <h1>Trueques</h1>
-    <%= render 'accepted_deals', accepted_deals: @accepted_deals %>
-    <%= render 'completed_deals', completed_deals: @completed_deals %>
-    <%= render 'cancelled_deals', canceled_deals: @canceled_deals %>
-    <%= render 'sent_offers', offered_offers: @offered_offers %>
-    <%= render 'received_offers', received_offers: @received_offers %>
+    <%= render 'deals/accepted_deals', accepted_deals: @accepted_deals %>
+    <%= render 'deals/completed_deals', completed_deals: @completed_deals %>
+    <%= render 'deals/cancelled_deals', canceled_deals: @canceled_deals %>
+    <%= render 'deals/sent_offers', offered_offers: @offered_offers %>
+    <%= render 'deals/received_offers', received_offers: @received_offers %>
   </div>
 </div>
+<%= console %>
