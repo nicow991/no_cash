@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <div class="col-12 col-sm-7 d-flex bg-background p-0">
+  <div class="col-12 col-md-7 d-flex bg-background p-0">
     <% if @deal.offered_item.photos.attached? %>
       <%= cl_image_tag @deal.offered_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
     <% end %>
@@ -7,7 +7,7 @@
       <%= cl_image_tag @deal.requested_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
     <% end %>
   </div>
-  <div class="col-12 col-sm-7 bg-background">
+  <div class="col-12 col-md-7 bg-background">
     <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @deal.user_offerer.address %></p>
     <p class="text-end"><strong>Rating de <%= @reviewed_user.email %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i> </strong></p>
     <div class="bg-pink p-3 m-3">
