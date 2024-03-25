@@ -20,4 +20,5 @@ class Item < ApplicationRecord
     }
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+  scope :by_category, ->(category_id) { where(category_id: category_id) }
 end

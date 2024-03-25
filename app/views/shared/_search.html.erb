@@ -1,5 +1,10 @@
 <div class="row justify-content-center">
     <%= form_with url: items_path, method: :get, class: "d-flex form-inline px-0" do %>
+        <%= select_tag :category,
+          options_for_select(Category.all.map { |c| [c.name, c.id] }),
+          include_blank: "Categoría",
+          class: "form-control rounded"
+        %>
       <%= text_field_tag :query,
             params[:query],
             class: "form-control rounded",
@@ -14,4 +19,4 @@
           <i class="fas fa-search"></i>
         </button>
     <% end %>
-  </div>
+</div>
