@@ -8,10 +8,16 @@ Rails.application.routes.draw do
     resources :chatrooms, only: [:index, :show] do
     resources :messages, only: :create
 end
-  resources :offers, only: [:new, :create, :edit, :update, :destroy]
+  resources :offers, only: [:new, :show, :create, :edit, :update, :destroy] do
+    member do
+      patch :reject
+      patch :cancel
+    end
+  end
   resources :deals, only: [:index, :show, :create] do
     member do
       patch :cancel
+      patch :complete
     end
     resources :reviews, only: [:create]
 

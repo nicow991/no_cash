@@ -1,0 +1,17 @@
+<h4 class='text-center my-2'><strong>Pendientes (<%= @accepted_deals.count %>) <i class="fa-solid fa-circle-chevron-up" data-action='click->display-deals#accepted' data-display-deals-target='chevronaccepted'></i></strong></h4>
+<div class='border bg-background my-2 d-none' data-display-deals-target='accepteddeal'>
+  <% @accepted_deals.each do |deal| %>
+    <%= render 'deals/dealstatus', deal: deal %>
+    <div class='d-flex justify-content-around'>
+      <div class="d-flex">
+        <%= link_to 'Coordinar Entrega', chatroom_path(deal), class: 'btn btn-info m-0 p-0' %>
+      </div>
+      <div class="d-flex">
+        <%= render 'deals/complete', deal: deal %>
+      </div>
+      <div class="d-flex">
+        <%= render 'deals/cancel', deal: deal %>
+      </div>
+    </div>
+  <% end %>
+</div>

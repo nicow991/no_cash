@@ -14,7 +14,7 @@
   width: 100%;
   height: 100vh;
   background-image: url('banner_2.png');
-  padding: 20px; 
+  padding: 20px;
 }
 
 .logo {
@@ -26,7 +26,7 @@
   color: white;
   font-size: 32px;
   font-weight: bold;
-  margin-top: 160px;  
+  margin-top: 160px;
 }
 
 .banner-title {
@@ -84,4 +84,12 @@ h1, h2 {
 
 .body-container {
   text-align: center;
+}
+
+#arrow {
+  padding: 0;
+  margin: 0;
+  font-size: 32px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }

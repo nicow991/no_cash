@@ -1,10 +1,13 @@
 class OffersController < ApplicationController
-  before_action :set_offer, only: %i[edit update destroy]
+  before_action :set_offer, only: %i[show edit update destroy]
 
-  # there is no new action because we are creating offers from the items show page
-  # def new
-  #   @offer = Offer.new
-  # end
+  def show
+    @reviewed_user = @offer.user_offerer == current_user ? @offer.user_requested : @offer.user_offerer
+    @reviews = Review.where(user_reviewed: @reviewed_user)
+    @rating = @reviews.average(:rating).round(2) if @reviews.any?
+    @deal = Deal.new
+  end
+
 
   def create
     @offer = Offer.create offer_params
@@ -17,6 +20,18 @@ class OffersController < ApplicationController
       @offer = Offer.new
       render 'items/show', status: :unprocessable_entity
     end
+  end
+
+  def cancel
+    @offer = Offer.find(params[:id])
+    @offer.update(status: 'cancelled')
+    redirect_to deals_path, notice: 'Oferta cancelada'
+  end
+
+  def reject
+    @offer = Offer.find(params[:id])
+    @offer.update(status: 'rejected')
+    redirect_to deals_path, notice: 'Oferta rechazada'
   end
 
   def edit
