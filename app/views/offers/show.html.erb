@@ -1,30 +1,32 @@
-<div class="row justify-content-center">
-  <div class="col-7 col-sm-7 d-flex bg-background p-0">
-    <% if @offer.offered_item.photos.attached? %>
-      <%= cl_image_tag @offer.offered_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0", style: "height: 250px" %>
-    <% end %>
-    <% if @offer.requested_item.photos.attached? %>
-      <%= cl_image_tag @offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0", style: "height: 250px" %>
-    <% end %>
-  </div>
-  <div class="col-12 col-md-7 bg-background">
-    <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @offer.user_offerer.address %></p>
-    <p class="text-end"><strong>Rating de <%= @reviewed_user.email %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
-    <div class="bg-pink p-3 m-3">
-      <p><%= @offer.user_offerer.email %> ofrece <%= @offer.offered_item.name %></p>
-      <p>a cambio de <%= @offer.requested_item.name %> perteneciente a <%= @offer.user_requested.email %></p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-7 d-flex bg-background p-0">
+      <% if @offer.offered_item.photos.attached? %>
+        <%= cl_image_tag @offer.offered_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
+      <% end %>
+      <% if @offer.requested_item.photos.attached? %>
+        <%= cl_image_tag @offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
+      <% end %>
     </div>
+    <div class="col-12 col-sm-7 bg-background">
+      <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @offer.user_offerer.address %></p>
+      <p class="text-end"><strong>Rating de <%= @reviewed_user.email %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
+      <div class="bg-pink p-3 m-3">
+        <p><%= @offer.user_offerer.email %> ofrece <%= @offer.offered_item.name %></p>
+        <p>a cambio de <%= @offer.requested_item.name %> perteneciente a <%= @offer.user_requested.email %></p>
+      </div>
       <div class='d-flex justify-content-around p-3'>
-          <div class="d-flex">
-            <% if @offer.user_offerer == current_user %>
-              <%= render 'deals/cancel_offer', offer: @offer %>
-            <% else %>
-              <%= render 'deals/accept_offer', deal: @deal, offer: @offer %>
-            <% end %>
-          </div>
-            <div class="d-flex">
-              <%= render 'items/chatroom', chatroom: @chatroom, item: @offer.offered_item %>
-            </div>
+        <div class="d-flex">
+          <% if @offer.user_offerer == current_user %>
+            <%= render 'deals/cancel_offer', offer: @offer %>
+          <% else %>
+            <%= render 'deals/accept_offer', deal: @deal, offer: @offer %>
+          <% end %>
+        </div>
+        <div class="d-flex">
+          <%= render 'items/chatroom', chatroom: @chatroom, item: @offer.offered_item %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

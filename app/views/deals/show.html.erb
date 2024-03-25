@@ -1,10 +1,10 @@
 <div class="row justify-content-center">
   <div class="col-12 col-sm-7 d-flex bg-background p-0">
     <% if @deal.offered_item.photos.attached? %>
-      <%= cl_image_tag @deal.offered_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0", style: "height: 250px" %>
+      <%= cl_image_tag @deal.offered_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
     <% end %>
     <% if @deal.requested_item.photos.attached? %>
-      <%= cl_image_tag @deal.requested_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0", style: "height: 250px" %>
+      <%= cl_image_tag @deal.requested_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
     <% end %>
   </div>
   <div class="col-12 col-sm-7 bg-background">
@@ -15,20 +15,34 @@
       <p>a cambio de <%= @deal.requested_item.name %> perteneciente a <%= @deal.user_requested.email %></p>
     </div>
     <% if @deal.status == 'accepted' %>
-      <div class='d-flex justify-content-around p-3'>
-        <div class="d-flex">
-          <%= render 'deals/complete', deal: @deal %>
-        </div>
-        <div class="d-flex">
-          <%= render 'deals/cancel', deal: @deal %>
-        </div>
-        <div class="d-flex">
-          <%= render 'items/chatroom', chatroom: @chatroom, item: @deal.offered_item %>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-xl-4">
+            <div class="d-flex justify-content-around p-3">
+              <div class="d-flex">
+                <%= render 'deals/complete', deal: @deal %>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-4">
+            <div class="d-flex justify-content-around p-3">
+              <div class="d-flex">
+                <%= render 'deals/cancel', deal: @deal %>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-4">
+            <div class="d-flex justify-content-around p-3">
+              <div class="d-flex">
+                <%= render 'items/chatroom', chatroom: @chatroom, item: @deal.offered_item %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     <% elsif @deal.status == 'completed' %>
       <%= render 'deals/review', deal: @deal, review: @review %>
     <% end %>
   </div>
-  </div>
-  <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
+</div>
+<%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
