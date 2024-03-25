@@ -22,9 +22,9 @@ class ItemsController < ApplicationController
   # Flat.near([40.71, 100.23], 20) # flats within 20 km of a point
 
   def show
-    @item = Item.find(params[:id])
     @deal = Deal.new
     @offer = Offer.new
+    @chatroom = Chatroom.new
   end
 
   def create
