@@ -37,6 +37,10 @@ body {
   min-height: calc(100vh - $footer-height - $nav-height);
 }
 
+p {
+  margin: 0
+}
+
 .height-screen{
   height: calc(100vh - $footer-height - $nav-height);
 }
