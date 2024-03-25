@@ -1,38 +1,40 @@
 <h1>Ofertas:</h1>
-<h4 class='text-center my-2'><strong>Enviadas: (<%= @offered_offers.count %>) <i class="fa-solid fa-circle-chevron-up" data-action='click->display-deals#sent' data-display-deals-target='chevronsent'></i></strong></h4>
+<h4 class='text-center my-3'><strong>Enviadas: (<%= @offered_offers.count %>) <i class="fa-solid fa-circle-chevron-up" data-action='click->display-deals#sent' data-display-deals-target='chevronsent'></i></strong></h4>
 <div class='d-none' data-display-deals-target='sentoffer'>
   <% @offered_offers.each do |offer| %>
-    <div class='deal-header d-flex justify-content-between bg-background'>
-      <%= render 'items/chatroom', chatroom: @chatroom, item: offer.offered_item %>
-      <p class='m-0 p-2'><%= offer.created_at.strftime("%Y-%m-%d") %></p>
-    </div>
-    <%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
-    <div class='d-flex justify-content-around border bg-background p-2'>
-      <%# permite encontrar al usuario al que planteas un trueque %>
-      <div>
-        <p><strong>Ofreces a: </strong> <%= offer.user_requested.email %></p>
-        <%= offer.offered_item.name %>
-        <% if offer.offered_item.photos.attached? %>
-          <%= cl_image_tag offer.offered_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
-        <% end %>
+    <div class='bg-background my-2'>
+      <div class='deal-header d-flex justify-content-between p-2'>
+        <%= render 'items/chatroom', chatroom: @chatroom, item: offer.offered_item %>
+        <p><%= offer.created_at.strftime("%Y-%m-%d") %></p>
       </div>
-      <div>
+      <%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
+      <div class='d-flex justify-content-around p-2'>
+        <%# permite encontrar al usuario al que planteas un trueque %>
         <div>
-          <i id='arrow' class="fa-solid fa-arrow-right-long m-0 p-2"></i>
+          <p><strong>Ofreces a: </strong> <%= offer.user_requested.email %></p>
+          <%= offer.offered_item.name %>
+          <% if offer.offered_item.photos.attached? %>
+            <%= cl_image_tag offer.offered_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
+          <% end %>
         </div>
         <div>
-          <i id='arrow' class="fa-solid fa-arrow-left-long"></i>
+          <div>
+            <i id='arrow' class="fa-solid fa-arrow-right-long m-0 p-2"></i>
+          </div>
+          <div>
+            <i id='arrow' class="fa-solid fa-arrow-left-long"></i>
+          </div>
+        </div>
+        <div>
+          <p><strong>Solicitas: </strong></p>
+          <%= offer.requested_item.name %>
+          <% if offer.requested_item.photos.attached? %>
+            <%= cl_image_tag offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
+          <% end %>
         </div>
       </div>
-      <div>
-        <p><strong>Solicitas: </strong></p>
-        <%= offer.requested_item.name %>
-        <% if offer.requested_item.photos.attached? %>
-          <%= cl_image_tag offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid", style: "height: 100px; width: 100%;" %>
-        <% end %>
-      </div>
+      <% end %>
+      <%= render 'deals/cancel_offer', offer: offer %>
     </div>
-    <% end %>
-    <%= render 'deals/cancel_offer', offer: offer %>
   <% end %>
 </div>
