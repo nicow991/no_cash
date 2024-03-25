@@ -1,6 +1,7 @@
 <div class="container my-3">
   <h1>Mis Productos</h1>
-  <div class="row">
+  <%= link_to "Agregar Producto", new_item_path, class: "btn btn-book"%>
+  <div class="row mt-3">
     <% @items.each do |item| %>
       <div class="col-lg-4 mb-4">
         <div class="card">
