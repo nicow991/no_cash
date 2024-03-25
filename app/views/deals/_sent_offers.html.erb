@@ -2,8 +2,11 @@
 <h4 class='text-center my-2'><strong>Enviadas: (<%= @offered_offers.count %>) <i class="fa-solid fa-circle-chevron-up" data-action='click->display-deals#sent' data-display-deals-target='chevronsent'></i></strong></h4>
 <div class='d-none' data-display-deals-target='sentoffer'>
   <% @offered_offers.each do |offer| %>
+    <div class='deal-header d-flex justify-content-between bg-background'>
+      <%= render 'items/chatroom', chatroom: @chatroom, item: offer.offered_item %>
+      <p class='m-0 p-2'><%= offer.created_at.strftime("%Y-%m-%d") %></p>
+    </div>
     <%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
-    <p class='text-end bg-background m-0 p-2'><%= offer.created_at.strftime("%Y-%m-%d") %></p>
     <div class='d-flex justify-content-around border bg-background p-2'>
       <%# permite encontrar al usuario al que planteas un trueque %>
       <div>
@@ -30,6 +33,6 @@
       </div>
     </div>
     <% end %>
-  <%= render 'deals/cancel_offer', offer: offer %>
+    <%= render 'deals/cancel_offer', offer: offer %>
   <% end %>
 </div>

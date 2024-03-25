@@ -8,7 +8,6 @@
           <% end %>
         </div>
         <%# agregar link para crear un chatroom %>
-        <div><%= link_to 'Contraofertar via chat', class: 'btn btn-success' %></div>
         <div class="col-md-6">
         <%= simple_form_for(offer, url: reject_offer_path(offer), method: :patch) do |f| %>
           <div class="text-center">

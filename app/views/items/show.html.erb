@@ -44,15 +44,7 @@
     <div class="row justify-content-center">
     <div class="col-10 col-md-6 px-0">
     <div class="d-flex flex-column">
-      <span class="text-end">
-        <%= form_with model: @chatroom, method: :post do |f| %>
-          <%= f.hidden_field :user_id, value: @item.user.id%>
-          <%= f.button :submit do %>
-            <i class="far fa-comment-dots fs-1" style="color: #210062;"></i>
-          <% end %>
-        <% end %>
-      </span>
-
+      <%= render 'chatroom', chatroom: @chatroom, item: @item %>
         <!-- Added text-center class to center the button -->
         <% if @item.user == current_user %>
           <button class='btn btn-success text-white' data-action='click->toggle#showoffer'>Edita tu producto</button>

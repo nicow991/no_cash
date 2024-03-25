@@ -2,8 +2,11 @@
 <div class='d-none' data-display-deals-target='receivedoffer'>
   <h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
   <% @received_offers.each do |offer| %>
+    <div class='deal-header d-flex justify-content-between bg-background'>
+      <%= render 'items/chatroom', chatroom: @chatroom, item: offer.offered_item %>
+      <p class='m-0 p-2'><%= offer.created_at.strftime("%Y-%m-%d") %></p>
+    </div>
     <%= link_to offer_path(offer), class: 'text-decoration-none', style: 'color: inherit;' do%>
-    <p class='text-end bg-background m-0 p-2'><%= offer.created_at.strftime("%Y-%m-%d") %></p>
     <div class='d-flex justify-content-around border bg-background p-2'>
         <div>
           <p><strong><%= offer.user_offerer.email %></strong> esta interesado en: </p>
