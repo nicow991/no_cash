@@ -1,4 +1,4 @@
-<div class="container">
+
   <div class="row justify-content-center">
     <div class="col-12 col-md-7 d-flex bg-background p-0">
       <% if @offer.offered_item.photos.attached? %>
@@ -29,5 +29,5 @@
       </div>
     </div>
   </div>
-</div>
+
 <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
