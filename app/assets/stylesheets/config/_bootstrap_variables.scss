@@ -11,8 +11,15 @@ $body-bg:                $light-gray;
 $font-size-base:         1rem;
 
 // Colors
+$primary:    $purple;
+$secondary:  $yellow;
+$primary-dark: $dark-purple;
+$secondary-dark: $dark-yellow;
+$primary-darker: $darker-purple;
+$secondary-darker: $darker-yellow;
+$primary-light: $light-purple;
+$secondary-light: $light-yellow;
 $body-color: $gray;
-$primary:    $blue;
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
@@ -22,13 +29,13 @@ $book:       $purple;
 $pink: $pink;
 $greypink: $greypink;
 $background: $background;
-$yellow-primary: $yellow-primary;
-$purple-primary: $purple-primary;
 
 // Buttons & inputs' radius
 $border-radius:    2px;
 $border-radius-lg: 2px;
 $border-radius-sm: 2px;
+$footer-height: 100px;
+$nav-height: 50px;
 
 // Override other variables below!
 
@@ -39,5 +46,11 @@ $theme-colors: map-merge($theme-colors, ( "book": $book ));
 $theme-colors: map-merge($theme-colors, ( "pink": $pink ));
 $theme-colors: map-merge($theme-colors, ( "greypink": $greypink ));
 $theme-colors: map-merge($theme-colors, ( "background": $background ));
-$theme-colors: map-merge($theme-colors, ( "yellow-primary": $yellow-primary ));
-$theme-colors: map-merge($theme-colors, ( "purple-primary": $purple-primary ));
+$theme-colors: map-merge($theme-colors, ( "primary": $primary ));
+$theme-colors: map-merge($theme-colors, ( "secondary": $secondary ));
+$theme-colors: map-merge($theme-colors, ( "primary-dark": $primary-dark ));
+$theme-colors: map-merge($theme-colors, ( "secondary-dark": $secondary-dark ));
+$theme-colors: map-merge($theme-colors, ( "primary-light": $primary-light ));
+$theme-colors: map-merge($theme-colors, ( "secondary-light": $secondary-light ));
+$theme-colors: map-merge($theme-colors, ( "primary-darker": $primary-darker ));
+$theme-colors: map-merge($theme-colors, ( "secondary-darker": $secondary-darker ));
