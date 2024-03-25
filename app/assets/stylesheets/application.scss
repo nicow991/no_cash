@@ -41,6 +41,16 @@ p {
   margin: 0
 }
 
+.footer-links {
+  a {
+    &:hover {
+      i {
+        color: #210062;
+      }
+    }
+  }
+}
+
 .height-screen{
   height: calc(100vh - $footer-height - $nav-height);
 }
