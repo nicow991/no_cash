@@ -1,11 +1,15 @@
 <div class="footer mobile-only p-0 mt-4 bg-primary text-secondary">
   <div class="footer-links w-100 h-100 d-flex align-items-center justify-content-around">
-        <%= link_to deals_path, class: 'footer-link' do %>
-        <div class="text-secondary">
-          <i class="w-100 text-center fa-solid fa-rotate"></i>
+    <%= link_to deals_path, class: 'footer-link' do %>
+      <div class="text-secondary">
+        <i class="w-100 text-center fa-solid fa-rotate"></i>
+        <% if !user_signed_in? || current_user.received_offers.where(status: 'pending').empty? %>
           <p class="m-0 fs-6 text-center">Mis trueques</p>
-        </div>
+        <% else %>
+          <p class="m-0 fs-6 text-center">Mis trueques <i class="fa-solid fa-bell"></i></p>
         <% end %>
+      </div>
+    <% end %>
         <%= link_to chatrooms_path, class: 'footer-link' do %>
           <div class="text-secondary">
             <i class="w-100 text-center fa-solid fa-message"></i>
