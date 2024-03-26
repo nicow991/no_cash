@@ -1,18 +1,18 @@
 <div class="row justify-content-center">
-    <%= form_with url: items_path, method: :get, class: "d-flex form-inline px-0" do %>
+    <%= form_with url: items_path, method: :get, class: "d-flex form-inline px-0 gap-2" do %>
         <%= select_tag :category,
           options_for_select(Category.all.map { |c| [c.name, c.id] }),
           include_blank: "Categoría",
-          class: "form-control rounded"
+          class: "form-control rounded bg-primary border-primary-darker"
         %>
       <%= text_field_tag :query,
             params[:query],
-            class: "form-control rounded",
+            class: "form-control rounded bg-primary border-primary-darker",
             placeholder: "Buscar"
         %>
         <%= text_field_tag :location,
             params[:location],
-            class: "form-control rounded desktop-only",
+            class: "form-control rounded bg-primary border-primary-darker desktop-only",
             placeholder: "Ubicación"
         %>
         <button type="submit" class="btn border-0 m-0 flex-shrink-1" title="Search">

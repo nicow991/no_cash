@@ -1,20 +1,16 @@
 <div class="container mt-2">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card rounded-3 shadow mt-3 bg-secondary">
+      <div class="card rounded-3 shadow mt-3 bg-primary">
         <div class="card-body">
           <%= simple_form_for(@item) do |f| %>
-            <%= f.input :name, label: 'Nombre', class: 'form-control' %>
-            <%= f.input :description, label: 'Descripción', class: 'form-control' %>
-            <%= f.input :address, label: 'Dirección', class: 'form-control' %>
-            <%= f.association :category, label: 'Categoría', class: 'form-select' %>
-            <%= f.input :condition, as: :select, collection: ["excelente", "bueno", "regular", "aceptable"], label: 'Condición', class: 'form-select' %>
-            <%= f.input :photos, as: :file, input_html: { multiple: true, class: 'form-control' }, label: 'Fotos' %>
-            <%= f.button :submit, @item.persisted? ? 'Actualizar' : 'Crear', class: 'btn btn-book my-2' %>
-            <br>
-            <div>
-              <%= link_to 'Volver al inicio', items_path, class: 'btn btn-primary my-2' %>
-            </div>
+            <%= f.input :name, label: 'Nombre', input_html: { class: 'form-control bg-primary-dark border-primary-darker' }%>
+            <%= f.input :description, label: 'Descripción', input_html: { class: 'form-control bg-primary-dark border-primary-darker' } %>
+            <%= f.input :address, label: 'Dirección', input_html: { class: 'form-control bg-primary-dark border-primary-darker' } %>
+            <%= f.association :category, label: 'Categoría', input_html: { class: 'form-select bg-primary-dark border-primary-darker' } %>
+            <%= f.input :condition, as: :select, collection: ["excelente", "bueno", "regular", "aceptable"], label: 'Condición', input_html: { class: 'form-select bg-primary-dark border-primary-darker' } %>
+            <%= f.input :photos, as: :file, input_html: { multiple: true, class: 'form-control bg-primary-dark border-primary-darker' }, label: 'Fotos' %>
+            <%= f.button :submit, @item.persisted? ? 'Actualizar' : 'Crear', class: 'd-block w-50 m-auto btn btn-secondary-light border-primary-dark my-2' %>
           <% end %>
         </div>
       </div>

@@ -1,8 +1,8 @@
 <div id="message-<%= message.id %>"
 <% if message.user == current_user %>
-  class="message bg-pink text-white text-end p-2 m-2"
+  class="message rounded-4 bg-primary-dark text-end p-2 m-2"
 <% else %>
-  class="message bg-light p-2 m-2"
+  class="message rounded-4 bg-primary-darker p-2 m-2"
 <% end %>
 >
   <small>

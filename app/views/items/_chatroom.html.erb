@@ -1,8 +1,8 @@
 <span class="text-end">
         <%= form_with model: chatroom, method: :post do |f| %>
           <%= f.hidden_field :user_id, value: user[0].id%>
-          <%= f.button :submit do %>
-            <i class="far fa-comment-dots fs-1" style="color: #210062;"></i>
+          <%= f.button :submit, class: 'border-0 text-secondary bg-transparent' do %>
+            <i class="far fa-comment-dots fs-1"></i>
           <% end %>
         <% end %>
       </span>
