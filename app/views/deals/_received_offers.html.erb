@@ -5,7 +5,7 @@
       <div class="d-none" data-display-deals-target="receivedoffer">
         <h6><strong>No dejes a las personas esperando, acepta, contraoferta o rechaza</strong></h6>
         <% @received_offers.each do |offer| %>
-          <div class="bg-background my-2">
+          <div class="bg-primary my-2">
             <div class="deal-header d-flex justify-content-between p-2">
               <%= render 'items/chatroom', chatroom: @chatroom, user: offer.users.reject { |user| user.id == current_user.id } %>
               <p><%= offer.created_at.strftime("%Y-%m-%d") %></p>

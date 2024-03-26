@@ -2,7 +2,7 @@
   <% @chatrooms.each do |chatroom| %>
     <% other_users = chatroom.users.where.not(id: current_user.id) %>
     <%= link_to chatroom, class: 'text-decoration-none', style: 'color: inherit;' do %>
-      <div class='border p-3 my-2 bg-light rounded'>
+      <div class='border p-3 my-2 bg-primary-dark rounded-4'>
         <p class='text-end text-muted'><%= chatroom.messages.last.created_at.strftime('%Y-%m-%d %H:%M:%S') if chatroom.messages.last %></p>
         <% unread_messages_count = chatroom.messages.where(read: false).where.not(user_id: current_user.id).count %>
         <% if unread_messages_count > 0 %>

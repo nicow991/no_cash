@@ -2,7 +2,7 @@
 <h4 class='text-center my-3'>Enviadas: (<%= @offered_offers.count %>) <i class="fa-solid fa-circle-chevron-up" data-action='click->display-deals#sent' data-display-deals-target='chevronsent'></i></h4>
 <div class='d-none' data-display-deals-target='sentoffer'>
   <% @offered_offers.each do |offer| %>
-    <div class='bg-background my-2'>
+    <div class='bg-primary my-2'>
       <div class='deal-header d-flex justify-content-between p-2'>
         <%= render 'items/chatroom', chatroom: @chatroom, user: offer.users.reject { |user| user.id == current_user.id } %>
         <p><%= offer.created_at.strftime("%Y-%m-%d") %></p>
