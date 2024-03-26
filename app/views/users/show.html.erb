@@ -11,19 +11,30 @@
               <p class="lead"><strong>Nombre:</strong> <%= @user.nickname %></p>
               <p class="lead"><strong>Email:</strong> <%= @user.email %></p>
               <p class="lead"><strong>Ubicación:</strong> <%= @user.address %></p>
-              <p class="lead"><strong>Preferencias:</strong>
-                <% preferences = current_user.preferences.map(&:category).join(', ') %>
-                <%= preferences.present? ? preferences : 'Ninguna' %>
-              </p>
+              <p class="lead"><strong>Preferencias:</strong></p>
+
+              <%= form_with(url: preferences_path, method: :post, class: "d-flex form-inline px-0") do |form| %>
+                <%= select_tag :category_id, options_for_select(Category.all.map { |c| [c.name, c.id] }, include_blank: "Categoría"), class: "form-control rounded mr-2" %>
+                <%= button_tag "Agregar", class: "btn btn-primary" %>
+              <% end %>
+
+              <% preferences = current_user.preferences.map(&:category) %>
+              <% if preferences.present? %>
+                <% preferences.each do |preference| %>
+                  <p><%= preference.name %></p>
+                <% end %>
+              <% else %>
+                <p>Ninguna</p>
+              <% end %>
             </div>
             <div class="col-md-6 mb-3">
               <%= cl_image_tag @user.photo.key, height: 200, width: 300, crop: :fill %>
-
             </div>
+          </div>
         </div>
         <div class="card-footer bg-light">
           <%= link_to 'Editar Perfil', edit_user_registration_path, class: 'btn btn-primary' %>
-          <%= link_to "Cerrar Sesión", "/users/sign_out", data: {turbo_method: :delete}, class: "btn btn-danger float-end" %>
+          <%= link_to "Cerrar Sesión", "/users/sign_out", data: { turbo_method: :delete }, class: "btn btn-danger float-end" %>
         </div>
       </div>
     </div>
