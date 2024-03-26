@@ -1,5 +1,6 @@
-<div class="navbar navbar-expand-sm navbar-light sticky-top bg-secondary">
-  <div class="w-100 d-flex justify-content-between">
+<div class="navbar navbar-expand-sm navbar-light sticky-top p-0">
+  <div class="d-flex flex-column w-100">
+  <div class="w-100 d-flex justify-content-between bg-primary-light p-2 pt-4">
       <%= link_to "/", class: "navbar-brand d-flex align-items-center" do %>
         <%= image_tag "Loop.png", class: "me-3" %>
       <% end %>
@@ -22,10 +23,10 @@
       </li>
     </ul>
   </div>
-</div>
-
-<% unless current_page?(items_path) || current_page?(root_path) %>
-  <%= link_to :back, class: 'h2 text-primary' do %>
-    <i class="fa-solid fa-arrow-left ps-3 pt-3"></i>
+  <% unless current_page?(items_path) || current_page?(root_path) %>
+    <%= link_to :back, class: 'h2 text-primary-darker' do %>
+      <i class="fa-solid fa-arrow-left ps-3 pt-3"></i>
+    <%end%>
   <%end%>
-<%end%>
+  </div>
+</div>

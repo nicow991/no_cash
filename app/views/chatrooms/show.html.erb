@@ -1,4 +1,4 @@
-<div class="container chatroom"
+<div class="container chatroom bg-primary"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
 >
@@ -10,17 +10,17 @@
   </div>
 
   <%= simple_form_for [@chatroom, @message],
-    html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "row g-3 align-items-center" } do |f|
+    html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "row mt-3 g-3 justify-content-center" } do |f|
   %>
-    <div class="col m-0 p-0">
+    <div class="col-9 m-0 p-0">
       <%= f.input :content,
         label: false,
         placeholder: "Message",
-        class: "form-control"
+        input_html: {class: "rounded-3 form-control bg-primary-dark m-0"}
       %>
     </div>
     <div class="col-auto m-0 p-0">
-      <%= f.submit "Send", class: "btn btn-primary" %>
+      <%= f.submit "Send", class: "btn btn-secondary" %>
     </div>
   <% end %>
 
