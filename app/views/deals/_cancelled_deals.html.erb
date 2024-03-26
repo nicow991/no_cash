@@ -1,7 +1,7 @@
 <h4 class='text-center my-2'><strong>Cancelados (<%= canceled_deals.count %>) <i class="fa-solid fa-circle-chevron-up" data-action='click->display-deals#canceled' data-display-deals-target='chevroncanceled'></i></strong></h4>
 <div class='my-2 d-none' data-display-deals-target='canceleddeal'>
   <% @canceled_deals.each do |deal| %>
-  <div class='my-2 bg-background'>
+  <div class='my-2 bg-primary'>
     <%= render 'deals/dealstatus', deal: deal %>
   </div>
   <% end %>
