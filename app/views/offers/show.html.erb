@@ -24,7 +24,7 @@
           <% end %>
         </div>
         <div class="d-flex">
-          <%= render 'items/chatroom', chatroom: @chatroom, item: @offer.offered_item %>
+          <%= render 'items/chatroom', chatroom: @chatroom, user: @offer.users.reject { |user| user.id == current_user.id } %>
         </div>
       </div>
     </div>

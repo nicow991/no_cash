@@ -5,4 +5,9 @@ class Deal < ApplicationRecord
   delegate :offered_item, to: :offer
   delegate :user_requested, to: :offer
   delegate :user_offerer, to: :offer
+
+  def users
+    [user_requested, user_offerer]
+  end
+
 end

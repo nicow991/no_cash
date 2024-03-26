@@ -13,10 +13,14 @@
         <%= link_to chatrooms_path, class: 'footer-link' do %>
           <div class="text-secondary">
             <i class="w-100 text-center fa-solid fa-message"></i>
-            <p class="m-0 fs-6 text-center">Chats</p>
-          </div class="text-secondary">
-        <% end %>
-        <%= link_to new_item_path, class: 'footer-link' do %>
+            <% if !user_signed_in? || !Message.where.not(user: current_user).where(read: false, chatroom: current_user.chatrooms).any? %>
+              <p class="m-0 fs-6 text-center">Chats <i class="fa-solid fa-envelope-open"></i></p>
+            <% else %>
+              <p class="m-0 fs-6 text-center">Chats <i class="fa-regular fa-envelope"></i></p>
+            <% end %>
+            </div class="text-secondary">
+          <% end %>
+          <%= link_to new_item_path, class: 'footer-link' do %>
           <div class="text-secondary">
             <i class="w-100 fs-1 text-center fa-solid fa-circle-plus"></i>
           </div>
