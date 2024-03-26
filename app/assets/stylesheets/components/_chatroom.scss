@@ -15,7 +15,8 @@
 
   .messages {
     height: 100%;
-    overflow: scroll;
+    overflow-y:auto;
+    scroll-behavior: smooth;
     padding: 1rem;
   }
 

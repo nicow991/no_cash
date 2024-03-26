@@ -25,5 +25,5 @@ end
   resources :chatrooms, only: [:index, :show, :create] do
     resources :messages, only: :create
   end
-
+  resources :preferences, only: [:create, :destroy]
 end

@@ -2,7 +2,7 @@
         <div class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="navbarDropdown">
 
           <% if user_signed_in? %>
-            <%= link_to "Perfil", profile_path, class: "dropdown-item desktop-only" %>
+            <%= link_to "Perfil", profile_path, class: "dropdown-item" %>
             <% if Message.where.not(user: current_user).where(read: false, chatroom: current_user.chatrooms).any? %>
               <%= link_to chatrooms_path, class: "dropdown-item desktop-only" do %>
                 Inbox <i class="fa-regular fa-envelope"></i>
@@ -21,6 +21,7 @@
                 Mis trueques <i class="fa-solid fa-bell"></i>
               <% end %>
             <% end %>
+
             <%= link_to "Log out", "/users/sign_out", class: "dropdown-item", data: {turbo_method: :delete} %>
           <% else %>
             <%= link_to "Log in", "/users/sign_in", class: "dropdown-item" %>

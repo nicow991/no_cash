@@ -11,24 +11,25 @@ $body-bg:                $light-gray;
 $font-size-base:         1rem;
 
 // Colors
-$primary: #E6F4F1; 
-$secondary: #ffffff; // Fondo principal de la aplicación
-$primary-dark: #00266A; // Color para elementos de texto destacados
-$secondary-dark:#efe691; // Color para botones secundarios
-$primary-darker: #00266A; // Reservado para elementos de texto destacados
-$secondary-darker: #D9A21B; // Color para botones secundarios
-$primary-light: #E6F4F1; // Fondo para tarjetas
-$secondary-light: #FFFFFF; // Fondo para tarjetas
-$body-color: #000000; // Color para texto general
+$primary: #E6F4F1;
+$primary-dark: #d5e4e1;
+$primary-darker: #b9c6c3;
+$primary-light: #f8fffe;
+
+$secondary: #84fff1;
+$secondary-light: #bdfff7;
+$secondary-dark:#6ad66a;
+$secondary-darker: #5fbc5f;
+
 $success:    $green;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
 $light: #FFFFFF; // Fondo principal de la aplicación
 $book: #00266A;
-$pink: #ffffff; 
+$pink: #ffffff;
 $greypink: #D9A21B;
-$background: $secondary; 
+$background: $secondary;
 
 // Buttons & inputs' radius
 $border-radius:    2px;

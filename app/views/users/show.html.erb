@@ -1,6 +1,49 @@
-<div class="container m-3">
-  <h1>Welcome <%= @user.email %></h1>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">Perfil de Usuario</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="lead"><strong>Nombre:</strong> <%= @user.nickname %></p>
+              <p class="lead"><strong>Email:</strong> <%= @user.email %></p>
+              <p class="lead"><strong>Ubicación:</strong> <%= @user.address %></p>
+              <p class="lead"><strong>Preferencias:</strong></p>
 
-  <%= link_to 'Editar Perfil', edit_user_registration_path, class: 'btn btn-book' %>
-  <%= link_to "Log out", "/users/sign_out", class: "dropdown-item", data: {turbo_method: :delete}, class: 'btn btn-info' %>
+              <%= form_with(url: preferences_path, method: :post, class: "d-flex form-inline px-0") do |form| %>
+                <%= select_tag :category_id, options_for_select(Category.all.map { |c| [c.name, c.id] }, include_blank: "Categoría"), class: "form-control rounded mr-2" %>
+                <%= button_tag "Agregar", class: "btn btn-primary" %>
+              <% end %>
+
+              <% preferences = current_user.preferences %>
+              <% if preferences.present? %>
+                <% preferences.each do |preference| %>
+                <div class='d-flex'>
+                  <p><%= preference.category.name %></p>
+                  <%= link_to preference_path(preference), class: "btn", data: { turbo_method: :delete, turbo_confirm: "Estas seguro?" } do %>
+                    <i class="fa-solid fa-xmark"></i>
+                  <% end %>
+                </div>
+
+                <% end %>
+
+              <% else %>
+                <p>Ninguna</p>
+              <% end %>
+            </div>
+            <div class="col-md-6 mb-3">
+              <%= cl_image_tag @user.photo.key, height: 200, width: 300, crop: :fill %>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-light">
+          <%= link_to 'Editar Perfil', edit_user_registration_path, class: 'btn btn-primary-dark border-primary-darker' %>
+          <%= link_to "Cerrar Sesión", "/users/sign_out", data: {turbo_method: :delete}, class: "btn btn-danger float-end" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
