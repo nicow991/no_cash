@@ -3,7 +3,7 @@
     <% items.each do |item| %>
       <div class="col", style= "margin-top: 50px; margin-bottom: 50px">
         <div class="item">
-          <div class="card rounded-4 shadow" style="width: 100%;">
+          <div class="card rounded-4 shadow bg-secondary" style="width: 100%;">
               <div id="carousel<%= item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 180px; overflow: hidden;">
                 <div class="carousel-inner rounded-top-4">
                   <% if item.photos.attached? %>
