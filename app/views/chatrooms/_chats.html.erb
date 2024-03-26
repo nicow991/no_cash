@@ -1,9 +1,14 @@
 <div class='container m-3 bg-light rounded-4'>
     <% @chatrooms.each do |chatroom| %>
-    <% other_users = chatroom.users.reject{|u| u == current_user} %>
+    <% other_users = chatroom.users.where.not(id: current_user.id) %>
       <%= link_to chatroom, class: 'text-decoration-none', style: 'color: inherit;' do %>
         <div class='border p-3 my-2 bg-light rounded'>
           <p class='text-end text-muted'><%= chatroom.messages&.last&.created_at&.strftime('%Y-%m-%d %H:%M:%S') %></p>
+          <% if Message.where.not(user: current_user).where(read: false, chatroom: current_user.chatrooms).any? %>
+            <p class='text-end text-muted'><strong><i class="fa-regular fa-envelope"></i> (<%= Message.where.not(user: current_user).where(read: false, chatroom: current_user.chatrooms).count %>)</strong></p>
+          <% else %>
+          <p class='text-end text-muted'><i class="fa-regular fa-envelope-open"></i></p>
+          <% end %>
           <p class="mb-1"><strong><%= other_users.map(&:email).join(', ') %></strong> </p>
           <hr class="my-2">
           <p class="mb-0"><%= chatroom.messages&.last&.content %></p>

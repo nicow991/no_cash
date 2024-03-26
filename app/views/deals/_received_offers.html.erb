@@ -7,7 +7,7 @@
         <% @received_offers.each do |offer| %>
           <div class="bg-background my-2">
             <div class="deal-header d-flex justify-content-between p-2">
-              <%= render 'items/chatroom', chatroom: @chatroom, item: offer.offered_item %>
+              <%= render 'items/chatroom', chatroom: @chatroom, user: offer.users.reject { |user| user.id == current_user.id } %>
               <p><%= offer.created_at.strftime("%Y-%m-%d") %></p>
             </div>
             <%= link_to offer_path(offer), class: "text-decoration-none", style: "color: inherit;" do %>

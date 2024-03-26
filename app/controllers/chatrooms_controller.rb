@@ -8,17 +8,26 @@ class ChatroomsController < ApplicationController
     end
     redirect_to @chatroom
   end
+
   def index
+    remove_empty_chatrooms
     @chatrooms = Chatroom.joins(:participants).where(participants: { user: current_user })
   end
 
   def show
     @chatroom = Chatroom.find(params[:id])
-    authorize @chatroom
     @message = Message.new
+    authorize @chatroom
+    @chatroom.messages.where.not(user: current_user).each { |message| message.update(read: true) }
   end
 
   private
+
+  def remove_empty_chatrooms
+    current_user.chatrooms.each do |chatroom|
+      chatroom.destroy if chatroom.messages.empty?
+    end
+  end
 
   def chatroom_params
     params.require(:chatroom).permit(:user_id)
