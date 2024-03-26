@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-3">
     <% items.each do |item| %>
-      <div class="col", style= "margin-top: 50px; margin-bottom: 50px">
+      <div class="col", style= "margin-top: 50px; margin-bottom: 50px; height: 300px !important;">
         <div class="item">
-          <div class="card rounded-4 shadow bg-primary" style="width: 100%;">
+          <div class="card rounded-4 shadow bg-primary-lighter" style="width: 100%;">
               <div id="carousel<%= item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 180px; overflow: hidden;">
                 <div class="carousel-inner rounded-top-4">
                   <% if item.photos.attached? %>
@@ -27,16 +27,15 @@
                 </a>
               </div>
             <div class="card-body" style="overflow: hidden; position: relative;">
-              <h3 class="card-title font-size-24" style="max-height: 120px; min-height: 80px; padding: 6px; overflow: hidden; text-overflow: ellipsis; white-space: initial;">
-                <%= item.name.length > 35 ? item.name.slice(0, 35) + "..." : item.name %>
+              <h3 class="card-title title-fixed-height font-size-24" style="padding: 6px; overflow: hidden; white-space: initial;">
+                <%= item.name %>
               </h3>
-              <!--<h5 class="font-size-18" style=" max-height: 50px; min-height: 40px;"><%= item.category.name %></h5>-->
-              <p class="card-text font-size-14 mb-0" style=" max-height: 30px; min-height: 15px;"><%= item.address %>.</p>
+              <p class="card-text font-size-14 mb-0"><%= item.address %>.</p>
                 <% if item.user == current_user %>
-                  <%= link_to 'Revisa tu oferta', item_path(item), class: "btn btn-primary-dark border-primary-darker text-white my-4 px-4 font-size-14" %>
+                  <%= link_to 'Revisa tu oferta', item_path(item), class: "btn btn-primary border-primary-darker text-white my-4 px-4 font-size-14" %>
                 <% else %>
                   <div class="text-center">
-                    <%= link_to "Selecciona esta oferta", item_path(item), class: "btn btn-primary-dark border-primary-darker my-4 px-4 font-size-14" %>
+                    <%= link_to "Selecciona esta oferta", item_path(item), class: "btn btn-primary border-primary-darker my-4 px-4 font-size-14" %>
                  </div>
                 <% end %>
 

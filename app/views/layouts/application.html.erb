@@ -10,10 +10,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-<body class="bg-primary-light d-flex flex-column">
+<body class="bg-primary-lighter d-flex flex-column">
   <%= render "shared/navbar" %>
   <%= render "shared/flashes" %>
-  <div class="flex-grow-1 bg-primary-light">
+  <div class="flex-grow-1 bg-primary-lighter">
     <%= yield %>
   </div>
   <%= render 'shared/footer' %>
