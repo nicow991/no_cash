@@ -102,3 +102,12 @@
 .fa-bell {
   color: #efba47;
 }
+
+.border-purple {
+  border: 5px solid purple;
+  display: inline-block;
+}
+
+.border-purple > div {
+  margin-top: 5px;
+}
