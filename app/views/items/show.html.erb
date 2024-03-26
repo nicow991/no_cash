@@ -6,7 +6,7 @@
           <% @item.photos.each_with_index do |photo, index| %>
             <div class="carousel-item <%= 'active' if index == 0 %> position-relative">
               <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "height: 300px; width: 100%;" %>
-              <div class="p-1 mb-2 rounded-3,5 bg-secondary-dark position-absolute bottom-0 start-50 translate-middle-x">
+              <div class="p-1 mb-2 rounded-3 bg-secondary-dark position-absolute bottom-0 start-50 translate-middle-x">
                 <%= @item.category.name %>
               </div>
             </div>
@@ -53,9 +53,9 @@
               <% end %>
             </span>
             <% if @item.user == current_user %>
-              <button class='btn mt-1 mb-1 btn-secondary-dark text-white rounded-3 fs-2' data-action='click->toggle#showoffer'>Edita tu producto</button>
+              <button class='btn mt-0 mb-0 btn-secondary-dark text-white rounded-3 fs-2' data-action='click->toggle#showoffer'>Edita tu producto</button>
             <% else %>
-              <button class='btn mt-1 mb-1 btn-primary rounded-3 fs-2' data-action='click->toggle#showoffer'>Me interesa!</button>
+              <button class='btn mt-0 mb-0 btn-primary rounded-3 fs-2' data-action='click->toggle#showoffer'>Me interesa!</button>
             <% end %>
           </div>
         </div>
