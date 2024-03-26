@@ -1,19 +1,17 @@
 class PreferencesController < ApplicationController
   def create
-    raise
-    @preference = Preference.new(preference_params)
-
-    @preference.user = current_user
+    @preference = Preference.new(category: Category.find(params[:category_id]), user: current_user)
     if @preference.save
-      redirect_to user_path(current_user)
+      redirect_to profile_path(current_user)
     else
       render 'users/show'
     end
   end
 
-  private
-
-  def preference_params
-    params.require(:preference).permit(:category_id)
+  def destroy
+    @preference = Preference.find(params[:id])
+    @preference.destroy
+    redirect_to profile_path(current_user), status: :see_other, notice: 'Tu preferencia se ha eliminado'
   end
+
 end

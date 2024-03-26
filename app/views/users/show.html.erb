@@ -18,11 +18,18 @@
                 <%= button_tag "Agregar", class: "btn btn-primary" %>
               <% end %>
 
-              <% preferences = current_user.preferences.map(&:category) %>
+              <% preferences = current_user.preferences %>
               <% if preferences.present? %>
                 <% preferences.each do |preference| %>
-                  <p><%= preference.name %></p>
+                <div class='d-flex'>
+                  <p><%= preference.category.name %></p>
+                  <%= link_to preference_path(preference), class: "btn", data: { turbo_method: :delete, turbo_confirm: "Estas seguro?" } do %>
+                    <i class="fa-solid fa-xmark"></i>
+                  <% end %>
+                </div>
+
                 <% end %>
+
               <% else %>
                 <p>Ninguna</p>
               <% end %>
