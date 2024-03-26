@@ -1,0 +1,9 @@
+.title-fixed-height {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to two lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 60px; /* Adjust based on your font size to fit two lines */
+  padding: 6px;
+}
