@@ -6,7 +6,7 @@
           <% @item.photos.each_with_index do |photo, index| %>
             <div class="carousel-item <%= 'active' if index == 0 %> position-relative">
               <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "height: 300px; width: 100%;" %>
-              <div class="p-1 mb-2 rounded-4 bg-secondary-dark position-absolute bottom-0 start-50 translate-middle-x">
+              <div class="p-1 mb-2 rounded-3,5 bg-secondary-dark position-absolute bottom-0 start-50 translate-middle-x">
                 <%= @item.category.name %>
               </div>
             </div>
@@ -36,7 +36,7 @@
       <p class="">Cambio por: </p>
         <div class="w-100 preferences d-flex flex-wrap justify-content-start gap-3">
           <% @item.user.preferences.each do |preference|%>
-            <div class="preference rounded-5 px-2 py-1 bg-secondary-dark">
+            <div class="preference rounded-3 px-2 py-1 bg-secondary-dark">
               <%= preference.category.name %>
             </div>
           <% end %>
