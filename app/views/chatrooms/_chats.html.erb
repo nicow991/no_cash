@@ -1,13 +1,19 @@
-<div class='container m-3 bg-primary p-4 rounded-4'>
-    <% @chatrooms.each do |chatroom| %>
-    <% other_users = chatroom.users.reject{|u| u == current_user} %>
-      <%= link_to chatroom, class: 'text-decoration-none', style: 'color: inherit;' do %>
-        <div class='border p-3 my-2 bg-primary-dark rounded-4'>
-          <p class='text-end text-muted'><%= chatroom.messages&.last&.created_at&.strftime('%Y-%m-%d %H:%M:%S') %></p>
-          <p class="mb-1"><strong><%= other_users.map(&:email).join(', ') %></strong> </p>
-          <hr class="my-2">
-          <p class="mb-0"><%= chatroom.messages&.last&.content %></p>
-        </div>
-      <% end %>
+<div class='container m-3 rounded-4'>
+  <% @chatrooms.each do |chatroom| %>
+    <% other_users = chatroom.users.where.not(id: current_user.id) %>
+    <%= link_to chatroom, class: 'text-decoration-none', style: 'color: inherit;' do %>
+      <div class='border p-3 my-2 bg-primary-dark rounded-4'>
+        <p class='text-end text-muted'><%= chatroom.messages.last.created_at.strftime('%Y-%m-%d %H:%M:%S') if chatroom.messages.last %></p>
+        <% unread_messages_count = chatroom.messages.where(read: false).where.not(user_id: current_user.id).count %>
+        <% if unread_messages_count > 0 %>
+          <p class='text-end text-muted'><strong><i class="fa-regular fa-envelope"></i> (<%= unread_messages_count %>)</strong></p>
+        <% else %>
+          <p class='text-end text-muted'><i class="fa-regular fa-envelope-open"></i></p>
+        <% end %>
+        <p class="mb-1"><strong><%= other_users.map(&:email).join(', ') %></strong> </p>
+        <hr class="my-2">
+        <p class="mb-0"><%= chatroom.messages.last.content if chatroom.messages.last %></p>
+      </div>
     <% end %>
-  </div>
+  <% end %>
+</div>

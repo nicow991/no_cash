@@ -2,7 +2,7 @@
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
 >
-
+  <p class="text-center pt-3"><strong> Bienvenido a tu chat con <%= @chatroom.participants.where.not(user: current_user).first.user.email %></strong></p>
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>

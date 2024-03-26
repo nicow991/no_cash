@@ -1,5 +1,5 @@
 <div class="container">
-  <h4 class="text-center my-2"><strong>Recibidas (<%= @received_offers.count %>) <i class="fa-solid fa-circle-chevron-up" data-action="click->display-deals#received" data-display-deals-target="chevronreceived"></i></strong></h4>
+  <h4 class="text-center my-2">Recibidas (<%= @received_offers.count %>) <i class="fa-solid fa-circle-chevron-up" data-action="click->display-deals#received" data-display-deals-target="chevronreceived"></i></h4>
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="d-none" data-display-deals-target="receivedoffer">
@@ -7,7 +7,7 @@
         <% @received_offers.each do |offer| %>
           <div class="bg-primary my-2">
             <div class="deal-header d-flex justify-content-between p-2">
-              <%= render 'items/chatroom', chatroom: @chatroom, item: offer.offered_item %>
+              <%= render 'items/chatroom', chatroom: @chatroom, user: offer.users.reject { |user| user.id == current_user.id } %>
               <p><%= offer.created_at.strftime("%Y-%m-%d") %></p>
             </div>
             <%= link_to offer_path(offer), class: "text-decoration-none", style: "color: inherit;" do %>

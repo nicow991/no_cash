@@ -34,7 +34,7 @@
           <div class="col-12 col-xl-4">
             <div class="d-flex justify-content-around p-3">
               <div class="d-flex">
-                <%= render 'items/chatroom', chatroom: @chatroom, item: @deal.offered_item %>
+                <%= render 'items/chatroom', chatroom: @chatroom, user: @deal.users.reject { |user| user.id == current_user.id } %>
               </div>
             </div>
           </div>
