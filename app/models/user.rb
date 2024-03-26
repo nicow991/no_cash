@@ -11,6 +11,6 @@ class User < ApplicationRecord
   has_many :received_deals, through: :received_offers, source: :deal
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+  has_one_attached :photo
 
 end

@@ -2,7 +2,7 @@
         <div class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="navbarDropdown">
 
           <% if user_signed_in? %>
-            <%= link_to "Perfil", profile_path, class: "dropdown-item desktop-only" %>
+            <%= link_to "Perfil", profile_path, class: "dropdown-item" %>
             <%= link_to "Inbox", chatrooms_path, class: "dropdown-item desktop-only" %>
             <%= link_to "Nuevo producto", new_item_path, class: "dropdown-item desktop-only" %>
             <%= link_to "Mis productos", myitems_path, class: "dropdown-item desktop-only" %>
@@ -13,6 +13,7 @@
                 Mis trueques <i class="fa-solid fa-bell"></i>
               <% end %>
             <% end %>
+
             <%= link_to "Log out", "/users/sign_out", class: "dropdown-item", data: {turbo_method: :delete} %>
           <% else %>
             <%= link_to "Log in", "/users/sign_in", class: "dropdown-item" %>
