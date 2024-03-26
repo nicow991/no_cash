@@ -3,7 +3,15 @@
 
           <% if user_signed_in? %>
             <%= link_to "Perfil", profile_path, class: "dropdown-item" %>
-            <%= link_to "Inbox", chatrooms_path, class: "dropdown-item desktop-only" %>
+            <% if Message.where.not(user: current_user).where(read: false, chatroom: current_user.chatrooms).any? %>
+              <%= link_to chatrooms_path, class: "dropdown-item desktop-only" do %>
+                Inbox <i class="fa-regular fa-envelope"></i>
+              <% end %>
+            <% else %>
+              <%= link_to chatrooms_path, class: "dropdown-item desktop-only" do %>
+                Inbox <i class="fa-solid fa-envelope-open"></i>
+              <% end %>
+            <% end %>
             <%= link_to "Nuevo producto", new_item_path, class: "dropdown-item desktop-only" %>
             <%= link_to "Mis productos", myitems_path, class: "dropdown-item desktop-only" %>
             <% if current_user.received_offers.where(status: 'pending').empty? %>

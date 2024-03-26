@@ -33,8 +33,19 @@
   box-sizing: border-box;
 }
 
-body {
-  min-height: calc(100vh - $footer-height - $nav-height);
+
+p {
+  margin: 0
+}
+
+.footer-links {
+  a {
+    &:hover {
+      i {
+        color: #210062;
+      }
+    }
+  }
 }
 
 .height-screen{
@@ -51,4 +62,12 @@ body {
 }
 .font-size-14 {
   font-size: 14px;
+}
+
+.custom-background {
+  background-color: #ffffff;
+}
+
+body {
+  min-height: 100vh;
 }

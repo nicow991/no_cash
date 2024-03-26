@@ -1,5 +1,5 @@
 <div class='deal-header d-flex justify-content-between bg-background px-2 border-top'>
-    <%= render 'items/chatroom', chatroom: @chatroom, item: deal.offered_item %>
+    <%= render 'items/chatroom', chatroom: @chatroom, user: deal.users.reject { |user| user.id == current_user.id } %>
     <p class='m-0 p-2'><%= deal.created_at.strftime("%Y-%m-%d") %></p>
   </div>
   <%= link_to deal_path(deal), class: 'text-decoration-none', style: 'color: inherit;' do%>
@@ -30,4 +30,3 @@
       </div>
     </div>
   <% end %>
-

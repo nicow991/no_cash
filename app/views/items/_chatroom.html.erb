@@ -1,6 +1,6 @@
 <span class="text-end">
         <%= form_with model: chatroom, method: :post do |f| %>
-          <%= f.hidden_field :user_id, value: item.user.id%>
+          <%= f.hidden_field :user_id, value: user[0].id%>
           <%= f.button :submit do %>
             <i class="far fa-comment-dots fs-1" style="color: #210062;"></i>
           <% end %>
