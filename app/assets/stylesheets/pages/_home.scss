@@ -4,7 +4,7 @@
   width: 100%;
   display: grid;
   grid-gap: 20px; /*esto anade un poco de espacio entre el baner y el siguiente titulo*/
-  background-color: #f4ead3;
+  background-color: #ffffff;
 
   .banner {
     display: flex;
@@ -25,7 +25,7 @@
     color: white;
     font-size: 32px;
     font-weight: bold;
-    margin-top: 160px;
+    margin-top: 150px;
   }
 
   .banner-title {
@@ -69,8 +69,8 @@
   }
 
   .background-container {
-    background-color: #210062;
-    color: white;
+    background-color: #00266A;
+    color: rgb(255, 255, 255);
     padding: 20px;
     margin-top: 50px;
     margin-bottom: 50px;
