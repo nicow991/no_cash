@@ -33,9 +33,6 @@
   box-sizing: border-box;
 }
 
-body {
-  min-height: calc(100vh - $footer-height - $nav-height);
-}
 
 p {
   margin: 0
@@ -68,8 +65,9 @@ p {
 }
 
 .custom-background {
-  background-color: #ffffff; 
+  background-color: #ffffff;
 }
 
-
-
+body {
+  min-height: 100vh;
+}
