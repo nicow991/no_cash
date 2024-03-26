@@ -1,8 +1,8 @@
 <div class="container mt-2">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card rounded-3 shadow mt-3">
-        <div class="card-body bg-background">
+      <div class="card rounded-3 shadow mt-3 bg-secondary">
+        <div class="card-body">
           <%= simple_form_for(@item) do |f| %>
             <%= f.input :name, label: 'Nombre', class: 'form-control' %>
             <%= f.input :description, label: 'Descripción', class: 'form-control' %>
