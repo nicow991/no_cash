@@ -6,12 +6,19 @@
   <% end %>
 <% end %>
 <div class="container mt-4">
-  <div class="align-items-center mb-4" data-controller="display-deals">
+  <div class="align-items-center mb-4">
     <h2>Trueques</h2>
-    <%= render 'deals/accepted_deals', accepted_deals: @accepted_deals %>
-    <%= render 'deals/completed_deals', completed_deals: @completed_deals %>
-    <%= render 'deals/cancelled_deals', canceled_deals: @canceled_deals %>
-    <%= render 'deals/sent_offers', offered_offers: @offered_offers %>
-    <%= render 'deals/received_offers', received_offers: @received_offers %>
+    <div class="d-flex gap-3 flex-wrap w-100">
+    <%= render 'deal_cards', deals: @accepted_deals %>
+    <%= render 'offer_cards', offers: @received_offers %>
+    <%= render 'offer_cards', offers: @offered_offers %>
+    </div>
+    <span>Historial (<%=@completed_deals.count + @canceled_deals.count%>):</span>
+    <div data-controller='display'>
+      <i class="fa-solid fa-circle-chevron-up" data-action='click->display#display' data-display-target='togglebtn'></i>
+      <div class='my-2' data-display-target='info'>
+        <%= render 'deal_cards', deals: @finished_deals %>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,24 @@
+<style>
+.deal-card, .offer-card{
+  width: 300px;
+}
+  </style>
+
+<% deals.each do |deal| %>
+  <div class='deal-card my-2 bg-primary'>
+      <% if deal.status=='completed'%>
+        <h5 class="text-success fw-bold"> Concluido </h5>
+      <%elsif deal.status == 'canceled'%>
+        <h5 class="text-danger fw-bold"> Cancelado </h5>
+      <%else%>
+        <h5 class="text-warning fw-bold"> Pendiente </h5><h6>(chatea con el para acordar la fecha y lugar!) </h6>
+      <%end%>
+    <%= render 'deals/dealstatus', deal: deal %>
+    <% if deal.status=='accepted'%>
+          <%= render 'deals/complete', deal: deal %>
+          <%= render 'deals/cancel', deal: deal %>
+    <% else %>
+      <%= render 'deals/review', deal: deal, review: @review %>
+    <% end %>
+  </div>
+<% end %>
