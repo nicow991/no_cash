@@ -29,9 +29,14 @@ class ItemsController < ApplicationController
   # Flat.near([40.71, 100.23], 20) # flats within 20 km of a point
 
   def show
+    @reviewed_user = @item.user
+    @reviews = Review.where(user_reviewed: @reviewed_user)
+    @rating = @reviews.average(:rating).round(2) if @reviews.any?
+
     @deal = Deal.new
     @offer = Offer.new
     @chatroom = Chatroom.new
+    
   end
 
   def create

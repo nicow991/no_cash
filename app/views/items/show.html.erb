@@ -28,6 +28,8 @@
     <div class="d-flex justify-content-between">
       <div>
         <h2><%= @item.name %></h2>
+        <h4><%= @item.user.email %></h4>
+        <p> (</strong><%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i> </strong>)</p>
         <h4><i class="fa-solid fa-location-dot pe-2"></i><%= @item.user.address %></h4>
       </div>
       <div>
@@ -42,6 +44,10 @@
           <%= preference.category.name %>
         </div>
       <% end %>
+
+
+ 
+
     </div>
     <div class="d-flex justify-content-center align-items-center">
       <div class="d-flex gap-2">
@@ -49,10 +55,10 @@
           <button class='btn btn-secondary' data-action='click->toggle#showoffer'>Edita tu producto</button>
         <% else %>
           <button class='btn btn-secondary' data-action='click->toggle#showoffer'>Me interesa!</button>
-        <% end %>
-        <%= form_with model: @chatroom, method: :post do |f| %>
-          <%= f.hidden_field :user_id, value: @item.user.id%>
-          <%= f.button "Enviar Mensaje", class: 'btn btn-primary' %>
+          <%= form_with model: @chatroom, method: :post do |f| %>
+            <%= f.hidden_field :user_id, value: @item.user.id%>
+            <%= f.button "Enviar Mensaje", class: 'btn btn-primary' %>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -64,3 +70,4 @@
     <% end %>
   </div>
 </div>
+<%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
