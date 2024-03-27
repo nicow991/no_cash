@@ -23,19 +23,19 @@
                 <span class="visually-hidden">Next</span>
               </a>
             </div>
-            <div class="card-body" style="overflow: hidden; position: relative;">
+            <div class="card-body d-flex flex-column" style="overflow: hidden;">
               <h3 class="card-title title-fixed-height font-size-24" style="padding: 6px; overflow: hidden; white-space: initial;">
                 <%= item.name %>
               </h3>
               <p class="card-text font-size-14 mb-0 bg-pink">Categoría: <%= item.category.name %>.</p>
               <p class="card-text font-size-14 mb-0"><i class="fa-solid fa-location-dot"></i> <%= item.address %>.</p>
-              <% if item.user == current_user %>
-                <%= link_to 'Revisa tu oferta', item_path(item), class: "btn btn-primary border-primary-darker text-white my-4 px-4 font-size-14" %>
-              <% else %>
-                <div class="text-center">
+              <div class="mt-auto text-center"> <!-- Use Bootstrap utility classes to position button at the bottom -->
+                <% if item.user == current_user %>
+                  <%= link_to 'Revisa tu oferta', item_path(item), class: "btn btn-primary border-primary-darker text-white my-4 px-4 font-size-14" %>
+                <% else %>
                   <%= link_to "Selecciona esta oferta", item_path(item), class: "btn btn-primary border-primary-darker my-4 px-4 font-size-14" %>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>

@@ -52,6 +52,8 @@
   </div>
 </div>
 
+<%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @user %>
+
 <div class="container my-5">
   <h1 class='text-center'>Mis Productos</h1>
   <%= link_to "Agregar Producto", new_item_path, class: "btn btn-primary-dark border-primary-darker"%>
@@ -83,6 +85,3 @@
     <% end %>
   </div>
 </div>
-
-
-<%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @user %>
