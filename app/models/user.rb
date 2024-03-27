@@ -13,4 +13,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :photo
 
+  def deals
+    offered_deals.or(Item.where(id: received_deals))
+  end
+
+
 end

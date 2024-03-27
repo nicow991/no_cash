@@ -4,9 +4,7 @@ class DealsController < ApplicationController
   def index
     @offered_offers = current_user.offered_offers.where(status: 'pending')
     @received_offers = current_user.received_offers.where(status: 'pending')
-    @offered_deals = current_user.offered_deals
-    @received_deals = current_user.received_deals
-    @deals = @offered_deals + @received_deals
+    @deals = current_user.deals
     @deal = Deal.new
     @review = Review.new
     @chatroom = Chatroom.new

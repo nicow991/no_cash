@@ -1,44 +1,41 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-3">
     <% items.each do |item| %>
-      <div class="col", style= "margin-top: 50px; margin-bottom: 50px; height: 300px !important;">
-        <div class="item">
-          <div class="card rounded-4 shadow bg-primary-lighter" style="width: 100%;">
-              <div id="carousel<%= item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 180px; overflow: hidden;">
-                <div class="carousel-inner rounded-top-4">
-                  <% if item.photos.attached? %>
-
-                    <% item.photos.each_with_index do |photo, index| %>
-                      <div class="carousel-item <%= 'active' if index == 0 %>">
-
-                        <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "object-fit: cover; height: 180px" %>
-                      </div>
-                    <% end %>
+      <div class="col" style="margin-top: 50px;">
+        <div class="item d-flex flex-column h-100">
+          <div class="card rounded-4 shadow bg-primary-lighter" style="flex: 1;">
+            <div id="carousel<%= item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 180px; overflow: hidden;">
+              <div class="carousel-inner rounded-top-4">
+                <% if item.photos.attached? %>
+                  <% item.photos.each_with_index do |photo, index| %>
+                    <div class="carousel-item <%= 'active' if index == 0 %>">
+                      <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "object-fit: cover; height: 180px" %>
+                    </div>
                   <% end %>
-
-                </div>
-                <a class="carousel-control-prev" href="#carousel<%= item.id %>" role="button" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carousel<%= item.id %>" role="button" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </a>
+                <% end %>
               </div>
+              <a class="carousel-control-prev" href="#carousel<%= item.id %>" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carousel<%= item.id %>" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </a>
+            </div>
             <div class="card-body" style="overflow: hidden; position: relative;">
               <h3 class="card-title title-fixed-height font-size-24" style="padding: 6px; overflow: hidden; white-space: initial;">
                 <%= item.name %>
               </h3>
-              <p class="card-text font-size-14 mb-0"><%= item.address %>.</p>
-                <% if item.user == current_user %>
-                  <%= link_to 'Revisa tu oferta', item_path(item), class: "btn btn-primary border-primary-darker text-white my-4 px-4 font-size-14" %>
-                <% else %>
-                  <div class="text-center">
-                    <%= link_to "Selecciona esta oferta", item_path(item), class: "btn btn-primary border-primary-darker my-4 px-4 font-size-14" %>
-                 </div>
-                <% end %>
-
+              <p class="card-text font-size-14 mb-0 bg-pink">Categoría: <%= item.category.name %>.</p>
+              <p class="card-text font-size-14 mb-0"><i class="fa-solid fa-location-dot"></i> <%= item.address %>.</p>
+              <% if item.user == current_user %>
+                <%= link_to 'Revisa tu oferta', item_path(item), class: "btn btn-primary border-primary-darker text-white my-4 px-4 font-size-14" %>
+              <% else %>
+                <div class="text-center">
+                  <%= link_to "Selecciona esta oferta", item_path(item), class: "btn btn-primary border-primary-darker my-4 px-4 font-size-14" %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
