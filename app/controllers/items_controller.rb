@@ -19,7 +19,9 @@ class ItemsController < ApplicationController
       @items = Item.by_category(params[:category])
     end
 
-
+    # this variables help populate the items index page: recommended items based on preferences and previous deals
+    @user_prefered_items = user_prefered_items if current_user.preferences.any?
+    @user_recommendations = items_within_user_preferered_categories if current_user.deals.any?
   end
 
   def my_items
@@ -84,4 +86,56 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+    # this methods help populate the items index page: recommended items based on preferences and previous deals
+
+
+  def user_prefered_items
+    if current_user.preferences.any?
+      preferences = current_user.preferences
+      prefered_categories = []
+      preferences.each do |preference|
+        prefered_categories << preference.category
+      end
+      items = Item.where(category: prefered_categories).where.not(user: current_user)
+      shuffled_items = items.shuffle
+      # Select distinct items up to a maximum of 4
+      item_for_user = shuffled_items.uniq.take(4)
+    end
+    return item_for_user
+  end
+
+  def user_interest_items
+    if current_user.deals.where.not(status: "canceled").any?
+      interest_items = []
+      user_completed_deals = current_user.deals.where(status: "completed")
+      user_completed_deals.each do |deal|
+        if deal.user_offerer == current_user
+          interest_items << deal.requested_item
+        else
+          interest_items << deal.offered_item
+        end
+      end
+    end
+    return interest_items
+  end
+
+  def user_interested_categories
+    items = user_interest_items
+    interested_categories = []
+    items.each do |item|
+      interested_categories << item.category
+    end
+    return interested_categories
+  end
+
+  def items_within_user_preferered_categories
+    prefered_categories = user_interested_categories
+    items = Item.where(category: prefered_categories).where.not(user: current_user)
+    shuffled_items = items.shuffle
+    # Select distinct items up to a maximum of 4
+    item_for_user = shuffled_items.uniq.take(4)
+    return item_for_user
+  end
+
 end
