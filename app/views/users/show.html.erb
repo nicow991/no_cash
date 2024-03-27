@@ -45,5 +45,9 @@
   </div>
 </div>
 
+<div class='text-center my-4'>
+  <h3 class="mb-0 text-dark">Ofertas de <%= @user.email %></h3>
+  <%= render 'items/card', items: @user.items%>
+</div>
 
 <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @user %>
