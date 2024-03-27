@@ -13,7 +13,7 @@ class DealsController < ApplicationController
     @accepted_deals = filter_deals('accepted')
     @completed_deals = filter_deals('completed')
     @canceled_deals = filter_deals('canceled')
-
+    @finished_deals = @completed_deals + @canceled_deals
   end
 
   def show
