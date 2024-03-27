@@ -10,4 +10,8 @@ class Deal < ApplicationRecord
     [user_requested, user_offerer]
   end
 
+  def items
+    offered_items.or(Item.where(id: requested_item))
+  end
+
 end

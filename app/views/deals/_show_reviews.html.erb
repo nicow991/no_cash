@@ -1,7 +1,11 @@
 
-<div class='d-flex justify-content-center' data-controller="toggle-user-reviews">
-  <div class='' data-action='click->toggle-user-reviews#showreviews'><button class='btn btn-info'>Reseñas de <%= reviewed_user.email %>: </button></div>
-  <div class="col-6 col-md-4 m-3 d-none" data-toggle-user-reviews-target='reviews'>
+<div class='d-flex justify-content-center my-4' data-controller="toggle-user-reviews">
+  <% if reviewed_user == current_user %>
+    <div class='' data-action='click->toggle-user-reviews#showreviews'><button class='btn btn-info p-3 my-2'>Reseñas recibidas: </button></div>
+  <% else %>
+    <div class='' data-action='click->toggle-user-reviews#showreviews'><button class='btn btn-info p-3 my-2'>Reseñas de <%= reviewed_user.email %>: </button></div>
+  <% end %>
+  <div class="col-6 col-md-4 d-none" data-toggle-user-reviews-target='reviews'>
       <% reviews.each do |review| %>
         <div class='card bg-pink p-2 m-2'>
           <p><%= review.user_reviewer.email %> dijo: </p>

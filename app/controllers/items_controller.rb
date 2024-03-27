@@ -4,10 +4,10 @@ class ItemsController < ApplicationController
   # Pundit: allow-list approach
   #after_action :verify_authorized, except: :index, unless: :skip_pundit?
   #after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
-  before_action :set_item, only: %i[show edit update destroy]
+  before_action :set_item, only: %i[show edit update hide]
 
   def index
-    @items = Item.where.not(user: current_user)
+    @items = Item.where.not(user: current_user).where(hidden: false)
     if params[:query].present? && params[:location].present?
       @items = Item.search_by_name_and_description(params[:query])
       @items = @items.near(params[:location], 20)
@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def my_items
-    @items = current_user.items
+    @items = current_user.items.where(hidden: false)
   end
 
   # Flat.near([40.71, 100.23], 20) # flats within 20 km of a point
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
   end
 
   def my_items
-    @items = current_user.items
+    @items = current_user.items.where(hidden: false)
   end
 
   def edit
@@ -70,12 +70,19 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
-    @item.destroy
-    redirect_to myitems_path, status: :see_other, notice: 'Item was successfully destroyed.'
+  def hide
+    @deals = Deal.where(status: "accepted")
+    @my_deals = @deals.select { |deal| deal.user_offerer == current_user || deal.user_requested == current_user }
+    @deal_with_item = @my_deals.select { |deal| deal.requested_item == @item || deal.offered_item == @item }
+    if @deal_with_item.any?
+      redirect_to myitems_path, status: :see_other, notice: 'No puede eliminarse un producto con trueques pendientes'
+    else
+      @item.update(hidden: true)
+      Offer.where(offered_item: @item).update_all(status: "canceled")
+      Offer.where(requested_item: @item).update_all(status: "canceled")
+      redirect_to myitems_path, status: :see_other, notice: 'Producto y ofertas relacionadas canceladas'
+    end
   end
-
-
 
   private
 
@@ -97,7 +104,7 @@ class ItemsController < ApplicationController
       preferences.each do |preference|
         prefered_categories << preference.category
       end
-      items = Item.where(category: prefered_categories).where.not(user: current_user)
+      items = Item.where(category: prefered_categories).where.not(user: current_user).where(hidden: false)
       shuffled_items = items.shuffle
       # Select distinct items up to a maximum of 4
       item_for_user = shuffled_items.uniq.take(4)
@@ -131,7 +138,7 @@ class ItemsController < ApplicationController
 
   def items_within_user_preferered_categories
     prefered_categories = user_interested_categories
-    items = Item.where(category: prefered_categories).where.not(user: current_user)
+    items = Item.where(category: prefered_categories).where.not(user: current_user).where(hidden: false)
     shuffled_items = items.shuffle
     # Select distinct items up to a maximum of 4
     item_for_user = shuffled_items.uniq.take(4)

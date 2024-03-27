@@ -2,9 +2,15 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: "pages#home"
-  get 'profile', to: 'users#show', as: :profile
-  resources :items
+  get 'users/:id', to: 'users#show', as: :user
+  get 'profile', to: 'users#profile', as: :profile
+  resources :items, except: [:destroy] do
+    member do
+      patch :hide
+    end
+  end
   get 'myitems', to: 'items#my_items', as: :myitems
+
     resources :chatrooms, only: [:index, :show] do
     resources :messages, only: :create
 end
