@@ -12,11 +12,12 @@
               <p class="lead"><strong>Email:</strong> <%= @user.email %></p>
               <p class="lead"><strong>Ubicación:</strong> <%= @user.address %></p>
               <p class="lead"><strong>Preferencias:</strong></p>
-
-              <%= form_with(url: preferences_path, method: :post, class: "form-inline px-0 mb-3") do |form| %>
-                <%= select_tag :category_id, options_for_select(Category.all.map { |c| [c.name, c.id] }, include_blank: "Categoría"), class: "form-control mr-2" %>
-                <%= button_tag "Agregar", class: "btn btn-primary" %>
-              <% end %>
+                <%= form_with(url: preferences_path, method: :post, class: "form-inline px-0 mb-3") do |form| %>
+                  <% selected_category_ids = current_user.preferences.pluck(:category_id) %>
+                  <% options = Category.where.not(id: selected_category_ids).map { |c| [c.name, c.id] } %>
+                  <%= select_tag :category_id, options_for_select(options, include_blank: "Categoría"), class: "form-control mr-2" %>
+                  <%= button_tag "Agregar", class: "btn btn-primary" %>
+                <% end %>
 
               <% preferences = current_user.preferences %>
               <% if preferences.present? %>
