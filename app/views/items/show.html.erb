@@ -1,4 +1,5 @@
 <div class="container-fluid" data-controller="toggle">
+<div class="row">
   <div id="carousel<%= @item.id %>" class="carousel slide position-relative" data-bs-ride="carousel" style="height: 300px; width: 100%; overflow: hidden;">
     <div class="carousel-inner">
       <% if @item.photos.attached? %>
@@ -24,11 +25,16 @@
       <span class="visually-hidden">Next</span>
     </a>
   </div>
-  <div class="container my-3 px-3">
+  <div class="container my-3 w-50">
     <div class="d-flex justify-content-between">
       <div>
         <h2><%= @item.name %></h2>
-        <h4><i class="fa-solid fa-location-dot pe-2"></i><%= @item.user.address %></h4>
+        <h5><%= @item.user.email %></h>
+        <div style="display: inline;">
+          <p>Rating: <strong><%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
+          
+        </div>
+        <h5><i class="fa-solid fa-location-dot pe-2"></i><%= @item.user.address %></h5>
       </div>
       <div>
         <span class='badge bg-secondary'><%= @item.condition %></span>
@@ -42,18 +48,22 @@
           <%= preference.category.name %>
         </div>
       <% end %>
+
+
     </div>
     <div class="d-flex justify-content-center align-items-center">
       <div class="d-flex gap-2">
         <% if @item.user == current_user %>
-          <button class='btn btn-secondary' data-action='click->toggle#showoffer'>Edita tu producto</button>
+            <button class='btn btn-secondary' data-action='click->toggle#showoffer'>Edita tu producto</button>
         <% else %>
-          <button class='btn btn-secondary' data-action='click->toggle#showoffer'>Me interesa!</button>
+          <div><button class='btn btn-secondary' data-action='click->toggle#showoffer'>Me interesa!</button></div>
+          <%= form_with model: @chatroom, method: :post do |f| %>
+            <%= f.hidden_field :user_id, value: @item.user.id%>
+            <%= f.button "Enviar Mensaje", class: 'btn btn-primary' %>
+            <% end %>
+            <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
         <% end %>
-        <%= form_with model: @chatroom, method: :post do |f| %>
-          <%= f.hidden_field :user_id, value: @item.user.id%>
-          <%= f.button "Enviar Mensaje", class: 'btn btn-primary' %>
-        <% end %>
+        
       </div>
     </div>
   <div class="row justify-content-center d-none m-3" data-toggle-target='form'>
@@ -62,5 +72,6 @@
     <% else %>
       <%= render 'offers/form' %>
     <% end %>
+  </div>
   </div>
 </div>
