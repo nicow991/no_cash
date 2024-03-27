@@ -8,6 +8,9 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.where.not(user: current_user).where(hidden: false)
+    # this variables help populate the items index page: recommended items based on preferences and previous deals
+    @user_prefered_items = user_prefered_items if current_user.preferences.any?
+    @user_recommendations = items_within_user_preferered_categories if current_user.deals.any?
     if params[:query].present? && params[:location].present?
       @items = Item.search_by_name_and_description(params[:query])
       @items = @items.near(params[:location], 20)
@@ -15,13 +18,11 @@ class ItemsController < ApplicationController
       @items = Item.search_by_name_and_description(params[:query])
     elsif params[:location].present?
       @items = Item.near(params[:location], 20)
+      @user_prefered_items = @user_prefered_items.select { |item| item.address.downcase.include?(params[:location].downcase) || item.description.downcase.include?(params[:location].downcase) }
     elsif params[:category].present?
       @items = Item.by_category(params[:category])
     end
 
-    # this variables help populate the items index page: recommended items based on preferences and previous deals
-    @user_prefered_items = user_prefered_items if current_user.preferences.any?
-    @user_recommendations = items_within_user_preferered_categories if current_user.deals.any?
   end
 
   def my_items
@@ -38,7 +39,7 @@ class ItemsController < ApplicationController
     @deal = Deal.new
     @offer = Offer.new
     @chatroom = Chatroom.new
-    
+
   end
 
   def create
