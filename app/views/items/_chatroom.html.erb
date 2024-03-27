@@ -2,7 +2,7 @@
         <%= form_with model: chatroom, method: :post do |f| %>
           <%= f.hidden_field :user_id, value: user[0].id%>
           <%= f.button :submit, class: 'border-0 text-secondary bg-transparent' do %>
-            <i class="far fa-comment-dots fs-1"></i>
+            <%= f.button "Enviar Mensaje", class: 'btn btn-primary' %>
           <% end %>
         <% end %>
       </span>
