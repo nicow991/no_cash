@@ -14,7 +14,8 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   def deals
-    offered_deals + received_deals
+    offered_deals.or(Item.where(id: received_deals))
   end
+
 
 end
