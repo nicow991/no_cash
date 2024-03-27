@@ -20,17 +20,18 @@
   align-items: center;
   justify-content: space-between;
   padding: 0px 50px;
-  color: rgba(0, 0, 0, 0.3);
+  color: rgb(78, 180, 184);
 
   a {
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.3);
+    color: rgb(39, 158, 162);
   }
 }
 
 .desktop-only.footer-copyright {
   display: flex;
   align-items: center;
+  color: rgb(78, 180, 184);
 }
 
 .desktop-only.footer-copyright p {
@@ -43,15 +44,16 @@
 }
 
 .desktop-only.footer-copyright a:hover {
-  color: black;
+  color: rgb(78, 180, 184);
 }
 
 .desktop-only.footer-links {
   display: flex;
   align-items: center;
+  color: rgb(78, 180, 184);
 }
 .desktop-only.footer-links a {
-  color: black;
+  color: rgb(40, 154, 158);
   opacity: 0.15;
   text-decoration: none;
   font-size: 24px;
