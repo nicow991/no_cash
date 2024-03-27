@@ -13,34 +13,36 @@
               <p class="lead"><strong>Ubicación:</strong> <%= @user.address %></p>
               <p class="lead"><strong>Preferencias:</strong></p>
 
-              <%= form_with(url: preferences_path, method: :post, class: "d-flex form-inline px-0") do |form| %>
-                <%= select_tag :category_id, options_for_select(Category.all.map { |c| [c.name, c.id] }, include_blank: "Categoría"), class: "form-control rounded mr-2" %>
+              <%= form_with(url: preferences_path, method: :post, class: "form-inline px-0 mb-3") do |form| %>
+                <%= select_tag :category_id, options_for_select(Category.all.map { |c| [c.name, c.id] }, include_blank: "Categoría"), class: "form-control mr-2" %>
                 <%= button_tag "Agregar", class: "btn btn-primary" %>
               <% end %>
 
               <% preferences = current_user.preferences %>
               <% if preferences.present? %>
                 <% preferences.each do |preference| %>
-                <div class='d-flex'>
-                  <p><%= preference.category.name %></p>
-                  <%= link_to preference_path(preference), class: "btn", data: { turbo_method: :delete, turbo_confirm: "Estas seguro?" } do %>
-                    <i class="fa-solid fa-xmark"></i>
-                  <% end %>
-                </div>
-
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <p class="mb-0"><%= preference.category.name %></p>
+                    <%= link_to preference_path(preference), class: "btn btn-sm btn-danger", data: { turbo_method: :delete, turbo_confirm: "¿Estás seguro?" } do %>
+                      <i class="fas fa-trash"></i>
+                    <% end %>
+                  </div>
                 <% end %>
-
               <% else %>
-                <p>Ninguna</p>
+                <p class="mb-0">Ninguna</p>
               <% end %>
             </div>
             <div class="col-md-6 mb-3">
-              <%= cl_image_tag @user.photo.key, height: 200, width: 300, crop: :fill %>
+              <% if @user.photo.present? %>
+                <%= cl_image_tag @user.photo.key, height: 200, width: 300, crop: :fill, class: "img-fluid rounded" %>
+              <% else %>
+                <p class="mb-0">No hay foto disponible</p>
+              <% end %>
             </div>
           </div>
         </div>
         <div class="card-footer bg-light">
-          <%= link_to 'Editar Perfil', edit_user_registration_path, class: 'btn btn-primary-dark border-primary-darker' %>
+          <%= link_to 'Editar Perfil', edit_user_registration_path, class: 'btn btn-primary-dark border-primary-darker me-2' %>
           <%= link_to "Cerrar Sesión", "/users/sign_out", data: {turbo_method: :delete}, class: "btn btn-danger float-end" %>
         </div>
       </div>
