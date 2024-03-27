@@ -29,10 +29,10 @@
     <div class="d-flex justify-content-between">
       <div>
         <h2><%= @item.name %></h2>
-        <h5><%= @item.user.email %></h>
+        <h5><%= @item.user.email %></h5>
         <div style="display: inline;">
           <p>Rating: <strong><%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
-          
+
         </div>
         <h5><i class="fa-solid fa-location-dot pe-2"></i><%= @item.user.address %></h5>
       </div>
@@ -61,9 +61,9 @@
             <%= f.hidden_field :user_id, value: @item.user.id%>
             <%= f.button "Enviar Mensaje", class: 'btn btn-primary' %>
             <% end %>
-            <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
+            <%= link_to 'Ver Perfil', user_path(@item.user), class: 'btn btn-light' %>
         <% end %>
-        
+
       </div>
     </div>
   <div class="row justify-content-center d-none m-3" data-toggle-target='form'>
