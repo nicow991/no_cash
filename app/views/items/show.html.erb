@@ -31,7 +31,7 @@
         <h2><%= @item.name %></h2>
         <h5><%= @item.user.email %></h>
         <div style="display: inline;">
-          <p>(<strong><%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong>)</p>
+          <p>Rating: <strong><%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
           
         </div>
         <h5><i class="fa-solid fa-location-dot pe-2"></i><%= @item.user.address %></h5>
