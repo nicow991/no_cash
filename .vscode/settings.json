@@ -1,0 +1,7 @@
+{
+  "rubyLsp.formatter": "rubocop",
+  "editor.defaultFormatter": "misogi.ruby-rubocop",
+  "[ruby]": {
+    "editor.defaultFormatter": "rubocop.vscode-rubocop"
+  }
+}

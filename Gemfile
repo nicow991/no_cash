@@ -59,8 +59,8 @@ gem "sassc-rails"
 gem "cloudinary"
 gem "pg_search"
 gem "geocoder"
-
-
+gem "rubocop-performance"
+gem "rubocop-rails"
 
 group :development, :test do
   gem "dotenv-rails"

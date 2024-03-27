@@ -2,7 +2,8 @@ class ChatroomsController < ApplicationController
   def create
     @chatroom = Chatroom.between(current_user.id, chatroom_params[:user_id])
     if @chatroom.nil?
-      @chatroom = Chatroom.create
+      @chatroom = Chatroom.create!(chatroom_params)
+      p chatroom_params[:user_id]
       user = User.find chatroom_params[:user_id]
       @chatroom.users = [current_user, user]
     end
