@@ -1,0 +1,15 @@
+<!-- <div class='deal-header d-flex justify-content-between bg-primary px-2 border-top'>
+  <%# render 'items/chatroom', chatroom: @chatroom, user: deal.users.reject { |user| user.id == current_user.id } %>
+  <p class='m-0 p-2'><%# deal.created_at.strftime("%Y-%m-%d") %></p>
+</div>
+-->
+<%= link_to (exchange.status == 'pending' ? offer_path(exchange) : deal_path(exchange)), class: 'text-decoration-none', style: 'color: inherit;' do%>
+  <div class='d-flex border bg-primary'>
+    <%= render 'status_item', item: exchange.offered_item%>
+    <div class="d-flex flex-column justify-content-around pb-5">
+        <i id='arrow' class="fa-solid fa-arrow-right-long m-0 p-2"></i>
+        <i id='arrow' class="fa-solid fa-arrow-left-long"></i>
+    </div>
+    <%= render 'status_item', item: exchange.requested_item%>
+    </div>
+<% end %>

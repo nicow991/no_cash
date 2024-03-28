@@ -8,16 +8,16 @@
 <div class="container mt-4">
   <div class="align-items-center mb-4">
     <h2>Trueques</h2>
-    <div class="d-flex gap-3 flex-wrap w-100">
-    <%= render 'deal_cards', deals: @accepted_deals %>
-    <%= render 'offer_cards', offers: @received_offers %>
-    <%= render 'offer_cards', offers: @offered_offers %>
+    <div class="d-flex gap-3 justify-content-center flex-wrap w-100">
+    <%= render 'cards', exchanges: @accepted_deals %>
+    <%= render 'cards', exchanges: @received_offers %>
+    <%= render 'cards', exchanges: @offered_offers %>
     </div>
-    <span>Historial (<%=@completed_deals.count + @canceled_deals.count%>):</span>
     <div data-controller='display'>
+      <span>Historial (<%=@completed_deals.size + @canceled_deals.size%>):</span>
       <i class="fa-solid fa-circle-chevron-up" data-action='click->display#display' data-display-target='togglebtn'></i>
-      <div class='my-2' data-display-target='info'>
-        <%= render 'deal_cards', deals: @finished_deals %>
+      <div class='d-none my-2 d-flex flex-wrap gap-3 w-100 justify-content-center' data-display-target='info'>
+        <%= render 'cards', exchanges: @finished_deals %>
       </div>
     </div>
   </div>

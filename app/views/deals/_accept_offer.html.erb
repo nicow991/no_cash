@@ -1,7 +1,4 @@
       <%= simple_form_for(deal) do |f| %>
         <%= f.hidden_field :offer_id, value: offer.id %>
-        <%= f.button :submit, "Aceptar", class: 'btn btn-primary-dark border-primary-darker my-2 w-100 px-5' %>
-      <% end %>
-      <%= simple_form_for(offer, url: reject_offer_path(offer), method: :patch) do |f| %>
-        <%= f.button :submit, "Rechazar", class: 'btn btn-danger my-2 w-100 px-5' %>
+        <%= f.button :submit, "Aceptar", class: 'btn btn-primary-dark border-primary-darker my-2' %>
       <% end %>
