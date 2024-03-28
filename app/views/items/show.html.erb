@@ -1,4 +1,4 @@
-<div class="container-fluid w-75" data-controller="toggle"style="margin-top: 50px"> 
+<div class="container-fluid w-75" data-controller="toggle" style="margin-top: 50px">
   <div class="row">
     <div class="col-md-6 order-md-1 order-2">
       <div class="container my-3">
@@ -10,7 +10,7 @@
         <h5><i class="fa-solid fa-location-dot pe-2"></i><%= @item.user.address %></h5>
         <p class="card-text"> <%= @item.description %>.</p>
         <p class="mb-2">Cambio por: </p>
-        <div class="d-flex justify-content-start gap-3 mb-5">
+        <div class="d-flex justify-content-start flex-wrap gap-3 mb-5" style="overflow-x: auto;">
           <% @item.user.preferences.each do |preference|%>
             <div class="badge bg-secondary rounded-5 ">
               <%= preference.category.name %>
