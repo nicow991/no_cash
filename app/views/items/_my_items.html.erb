@@ -1,0 +1,59 @@
+<div class='container mt-3'>
+  <h1>Mis Productos</h1>
+  <%= link_to "Agregar Producto", new_item_path, class: "btn btn-primary-dark border-primary-darker"%>
+</div>
+<% if items.empty? %>
+  <p>No hay resultados</p>
+<% else %>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-3">
+      <% items.each do |item| %>
+        <div class="col" style="margin-top: 50px;">
+          <div class="item d-flex flex-column h-100">
+            <div class="card rounded-4 shadow bg-primary-lighter position-relative" style="flex: 1;">
+              <div id="carousel<%= item.id %>" class="carousel slide" data-bs-ride="carousel" style="height: 180px; overflow: hidden; position: relative;">
+                <div class="carousel-inner rounded-top-4">
+                  <% if item.photos.attached? %>
+                    <% item.photos.each_with_index do |photo, index| %>
+                      <div class="carousel-item <%= 'active' if index == 0 %>">
+                        <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid", style: "object-fit: cover; height: 180px" %>
+                        <!-- Category name at the bottom over the image -->
+                        <p class="card-text font-size-12 mb-0 position-absolute bottom-0 start-0 end-0 text-center p-2" style="background-color: rgba(255, 255, 255, 0.7);"><%= item.category.name %></p>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+                <a class="carousel-control-prev" href="#carousel<%= item.id %>" role="button" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel<%= item.id %>" role="button" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </a>
+              </div>
+              <div class="card-body d-flex flex-column" style="overflow: hidden;">
+                <h3 class="card-title title-fixed-height font-size-24" style="padding: 6px; overflow: hidden; white-space: initial;">
+                  <%= item.name %>
+                </h3>
+                <p class="card-text font-size-14 mb-0"><i class="fa-solid fa-location-dot"></i> <%= item.address %>.</p>
+                <div class="mt-auto text-center"> <!-- Use Bootstrap utility classes to position button at the bottom -->
+                  <% if item.user == current_user %>
+                    <%= link_to 'Revisa tu oferta', item_path(item), class: "btn btn-primary border-primary-darker my-4 px-4 font-size-14" %>
+                  <% else %>
+                    <%= link_to "Selecciona esta oferta", item_path(item), class: "btn btn-primary border-primary-darker my-4 px-4 font-size-14" %>
+                  <% end %>
+                </div>
+                <%= form_with(model: item, url: hide_item_path(item), method: :patch, class: "d-inline text-end") do |form| %>
+                  <%= form.button type: "submit", class: "btn btn-sm", data: { turbo_confirm: "¿Estás seguro?" } do %>
+                    <i class="fas fa-trash"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
