@@ -72,3 +72,9 @@ body {
   min-height: 100vh;
   background-color: $primary-lighter !important;
 }
+
+.deal-card{
+  width: 330px;
+  min-width: 0;
+  text-overflow: ellipsis;
+}
