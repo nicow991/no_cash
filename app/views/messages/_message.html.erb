@@ -7,7 +7,7 @@
 >
   <small>
     <%if message.user == current_user %>
-      <strong class='text-dark'>You</strong>
+      <strong class='text-dark'>Tú</strong>
       <i class='text-dark'><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
       <p class='text-dark'><%= message.content %></p>
     <%else%>
