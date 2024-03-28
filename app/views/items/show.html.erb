@@ -17,27 +17,8 @@
             </div>
           <% end %>
         </div>
-        <div class="d-flex justify-content-center align-items-center">
-          <div class="d-flex gap-2">
-            <% if @item.user == current_user %>
-              <button class='btn btn-secondary' data-action='click->toggle#showoffer'>Edita tu producto</button>
-            <% else %>
-              <div><button class='btn btn-secondary' data-action='click->toggle#showoffer'>Me interesa!</button></div>
-              <%= form_with model: @chatroom, method: :post do |f| %>
-                <%= f.hidden_field :user_id, value: @item.user.id%>
-                <%= f.button "Enviar Mensaje", class: 'btn btn-primary' %>
-              <% end %>
-              <%= link_to 'Ver Perfil', user_path(@item.user), class: 'btn btn-light' %>
-            <% end %>
-          </div>
-        </div>
-        <div class="row justify-content-center d-none m-3" data-toggle-target='form'>
-          <% if @item.user == current_user %>
-            <%= render 'form' %>
-          <% else %>
-            <%= render 'offers/form' %>
-          <% end %>
-        </div>
+
+
       </div>
     </div>
     <div class="col-md-6 order-md-2 order-1">
@@ -68,4 +49,27 @@
       </div>
     </div>
   </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex gap-2">
+      <% if @item.user == current_user %>
+        <button class='btn btn-secondary' data-action='click->toggle#showoffer'>Edita tu producto</button>
+      <% else %>
+        <div><button class='btn btn-secondary' data-action='click->toggle#showoffer'>Me interesa!</button></div>
+        <%= form_with model: @chatroom, method: :post do |f| %>
+          <%= f.hidden_field :user_id, value: @item.user.id%>
+          <%= f.button "Enviar Mensaje", class: 'btn btn-primary' %>
+        <% end %>
+        <%= link_to 'Ver Perfil', user_path(@item.user), class: 'btn btn-light' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center d-none m-3" data-toggle-target='form'>
+    <% if @item.user == current_user %>
+      <%= render 'form' %>
+    <% else %>
+      <%= render 'offers/form' %>
+    <% end %>
+  </div>
+
 </div>

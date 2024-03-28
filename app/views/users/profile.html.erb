@@ -52,4 +52,8 @@
 </div>
 
 <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @user %>
-<%= render 'items/my_items', items: @user.items %>
+<div class='container'>
+  <h1>Mis Productos</h1>
+  <%= link_to "Agregar Producto", new_item_path, class: "btn btn-primary-dark border-primary-darker" %>
+  <%= render 'items/my_items', items: @user.items %>
+</div>
