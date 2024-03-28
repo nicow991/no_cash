@@ -1,1 +1,5 @@
-<%= render 'my_items', items: @items %>
+<div class='container'>
+  <h1>Mis Productos</h1>
+  <%= link_to "Agregar Producto", new_item_path, class: "btn btn-primary-dark border-primary-darker" %>
+  <%= render 'my_items', items: @items %>
+</div>
