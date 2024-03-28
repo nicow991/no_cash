@@ -8,10 +8,12 @@
 <div class="container mt-4">
   <div class="align-items-center mb-4">
     <h2>Trueques</h2>
-    <div class="d-flex gap-3 justify-content-center flex-wrap w-100">
+    <div class="d-flex justify-content-center">
+    <div style="width: fit-content;" class="d-flex gap-3 flex-wrap">
     <%= render 'cards', exchanges: @accepted_deals %>
     <%= render 'cards', exchanges: @received_offers %>
     <%= render 'cards', exchanges: @offered_offers %>
+    </div>
     </div>
     <div data-controller='display'>
       <span>Historial (<%=@completed_deals.size + @canceled_deals.size%>):</span>
