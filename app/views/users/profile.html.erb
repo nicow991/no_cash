@@ -17,7 +17,7 @@
                   <% selected_category_ids = current_user.preferences.pluck(:category_id) %>
                   <% options = Category.where.not(id: selected_category_ids).map { |c| [c.name, c.id] } %>
                   <%= select_tag :category_id, options_for_select(options, include_blank: "Categoría"), class: "form-control mr-2" %>
-                  <%= button_tag "Agregar", class: "btn btn-primary" %>
+                  <%= button_tag "Agregar", class: "btn btn-primary mt-3" %>
                 <% end %>
 
               <% preferences = current_user.preferences %>
