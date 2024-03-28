@@ -23,9 +23,11 @@
               </div>
                <div class="mb-3">
               <%= f.label :preferences, "Preferencias", class: "form-label" %>
-              <%= f.collection_check_boxes :preference_ids, Category.all, :id, :name do |b| %>
+              <br>
+              <%= f.collection_check_boxes :preference_ids, Category.all.order(:name), :id, :name do |b| %>
                 <%= b.check_box class: "form-check-input" %>
                 <%= b.label class: "form-check-label" %>
+                <br>
               <% end %>
             </div>
                 <div class="mb-3">
