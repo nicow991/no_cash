@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post "/create_user", to: "users#create", as: "create_user"
 
   devise_for :users
   root to: "pages#home"
@@ -32,4 +33,6 @@ end
     resources :messages, only: :create
   end
   resources :preferences, only: [:create, :destroy]
+
+  # resources :users, only: [:create]
 end
