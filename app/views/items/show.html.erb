@@ -1,77 +1,71 @@
-<div class="container-fluid" data-controller="toggle">
-<div class="row">
-  <div id="carousel<%= @item.id %>" class="carousel slide position-relative" data-bs-ride="carousel" style="height: 300px; width: 100%; overflow: hidden;">
-    <div class="carousel-inner">
-      <% if @item.photos.attached? %>
-        <% @item.photos.each_with_index do |photo, index| %>
-          <div class="carousel-item <%= "active" if index == 0 %> position-relative">
-            <div class="d-flex justify-content-center align-items-center">
-              <%= cl_image_tag photo.key, class: "d-block mx-auto", style: "height: 300px" %>
-              <span class="badge bg-primary position-absolute bottom-0 ">
-                <%= @item.category.name %>
-              </span>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-    <!-- Carousel controls -->
-    <a class="carousel-control-prev" href="#carousel<%= @item.id %>" role="button" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carousel<%= @item.id %>" role="button" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </a>
-  </div>
-  <div class="container my-3 w-50">
-    <div class="d-flex justify-content-between">
-      <div>
+<div class="container-fluid w-75" data-controller="toggle"style="margin-top: 50px"> 
+  <div class="row">
+    <div class="col-md-6 order-md-1 order-2">
+      <div class="container my-3">
         <h2><%= @item.name %></h2>
         <h5><%= @item.user.email %></h5>
         <div style="display: inline;">
           <p>Rating: <strong><%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
-
         </div>
         <h5><i class="fa-solid fa-location-dot pe-2"></i><%= @item.user.address %></h5>
-      </div>
-      <div>
-        <span class='badge bg-secondary'><%= @item.condition %></span>
-      </div>
-    </div>
-    <p class="card-text"> <%= @item.description %>.</p>
-    <p class="mb-2">Cambio por: </p>
-    <div class="d-flex justify-content-start gap-3 mb-5">
-      <% @item.user.preferences.each do |preference|%>
-        <div class="badge bg-secondary rounded-5 ">
-          <%= preference.category.name %>
+        <p class="card-text"> <%= @item.description %>.</p>
+        <p class="mb-2">Cambio por: </p>
+        <div class="d-flex justify-content-start gap-3 mb-5">
+          <% @item.user.preferences.each do |preference|%>
+            <div class="badge bg-secondary rounded-5 ">
+              <%= preference.category.name %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-
-
-    </div>
-    <div class="d-flex justify-content-center align-items-center">
-      <div class="d-flex gap-2">
-        <% if @item.user == current_user %>
-            <button class='btn btn-secondary' data-action='click->toggle#showoffer'>Edita tu producto</button>
-        <% else %>
-          <div><button class='btn btn-secondary' data-action='click->toggle#showoffer'>Me interesa!</button></div>
-          <%= form_with model: @chatroom, method: :post do |f| %>
-            <%= f.hidden_field :user_id, value: @item.user.id%>
-            <%= f.button "Enviar Mensaje", class: 'btn btn-primary' %>
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="d-flex gap-2">
+            <% if @item.user == current_user %>
+              <button class='btn btn-secondary' data-action='click->toggle#showoffer'>Edita tu producto</button>
+            <% else %>
+              <div><button class='btn btn-secondary' data-action='click->toggle#showoffer'>Me interesa!</button></div>
+              <%= form_with model: @chatroom, method: :post do |f| %>
+                <%= f.hidden_field :user_id, value: @item.user.id%>
+                <%= f.button "Enviar Mensaje", class: 'btn btn-primary' %>
+              <% end %>
+              <%= link_to 'Ver Perfil', user_path(@item.user), class: 'btn btn-light' %>
             <% end %>
-            <%= link_to 'Ver Perfil', user_path(@item.user), class: 'btn btn-light' %>
-        <% end %>
-
+          </div>
+        </div>
+        <div class="row justify-content-center d-none m-3" data-toggle-target='form'>
+          <% if @item.user == current_user %>
+            <%= render 'form' %>
+          <% else %>
+            <%= render 'offers/form' %>
+          <% end %>
+        </div>
       </div>
     </div>
-  <div class="row justify-content-center d-none m-3" data-toggle-target='form'>
-    <% if @item.user == current_user %>
-      <%= render 'form' %>
-    <% else %>
-      <%= render 'offers/form' %>
-    <% end %>
-  </div>
+    <div class="col-md-6 order-md-2 order-1">
+      <div id="carousel<%= @item.id %>" class="carousel slide position-relative" data-bs-ride="carousel" style="height: 300px; width: 100%; overflow: hidden;">
+        <div class="carousel-inner">
+          <% if @item.photos.attached? %>
+            <% @item.photos.each_with_index do |photo, index| %>
+              <div class="carousel-item <%= "active" if index == 0 %> position-relative">
+                <div class="d-flex justify-content-center align-items-center">
+                  <%= cl_image_tag photo.key, class: "d-block mx-auto", style: "height: 300px" %>
+                  <span class="badge bg-dark position-absolute bottom-0 ">
+                    <%= @item.category.name %>
+                  </span>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <!-- Carousel controls -->
+        <a class="carousel-control-prev" href="#carousel<%= @item.id %>" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel<%= @item.id %>" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
