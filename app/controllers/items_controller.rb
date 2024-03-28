@@ -8,6 +8,9 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.where.not(user: current_user).where(hidden: false)
+    # this variables help populate the items index page: recommended items based on preferences and previous deals
+    @user_prefered_items = user_prefered_items
+    @user_recommendations = items_within_user_preferered_categories
     if params[:query].present? && params[:location].present?
       @items = Item.search_by_name_and_description(params[:query])
       @items = @items.near(params[:location], 20)
@@ -15,13 +18,11 @@ class ItemsController < ApplicationController
       @items = Item.search_by_name_and_description(params[:query])
     elsif params[:location].present?
       @items = Item.near(params[:location], 20)
+      @user_prefered_items = @user_prefered_items.select { |item| item.address.downcase.include?(params[:location].downcase) || item.description.downcase.include?(params[:location].downcase) }
     elsif params[:category].present?
       @items = Item.by_category(params[:category])
     end
 
-    # this variables help populate the items index page: recommended items based on preferences and previous deals
-    @user_prefered_items = user_prefered_items if current_user.preferences.any?
-    @user_recommendations = items_within_user_preferered_categories if current_user.deals.any?
   end
 
   def my_items
@@ -38,7 +39,7 @@ class ItemsController < ApplicationController
     @deal = Deal.new
     @offer = Offer.new
     @chatroom = Chatroom.new
-    
+
   end
 
   def create
@@ -98,7 +99,7 @@ class ItemsController < ApplicationController
 
 
   def user_prefered_items
-    if current_user.preferences.any?
+    if current_user && current_user.preferences.any?
       preferences = current_user.preferences
       prefered_categories = []
       preferences.each do |preference|
@@ -108,12 +109,12 @@ class ItemsController < ApplicationController
       shuffled_items = items.shuffle
       # Select distinct items up to a maximum of 4
       item_for_user = shuffled_items.uniq.take(4)
+      return item_for_user
     end
-    return item_for_user
   end
 
   def user_interest_items
-    if current_user.deals.where.not(status: "canceled").any?
+    if current_user && current_user.deals.where.not(status: "canceled").any?
       interest_items = []
       user_completed_deals = current_user.deals.where(status: "completed")
       user_completed_deals.each do |deal|
@@ -130,10 +131,12 @@ class ItemsController < ApplicationController
   def user_interested_categories
     items = user_interest_items
     interested_categories = []
-    items.each do |item|
-      interested_categories << item.category
+    if items.present?
+      items.each do |item|
+        interested_categories << item.category
+      end
+      return interested_categories
     end
-    return interested_categories
   end
 
   def items_within_user_preferered_categories
