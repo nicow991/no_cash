@@ -24,7 +24,7 @@ class UsersController < ApplicationController
           Preference.create!(category_id: id, user: @user)
         end
       end
-      
+
       sign_in(@user) # Sign in the user after successful registration
 
 
