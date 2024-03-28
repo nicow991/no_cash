@@ -26,7 +26,7 @@ class OffersController < ApplicationController
 
   def cancel
     @offer = Offer.find(params[:id])
-    @offer.update(status: 'cancelled')
+    @offer.update(status: 'canceled')
     redirect_to deals_path, notice: 'Oferta cancelada'
   end
 

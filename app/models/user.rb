@@ -13,6 +13,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :photo
   def deals
-    offered_deals + received_deals
+    offered_deals.or(Deal.where(id: received_deals))
   end
 end

@@ -70,11 +70,24 @@ p {
 
 body {
   min-height: 100vh;
-  background-color: $primary-lighter !important;
+  background-color: #f0f0f0 !important;
+
+}
+
+.btn:hover {
+  background-color: #767676 !important;
+  border-color: #767676 !important;
+  transform: scale(1.05);
+  transition: 0.5s ease;
+
 }
 
 .deal-card{
   width: 330px;
   min-width: 0;
   text-overflow: ellipsis;
+}
+
+.btn {
+  box-shadow: 0 0 0 0.2rem rgba(143, 143, 144, 0.25) !important;
 }

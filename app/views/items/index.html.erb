@@ -1,8 +1,15 @@
 <div class="mobile-only w-75 m-auto">
   <%= render 'shared/search'%>
 </div>
-<% if @items.empty? %>
-  <p>No hay resultados</p>
-<% else %>
-  <%= render "card", items: @items %>
-<% end %>
+<%= render 'shared/banner'%>
+<%= render 'items/recommendations', user_recommendations: @user_recommendations if @user_recommendations.present? %>
+<%= render 'items/preferences', user_prefered_items: @user_prefered_items if @user_prefered_items.present? %>
+<br>
+<div class='container'>
+  <h3>Ofertas</h3>
+  <% if @items.empty? %>
+    <p>No hay resultados</p>
+  <% else %>
+    <%= render "card", items: @items %>
+  <% end %>
+</div>
