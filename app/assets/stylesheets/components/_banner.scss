@@ -1,7 +1,17 @@
+
+
 .banner {
   background-size: cover;
   background-position: center;
   padding: 150px 0;
+}
+
+.index-banner{
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), image-url('banner_3.png');
+    h1{
+      display: inline;
+      background-color: #071C52;
+    }
 }
 
 .banner h1 {
