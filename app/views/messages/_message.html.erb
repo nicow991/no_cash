@@ -11,7 +11,7 @@
       <i class='text-dark'><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
       <p class='text-dark'><%= message.content %></p>
     <%else%>
-      <strong><%= message.user.email %></strong>
+      <strong><%= message.user.nickname %></strong>
       <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
       <p><%= message.content %></p>
     <%end%>

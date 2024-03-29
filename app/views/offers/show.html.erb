@@ -7,11 +7,11 @@
       <% if @offer.requested_item.photos.attached? %>
         <%= cl_image_tag @offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
       <% end %>
-      
+
     </div>
     <div class="col-12 col-md-7 bg-primary">
       <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @offer.user_offerer.address %></p>
-      <p class="text-end"><strong>Rating de <%= @reviewed_user.email %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
+      <p class="text-end"><strong>Rating de <%= @reviewed_user.nickname %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
       <div class="bg-pink p-3 m-3">
         <p><%= @offer.user_offerer.email %> ofrece <%= @offer.offered_item.name %></p>
         <p>a cambio de <%= @offer.requested_item.name %> perteneciente a <%= @offer.user_requested.email %></p>
@@ -31,5 +31,3 @@
       </div>
     </div>
   </div>
-
-

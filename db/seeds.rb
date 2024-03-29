@@ -5,6 +5,7 @@ require 'open-uri'
 Message.destroy_all
 Participant.destroy_all
 Chatroom.destroy_all
+Review.destroy_all
 Deal.destroy_all
 Offer.destroy_all
 Item.destroy_all

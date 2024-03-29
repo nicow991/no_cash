@@ -3,7 +3,7 @@
     <div class="col-md-6 order-md-1 order-2">
       <div class="container my-3">
         <h2><%= @item.name %></h2>
-        <h5><%= @item.user.email %></h5>
+        <h5><%= @item.user.nickname %></h5>
         <div style="display: inline;">
           <p>Rating: <strong><%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
         </div>
