@@ -42,7 +42,7 @@ p {
   a {
     &:hover {
       i {
-        color: #210062;
+        color: #3bc4ff;
       }
     }
   }
@@ -75,11 +75,15 @@ body {
 }
 
 .btn:hover {
-  background-color: #767676 !important;
-  border-color: #767676 !important;
+  background-color: #a4ffed !important;
   transform: scale(1.05);
   transition: 0.5s ease;
+}
 
+.btn:hover.btn-danger {
+  background-color: #ff5b5b !important;
+  transform: scale(1.05);
+  transition: 0.5s ease;
 }
 
 .deal-card{
