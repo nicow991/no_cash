@@ -82,8 +82,12 @@ body {
 
 }
 
-.btn {
-  box-shadow: 0 0 0 0.2rem rgba(143, 143, 144, 0.25) !important;
-
+.deal-card{
+  width: 330px;
+  min-width: 0;
+  text-overflow: ellipsis;
 }
 
+.btn {
+  box-shadow: 0 0 0 0.2rem rgba(143, 143, 144, 0.25) !important;
+}

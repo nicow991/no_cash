@@ -1,9 +1,0 @@
-<h4 class='text-center my-2'>Finalizados (<%= @completed_deals.count %>) <i class="fa-solid fa-circle-chevron-up" data-action='click->display-deals#completed' data-display-deals-target='chevroncompleted'></i></h4>
-<div class='my-2 d-none' data-display-deals-target='completeddeal'>
-  <% @completed_deals.each do |deal| %>
-  <div class='my-2 bg-primary'>
-    <%= render 'deals/dealstatus', deal: deal %>
-    <%= render 'deals/review', deal: deal, review: @review %>
-  </div>
-  <% end %>
-</div>
