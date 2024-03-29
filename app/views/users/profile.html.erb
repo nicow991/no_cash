@@ -16,10 +16,9 @@
                 <%= form_with(url: preferences_path, method: :post, class: "form-inline px-0 mb-3") do |form| %>
                   <% selected_category_ids = current_user.preferences.pluck(:category_id) %>
                   <% options = Category.where.not(id: selected_category_ids).map { |c| [c.name, c.id] } %>
-                  <%= select_tag :category_id, options_for_select(options, include_blank: "Categoría"), class: "form-control mr-2" %>
+                  <%= select_tag :category_id, options_for_select(options, include_blank: "Categoría"),  class: "form-control mr-2 bg-light" %>
                   <%= button_tag "Agregar", class: "btn btn-primary mt-3" %>
                 <% end %>
-
               <% preferences = current_user.preferences %>
               <% if preferences.present? %>
                 <% preferences.each do |preference| %>
@@ -53,4 +52,8 @@
 </div>
 
 <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @user %>
-<%= render 'items/my_items', items: @user.items %>
+<div class='container'>
+  <h1>Mis Productos</h1>
+  <%= link_to "Agregar Producto", new_item_path, class: "btn btn-primary-dark border-primary-darker" %>
+  <%= render 'items/my_items', items: @user.items %>
+</div>

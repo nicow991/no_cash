@@ -92,31 +92,14 @@ Offer.all.each do |offer|
   if [1,2].sample == 1
     puts "creating deal for offer"
     Deal.create!(status: 'accepted', offer_id: offer.id)
-      # rand = [1, 2, 3, 4].sample
-      #   puts "creating review deal for offer"
-      # #   deal.update(status: 'completed')
-      # #   Review.create!(user_reviewed_id: user.id, deal: deal, user_reviewer_id: Item.find(offer.requested_item_id).user.id, content: 'Smooth exchange')
-      # # elsif rand == 3
-      # #   deal.update(status: 'completed')
-      # #   Review.create!(user_reviewed_id: Item.find(offer.requested_item_id).user.id, deal: deal, user_reviewer_id:
-      # user.id, content: 'Great transaction')
-      # # elsif rand == 2
-      #   deal.update(status: 'completed')
-      #   Review.create!(user_reviewed_id: Item.find(offer.requested_item_id).user.id, deal: deal, user_reviewer_id:
-      # user.id, content: 'Great transaction')
-      #   Review.create!(user_reviewed_id: user.id, deal: deal, user_reviewer_id:
-      # Item.find(offer.requested_item_id).user.id, content: 'Smooth exchange')
   end
 end
 
-
-
-10.times do
+8.times do
   chatroom = Chatroom.create
-  user = User.all.sample
-  other_user = User.where.not(id: user.id).sample
-  Participant.create(user: user, chatroom: chatroom)
-  Participant.create(user: other_user, chatroom: chatroom)
-  Message.create(user: user, chatroom: chatroom, content: Faker::Quote.famous_last_words)
-  Message.create(user: other_user, chatroom: chatroom, content: Faker::Quote.famous_last_words)
+  users = User.all.sample(2)
+  users = User.all.sample(2) while Chatroom.between(users)
+  chatroom.users = users
+  Message.create(user: users.first, chatroom: chatroom, content: Faker::Quote.famous_last_words)
+  Message.create(user: users.last, chatroom: chatroom, content: Faker::Quote.famous_last_words)
 end

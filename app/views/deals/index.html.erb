@@ -6,12 +6,21 @@
   <% end %>
 <% end %>
 <div class="container mt-4">
-  <div class="align-items-center mb-4" data-controller="display-deals">
+  <div class="align-items-center mb-4">
     <h2>Trueques</h2>
-    <%= render 'deals/accepted_deals', accepted_deals: @accepted_deals %>
-    <%= render 'deals/completed_deals', completed_deals: @completed_deals %>
-    <%= render 'deals/canceled_deals', canceled_deals: @canceled_deals %>
-    <%= render 'deals/sent_offers', offered_offers: @offered_offers %>
-    <%= render 'deals/received_offers', received_offers: @received_offers %>
+    <div class="d-flex justify-content-center">
+    <div style="width: fit-content;" class="d-flex gap-3 flex-wrap">
+    <%= render 'cards', exchanges: @accepted_deals %>
+    <%= render 'cards', exchanges: @received_offers %>
+    <%= render 'cards', exchanges: @offered_offers %>
+    </div>
+    </div>
+    <div data-controller='display'>
+      <span>Historial (<%=@completed_deals.size + @canceled_deals.size%>):</span>
+      <i class="fa-solid fa-circle-chevron-up" data-action='click->display#display' data-display-target='togglebtn'></i>
+      <div class='d-none my-2 d-flex flex-wrap gap-3 w-100 justify-content-center' data-display-target='info'>
+        <%= render 'cards', exchanges: @finished_deals %>
+      </div>
+    </div>
   </div>
 </div>

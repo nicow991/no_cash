@@ -1,0 +1,35 @@
+<% exchanges.each do |exchange| %>
+  <div class='deal-card align-self-start d-flex flex-column justify-content-between rounded-4 shadow my-2 bg-primary'>
+    <div class="ps-3" style="height: 20px; font-size: 15px;">
+    <% if exchange.status == 'completed' %>
+      <span class="text-success fw-bold"> Concluido </span>
+    <% elsif exchange.status == 'canceled' %>
+      <span class="text-danger fw-bold"> Cancelado </span>
+    <% elsif exchange.status == 'pending' %>
+      <% if exchange.user_requested == current_user %>
+        <span><%= "#{exchange.user_offerer.email} te envio una oferta!" %></span>
+      <% else %>
+        <span><%= "Esperando la confirmacion de #{exchange.user_requested.email}..." %></span>
+      <% end %>
+    <% else %>
+      <span class="text-warning fw-bold"> Pendiente </span>
+    <% end %>
+    </div>
+    <%= render 'deals/status', exchange: exchange %>
+    <div class="d-flex justify-content-around align-items-center w-100 flex-grow-1">
+    <% if exchange.status == 'accepted' %>
+      <%= render 'deals/cancel', deal: exchange %>
+      <%= render 'deals/complete', deal: exchange %>
+    <% elsif exchange.status == 'pending' %>
+      <% if exchange.user_requested == current_user %>
+        <%= render 'deals/reject_offer', deal: @deal, offer: exchange%>
+        <%= render 'deals/accept_offer', deal: @deal, offer: exchange%>
+      <% else %>
+        <%= render 'deals/cancel_offer', offer: exchange %>
+      <% end %>
+    <% else %>
+      <%= render 'deals/review', deal: exchange, review: @review %>
+    <% end %>
+    </div>
+  </div>
+<% end %>

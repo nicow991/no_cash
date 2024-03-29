@@ -39,4 +39,7 @@
 </div>
 
 <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @user %>
-<%= render 'items/my_items', items: @user.items %>
+<div class='container'>
+  <h1>Productos de <%= @user.email %></h1>
+  <%= render 'items/my_items', items: @user.items %>
+</div>
