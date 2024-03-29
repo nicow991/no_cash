@@ -20,6 +20,9 @@
   body {
     margin-bottom: $footer-height;
   }
+  .all-cards {
+    justify-content:center;
+  }
 }
 @media (min-width: 768px) {
   .mobile-only {
@@ -71,7 +74,7 @@ p {
 body {
   min-height: 100vh;
   background-color: #f0f0f0 !important;
-
+  overflow-x: hidden;
 }
 
 .btn:hover {
