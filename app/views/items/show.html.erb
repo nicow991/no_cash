@@ -3,7 +3,7 @@
     <div class="col-md-6 order-md-1 order-2">
       <div class="container my-3">
         <h2><%= @item.name %></h2>
-        <h5><%= @item.user.email %></h5>
+        <h5><%= @item.user.nickname %></h5>
         <div style="display: inline;">
           <p>Rating: <strong><%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
         </div>
@@ -49,7 +49,7 @@
       </div>
     </div>
   </div>
-  <div class="d-flex justify-content-center align-items-center">
+  <div class="d-flex justify-content-center align-items-center mt-5">
     <div class="d-flex gap-2">
       <% if @item.user == current_user %>
         <button class='btn btn-secondary' data-action='click->toggle#showoffer'>Edita tu producto</button>
