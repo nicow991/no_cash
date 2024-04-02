@@ -1,5 +1,4 @@
-
-  <div class="row justify-content-center">
+<div class="row justify-content-center">
     <div class="col-12 col-md-7 d-flex bg-primary p-0">
       <% if @offer.offered_item.photos.attached? %>
         <%= cl_image_tag @offer.offered_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
@@ -7,7 +6,6 @@
       <% if @offer.requested_item.photos.attached? %>
         <%= cl_image_tag @offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
       <% end %>
-      
     </div>
     <div class="col-12 col-md-7 bg-primary">
       <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @offer.user_offerer.address %></p>
@@ -24,7 +22,6 @@
             <%= render 'deals/accept_offer', deal: @deal, offer: @offer %>
           <% end %>
         </div>
-            <%= link_to 'Ver Perfil', user_path(@offer.user_offerer), class: 'btn btn-light' %>
         <div class="d-flex">
           <%= render 'items/chatroom', chatroom: @chatroom, user: @offer.users.reject { |user| user.id == current_user.id } %>
         </div>
@@ -32,4 +29,4 @@
     </div>
   </div>
 
-
+<%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>

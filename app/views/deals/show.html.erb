@@ -14,8 +14,6 @@
       <p><%= @deal.user_offerer.email %> ofrece <%= @deal.offered_item.name %></p>
       <p>a cambio de <%= @deal.requested_item.name %> perteneciente a <%= @deal.user_requested.email %></p>
     </div>
-          <%= link_to 'Ver Perfil', user_path(@deal.users.reject { |user| user.id == current_user.id }), class: 'btn btn-light' %>
-
     <% if @deal.status == 'accepted' %>
       <div class="container">
         <div class="row">
@@ -47,5 +45,6 @@
     <% end %>
   </div>
 </div>
+<%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
 
 
