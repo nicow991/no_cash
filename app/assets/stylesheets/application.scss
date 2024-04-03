@@ -20,6 +20,9 @@
   body {
     margin-bottom: $footer-height;
   }
+  .all-cards {
+    justify-content:center;
+  }
 }
 @media (min-width: 768px) {
   .mobile-only {
@@ -42,7 +45,7 @@ p {
   a {
     &:hover {
       i {
-        color: #210062;
+        color: #3bc4ff;
       }
     }
   }
@@ -71,15 +74,19 @@ p {
 body {
   min-height: 100vh;
   background-color: #f0f0f0 !important;
-
+  overflow-x: hidden;
 }
 
 .btn:hover {
-  background-color: #767676 !important;
-  border-color: #767676 !important;
+  background-color: #a4ffed !important;
   transform: scale(1.05);
   transition: 0.5s ease;
+}
 
+.btn:hover.btn-danger {
+  background-color: #ff5b5b !important;
+  transform: scale(1.05);
+  transition: 0.5s ease;
 }
 
 .deal-card{

@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-md-6">
               <p class="lead"><strong>Nombre:</strong> <%= @user.nickname %></p>
-              <p class="lead"><strong>Email:</strong> <%= @user.email %></p>
+              <p class="lead"><strong>Email:</strong> <%= @user.nickname %></p>
               <p class="lead"><strong>Rating: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
               <p class="lead"><strong>Ubicación:</strong> <%= @user.address %></p>
               <p class="lead"><strong>Preferencias:</strong></p>
@@ -40,6 +40,6 @@
 
 <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @user %>
 <div class='container'>
-  <h1>Productos de <%= @user.email %></h1>
+  <h1>Productos de <%= @user.nickname %></h1>
   <%= render 'items/my_items', items: @user.items %>
 </div>
