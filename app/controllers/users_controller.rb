@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :create]
   def show
     @user = User.find(params[:id])
+    @items = Item.where(user: @user, hidden: false)
     @reviews = Review.where(user_reviewed: @user)
     @rating = @reviews.average(:rating).round(2) if @reviews.any?
 
@@ -9,6 +10,7 @@ class UsersController < ApplicationController
 
   def profile
     @user = current_user
+    @items = Item.where(user: @user, hidden: false)
     @preference = Preference.new
     @reviews = Review.where(user_reviewed: @user)
     @rating = @reviews.average(:rating).round(2) if @reviews.any?
