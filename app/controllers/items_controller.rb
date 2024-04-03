@@ -76,12 +76,12 @@ class ItemsController < ApplicationController
     @my_deals = @deals.select { |deal| deal.user_offerer == current_user || deal.user_requested == current_user }
     @deal_with_item = @my_deals.select { |deal| deal.requested_item == @item || deal.offered_item == @item }
     if @deal_with_item.any?
-      redirect_to myitems_path, status: :see_other, notice: 'No puede eliminarse un producto con trueques pendientes'
+      redirect_to profile_path_path, status: :see_other, notice: 'No puede eliminarse un producto con trueques pendientes'
     else
       @item.update(hidden: true)
       Offer.where(offered_item: @item).update_all(status: "canceled")
       Offer.where(requested_item: @item).update_all(status: "canceled")
-      redirect_to myitems_path, status: :see_other, notice: 'Producto y ofertas relacionadas canceladas'
+      redirect_to profile_path, status: :see_other, notice: 'Producto y ofertas relacionadas canceladas'
     end
   end
 
