@@ -7,14 +7,7 @@
       <%= cl_image_tag @offer.requested_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
     <% end %>
   </div>
-  <style>
-    .img-fluid {
-      max-width: 50%;
-      max-height: auto;
-    }
-  </style>
-
-  <div class="col-12 col-md-7 bg-primary">
+   <div class="col-12 col-md-7 bg-primary">
     <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @offer.user_offerer.address %></p>
     <p class="text-end"><strong>Rating de <%= @reviewed_user.email %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i></strong></p>
     <div class="bg-pink p-3 m-3">
