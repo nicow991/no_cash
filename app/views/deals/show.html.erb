@@ -1,10 +1,10 @@
 <div class="row justify-content-center">
   <div class="col-12 col-md-7 d-flex bg-primary p-0">
     <% if @deal.offered_item.photos.attached? %>
-      <%= cl_image_tag @deal.offered_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
+      <%= cl_image_tag @deal.offered_item.photos.first.key, id: "offered-img-deal", class: "d-block w-100 img-fluid m-0 p-0" %>
     <% end %>
     <% if @deal.requested_item.photos.attached? %>
-      <%= cl_image_tag @deal.requested_item.photos.first.key, class: "d-block w-100 img-fluid m-0 p-0" %>
+      <%= cl_image_tag @deal.requested_item.photos.first.key,  id: "requested-img-deal", class: "d-block w-100 img-fluid m-0 p-0" %>
     <% end %>
   </div>
   <div class="col-12 col-md-7 bg-primary">
@@ -14,36 +14,15 @@
       <p><%= @deal.user_offerer.email %> ofrece <%= @deal.offered_item.name %></p>
       <p>a cambio de <%= @deal.requested_item.name %> perteneciente a <%= @deal.user_requested.email %></p>
     </div>
-          <%= link_to 'Ver Perfil', user_path(@deal.users.reject { |user| user.id == current_user.id }), class: 'btn btn-light' %>
-
-    <% if @deal.status == 'accepted' %>
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-xl-4">
-            <div class="d-flex justify-content-around p-3">
-              <div class="d-flex">
-                <%= render 'deals/complete', deal: @deal %>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-xl-4">
-            <div class="d-flex justify-content-around p-3">
-              <div class="d-flex">
-                <%= render 'deals/cancel', deal: @deal %>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-xl-4">
-            <div class="d-flex justify-content-around p-3">
-              <div class="d-flex">
-                <%= render 'items/chatroom', chatroom: @chatroom, user: @deal.users.reject { |user| user.id == current_user.id } %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% elsif @deal.status == 'completed' %>
+    
+    <div class="d-flex justify-content-between align-items-center">
+      <%= render 'deals/cancel', deal: @deal, class: 'btn btn-danger btn-sm' %>
+      <%= link_to 'Ver Perfil', user_path(@deal.users.reject { |user| user.id == current_user.id }), class: 'btn btn-light btn-sm' %>
+      <%= render 'items/chatroom', chatroom: @chatroom, user: @deal.users.reject { |user| user.id == current_user.id }, class: 'btn btn-light btn-sm' %>
+    </div>
+    <% if @deal.status == 'completed' %>
       <%= render 'deals/review', deal: @deal, review: @review %>
     <% end %>
   </div>
 </div>
+
