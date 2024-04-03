@@ -9,42 +9,27 @@
   </div>
   <div class="col-12 col-md-7 bg-primary">
     <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @deal.user_offerer.address %></p>
-    <p class="text-end"><strong>Rating de <%= @reviewed_user.email %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i> </strong></p>
+    <p class="text-end"><strong>Rating de <%= @reviewed_user.nickname %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i> </strong></p>
     <div class="bg-pink p-3 m-3">
       <p><%= @deal.user_offerer.email %> ofrece <%= @deal.offered_item.name %></p>
       <p>a cambio de <%= @deal.requested_item.name %> perteneciente a <%= @deal.user_requested.email %></p>
     </div>
-    <% if @deal.status == 'accepted' %>
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-xl-4">
-            <div class="d-flex justify-content-around p-3">
-              <div class="d-flex">
-                <%= render 'deals/complete', deal: @deal %>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-xl-4">
-            <div class="d-flex justify-content-around p-3">
-              <div class="d-flex">
-                <%= render 'deals/cancel', deal: @deal %>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-xl-4">
-            <div class="d-flex justify-content-around p-3">
-              <div class="d-flex">
-                <%= render 'items/chatroom', chatroom: @chatroom, user: @deal.users.reject { |user| user.id == current_user.id } %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% elsif @deal.status == 'completed' %>
+    
+    <div class="d-flex justify-content-between align-items-center">
+      <%= render 'deals/cancel', deal: @deal, class: 'btn btn-danger btn-sm' %>
+      <%= link_to 'Ver Perfil', user_path(@deal.users.reject { |user| user.id == current_user.id }), class: 'btn btn-light btn-sm' %>
+      <%= render 'items/chatroom', chatroom: @chatroom, user: @deal.users.reject { |user| user.id == current_user.id }, class: 'btn btn-light btn-sm' %>
+    </div>
+    
+    <style>
+      .img-fluid {
+        max-width: 60%;
+        max-height: 70%%;
+      }
+    </style>
+    
+    <% if @deal.status == 'completed' %>
       <%= render 'deals/review', deal: @deal, review: @review %>
     <% end %>
   </div>
 </div>
-<%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
-
-
