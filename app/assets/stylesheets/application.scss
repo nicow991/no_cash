@@ -102,3 +102,15 @@ body {
 .form-check-label {
   color: black;
 }
+
+#offered-img,
+#requested-img {
+  max-width: 50%;
+  max-height: auto;
+}
+
+#offered-img-deal,
+#requested-img-deal {
+  max-width: 60%;
+  max-height: auto;
+}
