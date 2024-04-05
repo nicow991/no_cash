@@ -3,4 +3,7 @@ class PagesController < ApplicationController
   def home
     redirect_to '/items' if user_signed_in?
   end
+
+  def terminos_de_uso
+  end
 end
