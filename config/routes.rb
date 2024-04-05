@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: "pages#home"
+  get 'pages/terminos_de_uso', to: "pages#terminos_de_uso", as: "terminos_de_uso"
   get 'users/:id', to: 'users#show', as: :user
   get 'profile', to: 'users#profile', as: :profile
   resources :items, except: [:destroy] do
