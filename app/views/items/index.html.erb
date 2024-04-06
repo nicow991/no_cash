@@ -1,15 +1,37 @@
 <div class="mobile-only w-75 m-auto">
   <%= render 'shared/search'%>
 </div>
+
 <%= render 'shared/banner'%>
-<%= render 'items/recommendations', user_recommendations: @user_recommendations if @user_recommendations.present? %>
-<%= render 'items/preferences', user_prefered_items: @user_prefered_items if @user_prefered_items.present? %>
 <br>
-<div class='container'>
-  <h3>Ofertas</h3>
-  <% if @items.empty? %>
-    <p>No hay resultados</p>
-  <% else %>
+<% if @search_performed && @items.any? %>
+  <div class='container'>
+    <h3>Resultados de la búsqueda</h3>
     <%= render "card", items: @items %>
+  </div>
+<% elsif @search_performed %>
+  <div class='container'>
+    <p>No hay resultados</p>
+  </div>
+<% else %>
+  <% if @user_recommendations.present? %>
+    <div class='container'>
+      <%= render 'items/recommendations', user_recommendations: @user_recommendations %>
+    </div>
   <% end %>
-</div>
+
+  <% if @user_prefered_items.present? %>
+    <div class='container'>
+      <%= render 'items/preferences', user_prefered_items: @user_prefered_items %>
+    </div>
+  <% end %>
+
+  <div class='container'>
+    <h3>Ofertas</h3>
+    <% if @items.empty? %>
+      <h3>No hay ofertas disponibles</h3>
+    <% else %>
+      <%= render "card", items: @items %>
+    <% end %>
+  </div>
+<% end %>
