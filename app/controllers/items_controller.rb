@@ -8,9 +8,11 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.where.not(user: current_user).where(hidden: false)
-    # this variables help populate the items index page: recommended items based on preferences and previous deals
     @user_prefered_items = user_prefered_items
     @user_recommendations = items_within_user_preferered_categories
+
+    @search_performed = params[:query].present? || params[:location].present? || params[:category].present?
+
     if params[:query].present? && params[:location].present?
       @items = Item.search_by_name_and_description(params[:query])
       @items = @items.near(params[:location], 20)
@@ -22,7 +24,6 @@ class ItemsController < ApplicationController
     elsif params[:category].present?
       @items = Item.by_category(params[:category])
     end
-
   end
 
   def my_items
