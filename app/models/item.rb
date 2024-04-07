@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   has_many :requested_offers, class_name: 'Offer', foreign_key: 'requested_item_id'
   has_many :offered_offers, class_name: 'Offer', foreign_key: 'offered_item_id'
   has_many :offered_items, through: :offered_offers, source: :requested_item
+  
 
 
   validates :name, :description, :address, presence: true

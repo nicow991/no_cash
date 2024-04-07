@@ -43,6 +43,23 @@ class DealsController < ApplicationController
   def complete
     @deal.status = "completed"
     @deal.save
+    # Hide items after a deal is completed
+    @items = [@deal.offered_item, @deal.requested_item]
+    @items.each do |item|
+      if item.category.name != "Servicios"
+        item.update(hidden: true)
+        # Cancel offers related to an item that's hidden after a deal is completed
+        offers = Offer.where(offered_item: item)
+        offers.update_all(status: "canceled") if offers.any?
+
+        requests = Offer.where(requested_item: item)
+        requests.update_all(status: "canceled") if requests.any?
+
+        # Cancel deals related to an item that's hidden after a deal is completed
+        deals = Deal.joins(:offer).where.not(status: 'completed').where("offers.offered_item_id = ? OR offers.requested_item_id = ?", item.id, item.id)
+        deals.update_all(status: "canceled") if deals.any?
+      end
+    end
     redirect_to deals_path
   end
 
