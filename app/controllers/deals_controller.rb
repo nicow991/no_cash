@@ -45,7 +45,7 @@ class DealsController < ApplicationController
     @deal.save
     @items = [@deal.offered_item, @deal.requested_item]
     @items.each do |item|
-      item.update(hidden: true) if item.category != "Servicios"
+      item.update(hidden: true) if item.category.name != "Servicios"
     end
     redirect_to deals_path
   end
