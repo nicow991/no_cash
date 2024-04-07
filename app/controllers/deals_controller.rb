@@ -47,6 +47,15 @@ class DealsController < ApplicationController
     @items.each do |item|
       item.update(hidden: true) if item.category.name != "Servicios"
     end
+    @offers = []
+    @items.each do |item|
+      @offers << item.requested_offers.where(status: "pending") if item.category.name != "Servicios"
+      @offers << item.offered_offers.where(status: "pending") if item.category.name != "Servicios"
+    end
+    @offers.each do |offer|
+      offer.update(status: "canceled")
+    end
+    
     redirect_to deals_path
   end
 
