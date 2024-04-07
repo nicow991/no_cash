@@ -43,6 +43,10 @@ class DealsController < ApplicationController
   def complete
     @deal.status = "completed"
     @deal.save
+    @items = [@deal.offered_item, @deal.requested_item]
+    @items.each do |item|
+      item.update(hidden: true) if item.category != "Servicios"
+    end
     redirect_to deals_path
   end
 
