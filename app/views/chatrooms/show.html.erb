@@ -1,8 +1,8 @@
 <div class="container chatroom bg-primary"
   data-controller="chatroom-subscription"
-  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
->
-  <p class="text-center pt-3"><strong> Bienvenido a tu chat con <%= @chatroom.participants.where.not(user: current_user).first.user.nickname %></strong></p>
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+  <% user_name = @chatroom.participants.where.not(user: current_user).first.user.nickname.nil? ? @chatroom.participants.where.not(user: current_user).first.user.email.split('@').first : @chatroom.participants.where.not(user: current_user).first.user.nickname%>
+  <p class="text-center pt-3"><strong> Bienvenido a tu chat con <%= user_name %></strong></p>
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>
