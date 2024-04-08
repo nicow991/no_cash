@@ -5,7 +5,11 @@
           <%= cl_image_tag item.photos.first.key, class: "img-fluid rounded-4 m-auto" %>
         <% end %>
         <div class="position-absolute bottom-0 text-center rounded-bottom-4 start-0 w-100" style="background-color: rgba(0, 0, 0, 0.4);">
-          <p><%= item.user.nickname %></p>
+          <%if !item.user.nickname.nil?%>
+            <p><%= item.user.nickname %></p>
+          <%else%>
+            <p><%= item.user.email.split("@").first %></p>
+          <%end%>
         </div>
       </div>
       <p class="title-fixed-height"><%= item.name %></p>
