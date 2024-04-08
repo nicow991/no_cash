@@ -3,12 +3,14 @@
   <% if reviewed_user == current_user %>
     <div class='' data-action='click->toggle-user-reviews#showreviews'><button class='btn btn-info p-3 my-2'>Reseñas recibidas: </button></div>
   <% else %>
-    <div class='' data-action='click->toggle-user-reviews#showreviews'><button class='btn btn-info p-3 my-2'>Reseñas de <%= reviewed_user.nickname %>: </button></div>
+    <% reviewed_name = reviewed_user.nickname.nil? ? reviewed_user.email.split("@").first : reviewed_user.nickname %>
+    <div class='' data-action='click->toggle-user-reviews#showreviews'><button class='btn btn-info p-3 my-2'>Reseñas de <%= reviewed_name %>: </button></div>
   <% end %>
   <div class="col-6 col-md-4 d-none" data-toggle-user-reviews-target='reviews'>
       <% reviews.each do |review| %>
         <div class='card bg-pink p-2 m-2'>
-          <p><%= review.user_reviewer.email %> dijo: </p>
+          <% reviewer_name = review.user_reviewer.nickname.nil? ? review.user_reviewer.email.split("@").first : review.user_reviewer.nickname %>
+          <p><%= reviewer_name %> dijo: </p>
           <p>Rating: <%= review.rating %> <i class="fa-solid fa-star"></i></p>
           <p>Comentario: <%= review.content %></p>
         </div>
