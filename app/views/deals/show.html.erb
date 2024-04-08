@@ -9,20 +9,14 @@
   </div>
   <div class="col-12 col-md-7 bg-primary">
     <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @deal.user_offerer.address %></p>
-        <% reviewed_user_name = !@reviewed_user.nickname.nil? ? @reviewed_user.email.split('@').first : @reviewed_user.nickname %>
+    <% reviewed_user_name = @reviewed_user.nickname.nil? ? @reviewed_user.email.split('@').first : @reviewed_user.nickname %>
     <p class="text-end"><strong>Rating de <%= reviewed_user_name %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i> </strong></p>
     <div class="bg-pink p-3 m-3">
-      <%if !@deal.user_offerer.nickname.nil?%>
-        <span><%= @deal.user_offerer.nickname %> ofrece <%= @deal.offered_item.name %></span>
-      <%else%>
-        <span><%= @deal.user_offerer.email.split("@").first %> ofrece <%= @deal.offered_item.name %></span>
-      <%end%>
+      <%offerer_name = @deal.user_offerer.nickname.nil? ? @deal.user_offerer.email.split("@").first : @deal.user_offerer.nickname %>
+      <span><%= offerer_name %> ofrece <%= @deal.offered_item.name %></span>
       <br>
-      <%if !@deal.user_requested.nickname.nil?%>
-        <span><%= @deal.user_requested.nickname %> ofrece <%= @deal.requested_item.name %></span>
-      <%else%>
-        <span><%= @deal.user_requested.email.split("@").first %> ofrece <%= @deal.requested_item.name %></span>
-      <%end%>
+      <%user_requested_name = @deal.user_requested.nickname.nil? ? @deal.user_requested.email.split("@").first : @deal.user_requested.nickname %>
+      <span><%= user_requested_name %> ofrece <%= @deal.requested_item.name %></span>
     </div>
 
     <div class="d-flex justify-content-between align-items-center">
