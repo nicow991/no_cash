@@ -19,8 +19,10 @@
       <span><%= user_requested_name %> ofrece <%= @deal.requested_item.name %></span>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center">
-      <%= render 'deals/cancel', deal: @deal, class: 'btn btn-danger btn-sm' %>
+    <div class="d-flex justify-content-around align-items-center">
+      <%  if @deal.status == 'accepted' %>
+        <%= render 'deals/cancel', deal: @deal, class: 'btn btn-danger btn-sm'%>
+      <% end %>
       <%= link_to 'Ver Perfil', user_path(@deal.users.reject { |user| user.id == current_user.id }), class: 'btn btn-light btn-sm' %>
       <%= render 'items/chatroom', chatroom: @chatroom, user: @deal.users.reject { |user| user.id == current_user.id }, class: 'btn btn-light btn-sm' %>
     </div>
