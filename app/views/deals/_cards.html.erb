@@ -7,9 +7,17 @@
       <span class="text-danger fw-bold"> Cancelado </span>
     <% elsif exchange.status == 'pending' %>
       <% if exchange.user_requested == current_user %>
-        <span><%= "#{exchange.user_offerer.email} te envio una oferta!" %></span>
+        <%if !exchange.user_offerer.nickname.nil?%>
+          <span><%= "#{exchange.user_offerer.nickname} te envio una oferta!" %></span>
+        <%else%>
+          <span><%= "#{exchange.user_offerer.email.split("@").first} te envio una oferta!" %></span>
+        <%end%>
       <% else %>
-        <span><%= "Esperando la confirmacion de #{exchange.user_requested.email}..." %></span>
+        <%if !exchange.user_requested.nickname.nil?%>
+          <span><%= "#{exchange.user_requested.nickname} te envio una oferta!" %></span>
+        <%else%>
+          <span><%= "Esperando la confirmacion de #{exchange.user_requested.email.split("@").first}..." %></span>
+        <%end%>
       <% end %>
     <% else %>
       <span class="text-warning fw-bold"> Pendiente </span>
