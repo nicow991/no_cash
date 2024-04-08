@@ -15,4 +15,5 @@ class User < ApplicationRecord
   def deals
     offered_deals.or(Deal.where(id: received_deals))
   end
+
 end
