@@ -9,7 +9,8 @@
   </div>
   <div class="col-12 col-md-7 bg-primary">
     <p class="text-end"><i class="fa-solid fa-location-dot mx-2"></i><%= @deal.user_offerer.address %></p>
-    <p class="text-end"><strong>Rating de <%= @reviewed_user.nickname %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i> </strong></p>
+        <% reviewed_user_name = !@reviewed_user.nickname.nil? ? @reviewed_user.email.split('@').first : @reviewed_user.nickname %>
+    <p class="text-end"><strong>Rating de <%= reviewed_user_name %>: <%= @rating.nil? ? 'Sin reseñas' : @rating %> <i class="fa-solid fa-star"></i> </strong></p>
     <div class="bg-pink p-3 m-3">
       <%if !@deal.user_offerer.nickname.nil?%>
         <span><%= @deal.user_offerer.nickname %> ofrece <%= @deal.offered_item.name %></span>
