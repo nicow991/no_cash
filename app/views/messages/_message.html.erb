@@ -11,7 +11,8 @@
       <i class='text-dark'><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
       <p class='text-dark'><%= message.content %></p>
     <%else%>
-      <strong><%= message.user.nickname %></strong>
+      <% user_name = message.user.nickname.nil? ? message.user.email.split('@').first : message.user.nickname%>
+      <strong><%= user_name %></strong>
       <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
       <p><%= message.content %></p>
     <%end%>

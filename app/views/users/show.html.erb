@@ -40,6 +40,7 @@
 
 <%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @user %>
 <div class='container'>
-  <h1>Productos de <%= @user.nickname %></h1>
+
+  <h1>Productos de <%= user_name %></h1>
   <%= render 'items/my_items', items: @items %>
 </div>
