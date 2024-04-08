@@ -11,7 +11,7 @@
         <span><%= "#{offerer_name} te envio una oferta!" %></span>
       <% else %>
         <%user_requested_name = exchange.user_requested.nickname.nil? ? exchange.user_requested.email.split("@").first : exchange.user_requested.nickname %>
-        <span><%= "#{user_requested_name} te envio una oferta!" %></span>
+        <span><%= "Oferta enviada!" %></span>
       <% end %>
     <% else %>
       <span class="text-warning fw-bold"> Pendiente </span>
