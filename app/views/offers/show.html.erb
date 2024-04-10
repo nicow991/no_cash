@@ -19,19 +19,17 @@
       <%user_requested_name = @offer.user_requested.nickname.nil? ? @offer.user_requested.email.split("@").first : @offer.user_requested.nickname %>
       <span><%= user_requested_name %> ofrece <%= @offer.requested_item.name %></span>
     </div>
-    <div class='d-flex justify-content-around p-3'>
-      <div class="d-flex align-items-center">
+    <div class="d-flex justify-content-around d-flex align-items-center">
+      
         <% if @offer.user_offerer == current_user %>
           <%= render 'deals/cancel_offer', offer: @offer %>
         <% else %>
           <%= render 'deals/accept_offer', deal: @deal, offer: @offer %>
         <% end %>
-      </div>
-      <div class="d-flex align-items-center">
+        <%= link_to 'Ver Perfil', user_path(@offer.users.reject { |user| user.id == current_user.id }), class: 'btn btn-light btn-sm' %>
         <%= render 'items/chatroom', chatroom: @chatroom, user: @offer.users.reject { |user| user.id == current_user.id } %>
-      </div>
+      
     </div>
   </div>
 </div>
 
-<%= render 'deals/show_reviews', reviews: @reviews, reviewed_user: @reviewed_user %>
