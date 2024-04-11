@@ -16,16 +16,16 @@
 .desktop-only.footer {
   height: $footer-height;
   width: 100%;
-  background-color: #414141b3;
+  background-color: #6C828C;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0px 50px;
-  color: rgb(78, 180, 184);
+  color: rgb(255, 255, 255);
 
   a {
     text-decoration: none;
-    color: rgb(39, 158, 162);
+    color: rgb(252, 255, 255);
   }
 }
 
@@ -62,4 +62,18 @@
 }
 .desktop-only.footer-links a:hover {
   opacity: 1;
+}
+
+.footer-links {
+  a {
+    &:hover {
+      i {
+        color: #3bc4ff;
+      }
+    }
+  }
+}
+
+.footer-copyright a:hover {
+  color: #3bc4ff;
 }
