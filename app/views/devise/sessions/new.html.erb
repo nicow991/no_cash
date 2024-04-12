@@ -27,6 +27,7 @@
           </div>
           <div class="card-footer bg-light">
             <%= f.button :submit, "Log in", class: "btn btn-primary" %>
+            <%= link_to "Forgot your password?", new_password_path(resource_name), class: "btn btn-link" %>
           </div>
         <% end %>
       </div>
